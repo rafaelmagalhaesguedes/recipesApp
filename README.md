@@ -48,8 +48,8 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
   <summary><strong>🗓 Data de entrega</strong></summary><br />
   
   * Este projeto é em grupo;
-  * São `X` dias de projeto;
-  * Data para entrega final do projeto: `DD/MM/YYYY - 14:00h`.
+  * Serão `11` dias de projeto;
+  * Data para entrega final do projeto: `09/11/2023 23:59`.
 
 </details><br />
 
@@ -145,7 +145,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
 
     - No menu à direita, clique no link **Assignees** e escolha **seu usuário**.
 
-    - No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-0x`.
+    - No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-034`.
 
   Caso tenha alguma dúvida, [assista a este vídeo explicativo](https://vimeo.com/362189205).
 
@@ -567,7 +567,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário a seguir. 
 **Leva menos de 3 minutos!**
 
-[FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
+[FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH#cohort_hidden=CH34&template=betrybe/sd-0x-project-recipes-app-ts)
 
 </details>
 
