@@ -28,6 +28,11 @@ function Login() {
         placeholder="Password"
         data-testid="password-input"
       />
+      <button
+      data-testid="login-submit-btn"
+      > 
+        entrar
+      </button>
     </div>
   );
 }
