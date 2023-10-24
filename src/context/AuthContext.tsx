@@ -6,24 +6,20 @@ import React, {
   ReactNode,
 } from 'react';
 
-// Define the interface for the auth state
 interface AuthState {
   email: string;
   password: string;
 }
 
-  // Define the action types
   type AuthAction =
     | { type: 'SET_EMAIL'; payload: string }
     | { type: 'SET_PASSWORD'; payload: string };
 
-// Define the initial state
 const initialState: AuthState = {
   email: '',
   password: '',
 };
 
-// Define the reducer function to handle state updates
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
     case 'SET_EMAIL':
@@ -35,22 +31,18 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   }
 };
 
-// Define the context type
 interface AuthContextType {
   state: AuthState;
   dispatch: Dispatch<AuthAction>;
 }
 
-// Create the Auth context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// AuthProvider component with state management
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-// eslint-disable-next-line react/function-component-definition
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+function AuthProvider({ children }: AuthProviderProps) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   return (
@@ -58,9 +50,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
-// Custom hook to access the Auth context
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -68,3 +59,4 @@ export const useAuth = (): AuthContextType => {
   }
   return context;
 };
+export default AuthProvider;

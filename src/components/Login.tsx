@@ -19,12 +19,14 @@ function Login() {
         value={ state.email }
         onChange={ handleEmailChange }
         placeholder="Email"
+        data-testid="email-input"
       />
       <input
         type="password"
         value={ state.password }
         onChange={ handlePasswordChange }
         placeholder="Password"
+        data-testid="password-input"
       />
     </div>
   );

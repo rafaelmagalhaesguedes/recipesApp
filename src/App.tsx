@@ -3,7 +3,7 @@ import './App.css';
 import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
-import { AuthProvider } from './context/AuthContext';
+import AuthProvider from './context/AuthContext';
 
 function App() {
   return (
