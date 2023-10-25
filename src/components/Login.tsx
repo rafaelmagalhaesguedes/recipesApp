@@ -23,6 +23,12 @@ function Login() {
     setIsFormValid(isValidEmail && isValidPassword);
   };
 
+  const handleSubmit = () => {
+    if (isFormValid) {
+      localStorage.setItem('user', JSON.stringify({ email: state.email }));
+    }
+  };
+
   return (
     <div>
       <input
@@ -39,7 +45,11 @@ function Login() {
         placeholder="Password"
         data-testid="password-input"
       />
-      <button data-testid="login-submit-btn" disabled={ !isFormValid }>
+      <button
+        data-testid="login-submit-btn"
+        onClick={ handleSubmit }
+        disabled={ !isFormValid }
+      >
         entrar
       </button>
     </div>
