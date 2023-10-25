@@ -1,5 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
 import AuthProvider from './context/AuthContext';
@@ -20,9 +21,7 @@ function App() {
           </Route>
         </Routes>
       </AuthProvider>
-
     </div>
   );
 }
-
 export default App;
