@@ -20,7 +20,7 @@
     "cy:open": "cypress open --e2e --browser chrome",
     "build": "vite build",
     "test": "vitest",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern --fix -c .eslintrc.json . --ext .js,.jsx,.ts,.tsx",
     "lint:styles": "npx stylelint '**/*.css'",
     "dev": "vite --open --port 3000",
     "start": "vite --open --port 3000",
