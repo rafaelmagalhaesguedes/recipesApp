@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 function Login() {
+  const navigate = useNavigate();
   const { state, dispatch } = useAuth();
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -26,6 +28,7 @@ function Login() {
   const handleSubmit = () => {
     if (isFormValid) {
       localStorage.setItem('user', JSON.stringify({ email: state.email }));
+      navigate('/meals');
     }
   };
 
