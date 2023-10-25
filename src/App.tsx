@@ -11,9 +11,8 @@ function App() {
     <div className="meals">
       <AuthProvider>
         <Routes>
+          <Route path="/" element={ <Login /> } />
           <Route path="/" element={ <Header /> }>
-            <Route path="/login" element={ <Login /> } />
-            <Route path="/meals" element={ <Recipes /> } />
             <Route path="/meals" />
             <Route path="/drinks" />
             <Route path="/profile" />
@@ -25,5 +24,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
