@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 function Login() {
   const { state, dispatch } = useAuth();
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'SET_EMAIL', payload: e.target.value });
+    const email = e.target.value;
+    dispatch({ type: 'SET_EMAIL', payload: email });
+    validateForm(email, state.password);
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'SET_PASSWORD', payload: e.target.value });
+    const password = e.target.value;
+    dispatch({ type: 'SET_PASSWORD', payload: password });
+    validateForm(state.email, password);
+  };
+
+  const validateForm = (email: string, password: string) => {
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isValidPassword = password.length > 6;
+    setIsFormValid(isValidEmail && isValidPassword);
   };
 
   return (
@@ -28,9 +39,7 @@ function Login() {
         placeholder="Password"
         data-testid="password-input"
       />
-      <button
-        data-testid="login-submit-btn"
-      >
+      <button data-testid="login-submit-btn" disabled={ !isFormValid }>
         entrar
       </button>
     </div>
