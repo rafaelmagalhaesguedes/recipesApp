@@ -8,8 +8,8 @@ export default function Header() {
   const [title, setTitle] = useState('');
   const [showSearchButton, setShowSearchButton] = useState(true);
   const { pathname } = useLocation();
-  const navigate = useNavigate(); 
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     switch (pathname) {
       case '/drinks':

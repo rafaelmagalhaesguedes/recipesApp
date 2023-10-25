@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Header from '../components/Header';
 import { BrowserRouter } from 'react-router-dom';
+import Header from '../components/Header';
 
 describe('Header Component', () => {
   it('checks if the profile icon redirects to the profile page', async () => {
-    render(<BrowserRouter><Header/></BrowserRouter> )
+    render(<BrowserRouter><Header /></BrowserRouter>);
     const profileButton = screen.getByTestId('profile-top-btn');
     userEvent.click(profileButton);
     await screen.findByText('Profile');
@@ -14,12 +14,10 @@ describe('Header Component', () => {
   });
 
   it('hide search button when route is /profile', () => {
-    render(<BrowserRouter><Header/></BrowserRouter> )
+    render(<BrowserRouter><Header /></BrowserRouter>);
 
     const profileButton = screen.getByTestId('profile-top-btn');
     profileButton.click();
     expect(screen.queryByTestId('search-top-btn')).toBeNull();
   });
-
-
 });
