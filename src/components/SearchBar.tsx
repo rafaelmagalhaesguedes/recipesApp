@@ -41,7 +41,11 @@ function SearchBar() {
       }
     }
   }, [dispatch, data, navigate]);
-
+  const handleResult = () => {
+    if (data.length === 0) {
+      window.alert("Sorry, we haven't found any recipes for these filters.");
+    }
+  };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
     if (type === 'radio') {
@@ -59,7 +63,8 @@ function SearchBar() {
       case 'ingredient':
         fetchResult = await fetchSearchByIngredients(page, search);
         if (fetchResult) {
-          setData(fetchResult.meals || fetchResult.drinks);
+          setData(fetchResult.meals || fetchResult.drinks || []);
+          handleResult();
         }
         break;
 
@@ -67,7 +72,8 @@ function SearchBar() {
         fetchResult = await fetchSearchByName(page, search);
         console.log(fetchResult);
         if (fetchResult) {
-          setData(fetchResult.meals || fetchResult.drinks);
+          setData(fetchResult.meals || fetchResult.drinks || []);
+          handleResult();
         }
         break;
 
@@ -77,7 +83,8 @@ function SearchBar() {
         }
         fetchResult = await fetchSearchFirtsLetter(page, search);
         if (fetchResult) {
-          setData(fetchResult.meals || fetchResult.drinks);
+          setData(fetchResult.meals || fetchResult.drinks || []);
+          handleResult();
         }
         break;
 
