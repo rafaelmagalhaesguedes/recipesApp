@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import '../App.css';
@@ -8,6 +8,7 @@ export default function Header() {
   const [title, setTitle] = useState('');
   const [showSearchButton, setShowSearchButton] = useState(true);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     switch (pathname) {
@@ -34,9 +35,13 @@ export default function Header() {
     }
   }, [pathname]);
 
+  const handleProfileChange = () => {
+    navigate('/profile');
+  };
+
   return (
     <header>
-      <button>
+      <button onClick={ handleProfileChange }>
         <img
           data-testid="profile-top-btn"
           alt="profileIcon"
