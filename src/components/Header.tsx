@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import '../App.css';
+import SearchBar from './SearchBar';
 
 export default function Header() {
   const [title, setTitle] = useState('');
@@ -63,14 +64,10 @@ export default function Header() {
             src={ searchIcon }
           />
         </button>
-      ) : null }
+      ) : <SearchBar /> }
 
       {searchVisible && (
-        <input
-          data-testid="search-input"
-          type="text"
-          placeholder="Search..."
-        />
+        <SearchBar />
       )}
       <h1 data-testid="page-title">{title}</h1>
     </header>
