@@ -18,7 +18,6 @@ function SearchBar() {
   const [page, setPage] = useState('meal');
   const navigate = useNavigate();
 
-  // pathname só pode ser utilizado após a configuração do browserRouter
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -29,8 +28,6 @@ function SearchBar() {
     }
   }, [pathname]);
 
-  // sempre que o estado 'data' for alterado, o dispatch envia a informação para o contexto;
-  // se tiver somente 1 resultado, o usuário é redirecionado para a página de detalhes a partir do id;
   useEffect(() => {
     dispatch({ type: 'SET_SEARCH_DATA', payload: data });
     if (data.length === 1) {
@@ -41,11 +38,7 @@ function SearchBar() {
       }
     }
   }, [dispatch, data, navigate]);
-  const handleResult = () => {
-    if (data.length === 0) {
-      window.alert("Sorry, we haven't found any recipes for these filters.");
-    }
-  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
     if (type === 'radio') {
@@ -58,38 +51,31 @@ function SearchBar() {
   const handleSubmit = async () => {
     const { filter, search } = formData;
     let fetchResult;
-
     switch (filter) {
       case 'ingredient':
         fetchResult = await fetchSearchByIngredients(page, search);
-        if (fetchResult) {
-          setData(fetchResult.meals || fetchResult.drinks || []);
-          handleResult();
-        }
         break;
 
       case 'name':
         fetchResult = await fetchSearchByName(page, search);
-        console.log(fetchResult);
-        if (fetchResult) {
-          setData(fetchResult.meals || fetchResult.drinks || []);
-          handleResult();
-        }
         break;
 
       case 'first-letter':
         if (search.length > 1) {
           window.alert('Your search must have only 1 (one) character');
+          return;
         }
         fetchResult = await fetchSearchFirtsLetter(page, search);
-        if (fetchResult) {
-          setData(fetchResult.meals || fetchResult.drinks || []);
-          handleResult();
-        }
         break;
 
       default:
         break;
+    }
+    if (fetchResult.meals || fetchResult.drinks) {
+      setData(fetchResult.meals || fetchResult.drinks || []);
+    } else {
+      fetchResult = [];
+      window.alert("Sorry, we haven't found any recipes for these filters.");
     }
   };
 

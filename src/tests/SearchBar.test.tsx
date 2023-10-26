@@ -116,5 +116,24 @@ describe('SearchBar Component', () => {
       expect(fetch).toHaveBeenCalledTimes(1);
       expect(fetch).toHaveBeenCalledWith('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=whisky');
     });
+
+    test.only('Check if the alert for any recipes found works correctly', async () => {
+      const { user } = renderWithRouter(<DataProvider><App /></DataProvider>, { route: '/meals' });
+
+      const iconButton = screen.getByTestId(ICON_BUTTON);
+      await user.click(iconButton);
+
+      const searchInput = screen.getByTestId(SEARCH_INPUT);
+      const nameRadio = screen.getByTestId(NAME_SEARCH_RADIO);
+      const searchButton = screen.getByTestId(BUTTON_SEARCH);
+
+      const alertSpy = vi.spyOn(window, 'alert');
+
+      await user.type(searchInput, 'xablau');
+      await user.click(nameRadio);
+      await user.click(searchButton);
+
+      expect(alertSpy).toHaveBeenCalledWith('Sorry, we haven\'t found any recipes for these filters.');
+    });
   });
 });
