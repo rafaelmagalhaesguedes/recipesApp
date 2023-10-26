@@ -2,6 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Header from '../components/Header';
 import renderWithRouter from '../utils/renderWithRouter';
+import DataProvider from '../context/DataContext';
 
 describe('Header Component', () => {
   const PROFILE_ROUTE = '/profile';
@@ -13,7 +14,7 @@ describe('Header Component', () => {
   const btnSearchId = 'search-top-btn';
 
   it('checks if the profile icon redirects to the profile page', () => {
-    renderWithRouter(<Header />, { route: PROFILE_ROUTE });
+    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: PROFILE_ROUTE });
     const profileButton = screen.getByTestId('profile-top-btn');
     userEvent.click(profileButton);
     screen.findByText('Profile');
@@ -23,7 +24,7 @@ describe('Header Component', () => {
   });
 
   it('hide search button when route is /profile', () => {
-    renderWithRouter(<Header />, { route: PROFILE_ROUTE });
+    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: PROFILE_ROUTE });
 
     const profileButton = screen.getByTestId('profile-top-btn');
     profileButton.click();
@@ -31,7 +32,7 @@ describe('Header Component', () => {
   });
 
   it('search bar appears', () => {
-    renderWithRouter(<Header />, { route: MEALS_ROUTE });
+    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: MEALS_ROUTE });
     const searchButton = screen.getByTestId(btnSearchId);
 
     fireEvent.click(searchButton);
@@ -43,26 +44,26 @@ describe('Header Component', () => {
   });
 
   it('search button doesnt appear', () => {
-    renderWithRouter(<Header />, { route: PROFILE_ROUTE });
+    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: PROFILE_ROUTE });
     expect(screen.queryByTestId(btnSearchId)).toBeNull();
   });
 
   it('test route drinks', () => {
-    renderWithRouter(<Header />, { route: DRINKS_ROUTE });
+    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: DRINKS_ROUTE });
     const title = screen.getByTestId(titleTestId);
 
     expect(title).toBeInTheDocument();
   });
 
   it('test route /done-recipes', () => {
-    renderWithRouter(<Header />, { route: DONE_RECIPES_ROUTE });
+    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: DONE_RECIPES_ROUTE });
     const title = screen.getByTestId(titleTestId);
 
     expect(title).toBeInTheDocument();
   });
 
   it('test route /favorite-recipes', () => {
-    renderWithRouter(<Header />, { route: FAVORITE_RECIPES_ROUTE });
+    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: FAVORITE_RECIPES_ROUTE });
     const title = screen.getByTestId(titleTestId);
 
     expect(title).toBeInTheDocument();
