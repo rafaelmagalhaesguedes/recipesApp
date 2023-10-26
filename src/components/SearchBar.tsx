@@ -11,7 +11,7 @@ import {
 function SearchBar() {
   const [formData, setFormData] = useState({
     search: '',
-    filter: 'ingredient',
+    filter: '',
   });
   const [data, setData] = useState<MealsType[] | DrinkType[]>([]);
   const { dispatch } = useData();
@@ -32,9 +32,11 @@ function SearchBar() {
     dispatch({ type: 'SET_SEARCH_DATA', payload: data });
     if (data.length === 1) {
       if ('idDrink' in data[0]) {
-        navigate(`/drinks/${data[0].idDrink}`);
-      } else {
-        navigate(`/meals/${data[0].idMeal}`);
+        const { idDrink } = data[0];
+        navigate(`/drinks/${idDrink}`);
+      } else if ('idMeal' in data[0]) {
+        const { idMeal } = data[0];
+        navigate(`/meals/${idMeal}`);
       }
     }
   }, [dispatch, data, navigate]);
@@ -47,10 +49,14 @@ function SearchBar() {
       setFormData({ ...formData, search: value });
     }
   };
-
+  const testResult = (result: any = null) => {
+    if (result === null) {
+      window.alert("Sorry, we haven't found any recipes for these filters.");
+    }
+  };
   const handleSubmit = async () => {
     const { filter, search } = formData;
-    let fetchResult;
+    let fetchResult = [];
     switch (filter) {
       case 'ingredient':
         fetchResult = await fetchSearchByIngredients(page, search);
@@ -71,11 +77,15 @@ function SearchBar() {
       default:
         break;
     }
-    if (fetchResult.meals || fetchResult.drinks) {
-      setData(fetchResult.meals || fetchResult.drinks || []);
+    if ('meals' in fetchResult) {
+      setData(fetchResult.meals || []);
+      testResult(fetchResult.meals);
+    } else if ('drinks' in fetchResult) {
+      setData(fetchResult.drinks || []);
+      testResult(fetchResult.drinks);
     } else {
-      fetchResult = [];
-      window.alert("Sorry, we haven't found any recipes for these filters.");
+      setData([]);
+      testResult();
     }
   };
 
@@ -138,9 +148,9 @@ function SearchBar() {
             alt={ el.strMeal || el.strDrink }
             data-testid={ `${index}-card-img` }
           />
-          <p data-testid={ `${index}-card-name` }>
+          <h2 data-testid={ `${index}-card-name` }>
             {el.strMeal || el.strDrink}
-          </p>
+          </h2>
         </div>
       ))}
     </div>
