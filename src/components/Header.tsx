@@ -54,12 +54,15 @@ export default function Header() {
         />
       </button>
       {showSearchButton ? (
-        <img
-          data-testid="search-top-btn"
-          alt="searchIcon"
-          src={ searchIcon }
+        <button
           onClick={ toggleSearch }
-        />
+        >
+          <img
+            data-testid="search-top-btn"
+            alt="searchIcon"
+            src={ searchIcon }
+          />
+        </button>
       ) : null }
 
       {searchVisible && (
