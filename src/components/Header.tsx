@@ -7,6 +7,7 @@ import '../App.css';
 export default function Header() {
   const [title, setTitle] = useState('');
   const [showSearchButton, setShowSearchButton] = useState(true);
+  const [searchVisible, setSearchVisible] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -39,6 +40,10 @@ export default function Header() {
     navigate('/profile');
   };
 
+  const toggleSearch = () => {
+    setSearchVisible(!searchVisible);
+  };
+
   return (
     <header>
       <button onClick={ handleProfileChange }>
@@ -53,8 +58,17 @@ export default function Header() {
           data-testid="search-top-btn"
           alt="searchIcon"
           src={ searchIcon }
+          onClick={ toggleSearch }
         />
       ) : null }
+
+      {searchVisible && (
+        <input
+          data-testid="search-input"
+          type="text"
+          placeholder="Search..."
+        />
+      )}
       <h1 data-testid="page-title">{title}</h1>
     </header>
   );
