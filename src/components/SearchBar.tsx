@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { DrinkType, MealsType } from '../types/types';
 import {
@@ -149,7 +149,9 @@ function SearchBar() {
             data-testid={ `${index}-card-img` }
           />
           <h2 data-testid={ `${index}-card-name` }>
-            {el.strMeal || el.strDrink}
+            <Link to={ `/meals/${el.idMeal}` }>
+              {el.strMeal || el.strDrink}
+            </Link>
           </h2>
         </div>
       ))}

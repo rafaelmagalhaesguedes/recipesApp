@@ -8,6 +8,7 @@ import Drinks from './components/Drinks';
 import Meals from './components/Meals';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
+import RecipeDetails from './components/RecipeDetails';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
             <Route path="/profile" element={ <Profile /> } />
             <Route path="/done-recipes" />
             <Route path="/favorite-recipes" />
+            <Route path="/meals/:id" element={ <RecipeDetails /> } />
+            <Route path="/drinks/:id" element={ <RecipeDetails /> } />
           </Route>
         </Routes>
       </AuthProvider>
