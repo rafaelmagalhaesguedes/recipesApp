@@ -4,6 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
 import AuthProvider from './context/AuthContext';
 import Header from './components/Header';
+import Drinks from './components/Drinks';
+import Meals from './components/Meals';
+import Profile from './components/Profile';
 import Footer from './components/Footer';
 
 function App() {
@@ -13,14 +16,15 @@ function App() {
         <Routes>
           <Route path="/" element={ <Login /> } />
           <Route path="/" element={ <Header /> }>
-            <Route path="/meals" />
-            <Route path="/drinks" />
-            <Route path="/profile" />
+            <Route path="/meals" element={ <Meals /> } />
+            <Route path="/drinks" element={ <Drinks /> } />
+            <Route path="/profile" element={ <Profile /> } />
             <Route path="/done-recipes" />
             <Route path="/favorite-recipes" />
           </Route>
         </Routes>
       </AuthProvider>
+      <Footer />
     </div>
   );
 }
