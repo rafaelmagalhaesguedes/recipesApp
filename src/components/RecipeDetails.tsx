@@ -29,28 +29,66 @@ function RecipeDetails() {
       });
   }, [id]);
 
-  /*
-    ok - A foto deve ter o atributo data-testid="recipe-photo".
-    ok - O título deve ter o atributo data-testid="recipe-title".
-    ok - O texto da categoria deve ter o atributo data-testid="recipe-category".
-    Os ingredientes devem ter o atributo data-testid="${index}-ingredient-name-and-measure".
-    O texto de instruções deve ter o atributo data-testid="instructions".
-    O vídeo, presente somente na tela de comidas, deve ter o atributo data-testid="video".
- */
+  function getIngredientsList(recipeObj: any): string[] {
+    const ingredientsList: string[] = [];
+
+    for (let i = 1; i <= 20; i++) {
+      const ingredient = recipeObj[`strIngredient${i}`];
+      const measure = recipeObj[`strMeasure${i}`];
+
+      if (ingredient && measure) {
+        ingredientsList.push(`${ingredient} - ${measure}`);
+      } else if (ingredient) {
+        ingredientsList.push(ingredient);
+      }
+    }
+    return ingredientsList;
+  }
+
   return (
     <div>
       <div>
         {recipe ? (
           <div>
-            <h1>{recipe.strMeals || recipe.strDrink}</h1>
+            <h1 data-testid="recipe-title">{recipe.strMeal || recipe.strDrink}</h1>
             <img
               data-testid="recipe-photo"
               src={ recipe.strMealThumb || recipe.strDrinkThumb }
               alt="recipe"
+              width={ 100 }
             />
             <p data-testid="recipe-category">
               { recipe.strCategory }
             </p>
+            {recipe.strAlcoholic && (
+              <p data-testid="recipe-category">
+                { recipe.strAlcoholic }
+              </p>
+            )}
+            <ul>
+              {getIngredientsList(recipe).map((ingredient, index) => (
+                <li
+                  key={ index }
+                  data-testid={ `${index}-ingredient-name-and-measure` }
+                >
+                  {ingredient}
+                </li>
+              ))}
+            </ul>
+            <p data-testid="instructions">
+              {recipe.strInstructions}
+            </p>
+            {recipe.strYoutube && (
+              <iframe
+                data-testid="video"
+                title="recipe-video"
+                width="560"
+                height="315"
+                src={ recipe.strYoutube.replace('watch?v=', 'embed/') }
+                frameBorder="0"
+                allowFullScreen
+              />
+            )}
           </div>
         ) : (
           <p>Carregando detalhes da receita...</p>
