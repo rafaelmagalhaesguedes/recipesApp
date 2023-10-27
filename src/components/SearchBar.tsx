@@ -148,11 +148,11 @@ function SearchBar() {
             alt={ el.strMeal || el.strDrink }
             data-testid={ `${index}-card-img` }
           />
-          <h2 data-testid={ `${index}-card-name` }>
-            <Link to={ `/meals/${el.idMeal}` }>
+          <Link to={ `/meals/${el.idMeal}` }>
+            <h2 data-testid={ `${index}-card-name` }>
               {el.strMeal || el.strDrink}
-            </Link>
-          </h2>
+            </h2>
+          </Link>
         </div>
       ))}
     </div>
