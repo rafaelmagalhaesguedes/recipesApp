@@ -22,9 +22,9 @@ function App() {
             <Route path="/profile" element={ <Profile /> } />
             <Route path="/done-recipes" />
             <Route path="/favorite-recipes" />
-            <Route path="/meals/:id" element={ <RecipeDetails /> } />
-            <Route path="/drinks/:id" element={ <RecipeDetails /> } />
           </Route>
+          <Route path="/meals/:id" element={ <RecipeDetails /> } />
+          <Route path="/drinks/:id" Component={ RecipeDetails } />
         </Routes>
       </AuthProvider>
       <Footer />
