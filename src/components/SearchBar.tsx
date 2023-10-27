@@ -11,14 +11,13 @@ import {
 function SearchBar() {
   const [formData, setFormData] = useState({
     search: '',
-    filter: 'ingredient',
+    filter: '',
   });
   const [data, setData] = useState<MealsType[] | DrinkType[]>([]);
   const { dispatch } = useData();
   const [page, setPage] = useState('meal');
   const navigate = useNavigate();
 
-  // pathname só pode ser utilizado após a configuração do browserRouter
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -29,15 +28,15 @@ function SearchBar() {
     }
   }, [pathname]);
 
-  // sempre que o estado 'data' for alterado, o dispatch envia a informação para o contexto;
-  // se tiver somente 1 resultado, o usuário é redirecionado para a página de detalhes a partir do id;
   useEffect(() => {
     dispatch({ type: 'SET_SEARCH_DATA', payload: data });
     if (data.length === 1) {
       if ('idDrink' in data[0]) {
-        navigate(`/drinks/${data[0].idDrink}`);
-      } else {
-        navigate(`/meals/${data[0].idMeal}`);
+        const { idDrink } = data[0];
+        navigate(`/drinks/${idDrink}`);
+      } else if ('idMeal' in data[0]) {
+        const { idMeal } = data[0];
+        navigate(`/meals/${idMeal}`);
       }
     }
   }, [dispatch, data, navigate]);
@@ -50,39 +49,43 @@ function SearchBar() {
       setFormData({ ...formData, search: value });
     }
   };
-
+  const testResult = (result: any = null) => {
+    if (result === null) {
+      window.alert("Sorry, we haven't found any recipes for these filters.");
+    }
+  };
   const handleSubmit = async () => {
     const { filter, search } = formData;
-    let fetchResult;
-
+    let fetchResult = [];
     switch (filter) {
       case 'ingredient':
         fetchResult = await fetchSearchByIngredients(page, search);
-        if (fetchResult) {
-          setData(fetchResult.meals || fetchResult.drinks);
-        }
         break;
 
       case 'name':
         fetchResult = await fetchSearchByName(page, search);
-        console.log(fetchResult);
-        if (fetchResult) {
-          setData(fetchResult.meals || fetchResult.drinks);
-        }
         break;
 
       case 'first-letter':
         if (search.length > 1) {
           window.alert('Your search must have only 1 (one) character');
+          return;
         }
         fetchResult = await fetchSearchFirtsLetter(page, search);
-        if (fetchResult) {
-          setData(fetchResult.meals || fetchResult.drinks);
-        }
         break;
 
       default:
         break;
+    }
+    if ('meals' in fetchResult) {
+      setData(fetchResult.meals || []);
+      testResult(fetchResult.meals);
+    } else if ('drinks' in fetchResult) {
+      setData(fetchResult.drinks || []);
+      testResult(fetchResult.drinks);
+    } else {
+      setData([]);
+      testResult();
     }
   };
 
@@ -145,9 +148,9 @@ function SearchBar() {
             alt={ el.strMeal || el.strDrink }
             data-testid={ `${index}-card-img` }
           />
-          <p data-testid={ `${index}-card-name` }>
+          <h2 data-testid={ `${index}-card-name` }>
             {el.strMeal || el.strDrink}
-          </p>
+          </h2>
         </div>
       ))}
     </div>
