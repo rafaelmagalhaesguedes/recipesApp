@@ -1,29 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { getIngredientsList } from '../helpers/helpers';
+import { fetchRecipeDetails } from '../helpers/api';
 
 function RecipeDetails() {
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
+  const isMealsPage = location.pathname.includes('meals');
   const [recipe, setRecipe] = useState<any>();
 
   useEffect(() => {
-    // Verifica o pathname da localização para determinar a API a ser consultada
     const fetchRecipe = async () => {
-      try {
-        const response = await fetch(
-          location.pathname.includes('drinks')
-            ? `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
-            : `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
-        );
-        const data = await response.json();
-        setRecipe(data.drinks ? data.drinks[0] : data.meals[0]);
-      } catch (error) {
-        console.error('Erro na requisição da receita: ', error);
+      if (id) {
+        try {
+          const recipeData = await fetchRecipeDetails(id, isMealsPage);
+          setRecipe(recipeData);
+        } catch (error) {
+          console.error(error);
+        }
       }
     };
     fetchRecipe();
-  }, [id, location.pathname]);
+  }, [id, isMealsPage]);
 
   return (
     <div>

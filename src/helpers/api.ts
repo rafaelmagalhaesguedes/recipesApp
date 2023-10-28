@@ -30,3 +30,17 @@ export const fetchSearchFirtsLetter = async (type: string, search: string) => {
     console.error(error);
   }
 };
+
+export const fetchRecipeDetails = async (id: string, isMealsPage: boolean) => {
+  const API_URL = isMealsPage
+    ? `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+    : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+    return data.drinks ? data.drinks[0] : data.meals[0];
+  } catch (error) {
+    throw new Error('Erro na requisição da receita');
+  }
+};
