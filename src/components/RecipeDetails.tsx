@@ -1,49 +1,29 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { getIngredientsList } from '../helpers/helpers';
 
 function RecipeDetails() {
   const { id } = useParams<{ id: string }>();
-
+  const location = useLocation();
   const [recipe, setRecipe] = useState<any>();
 
   useEffect(() => {
-    // Realize a requisição para a API de comidas
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setRecipe(data.meals[0]);
-        console.log(data.meals[0]);
-      })
-      .catch((error) => {
-        console.error('Erro na requisição de comidas: ', error);
-      });
-
-    // Realize a requisição para a API de bebidas
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setRecipe(data.drinks[0]);
-      })
-      .catch((error) => {
-        console.error('Erro na requisição de bebidas: ', error);
-      });
-  }, [id]);
-
-  function getIngredientsList(recipeObj: any): string[] {
-    const ingredientsList: string[] = [];
-
-    for (let i = 1; i <= 20; i++) {
-      const ingredient = recipeObj[`strIngredient${i}`];
-      const measure = recipeObj[`strMeasure${i}`];
-
-      if (ingredient && measure) {
-        ingredientsList.push(`${ingredient} - ${measure}`);
-      } else if (ingredient) {
-        ingredientsList.push(ingredient);
+    // Verifica o pathname da localização para determinar a API a ser consultada
+    const fetchRecipe = async () => {
+      try {
+        const response = await fetch(
+          location.pathname.includes('drinks')
+            ? `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
+            : `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
+        );
+        const data = await response.json();
+        setRecipe(data.drinks ? data.drinks[0] : data.meals[0]);
+      } catch (error) {
+        console.error('Erro na requisição da receita: ', error);
       }
-    }
-    return ingredientsList;
-  }
+    };
+    fetchRecipe();
+  }, [id, location.pathname]);
 
   return (
     <div>
