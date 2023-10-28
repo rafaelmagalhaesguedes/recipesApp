@@ -1,27 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { getIngredientsList } from '../helpers/helpers';
-import { fetchRecipeDetails } from '../helpers/api';
+import { fetchRecipeDetails, fetchRecommendations } from '../helpers/api';
 
 function RecipeDetails() {
-  const { id } = useParams<{ id: string }>();
   const location = useLocation();
-  const isMealsPage = location.pathname.includes('meals');
+  const { id } = useParams<{ id: string }>();
+  const isDrinksPage = location.pathname.includes('drinks');
+
   const [recipe, setRecipe] = useState<any>();
+  const [recommendations, setRecommendations] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchRecipe = async () => {
-      if (id) {
-        try {
-          const recipeData = await fetchRecipeDetails(id, isMealsPage);
-          setRecipe(recipeData);
-        } catch (error) {
-          console.error(error);
-        }
+    if (!id) return;
+    const fetchData = async () => {
+      try {
+        const recipeData = await fetchRecipeDetails(id, isDrinksPage);
+        setRecipe(recipeData);
+
+        const data = await fetchRecommendations(isDrinksPage ? 'drinks' : 'meals');
+        setRecommendations(data.slice(0, 6));
+      } catch (error) {
+        console.error(error);
       }
     };
-    fetchRecipe();
-  }, [id, isMealsPage]);
+    fetchData();
+  }, [id, isDrinksPage]);
 
   return (
     <div>
@@ -35,13 +39,9 @@ function RecipeDetails() {
               alt="recipe"
               width={ 100 }
             />
-            <p data-testid="recipe-category">
-              { recipe.strCategory }
-            </p>
+            <p data-testid="recipe-category">{ recipe.strCategory }</p>
             {recipe.strAlcoholic && (
-              <p data-testid="recipe-category">
-                { recipe.strAlcoholic }
-              </p>
+              <p data-testid="recipe-category">{ recipe.strAlcoholic }</p>
             )}
             <ul>
               {getIngredientsList(recipe).map((ingredient, index) => (
@@ -53,9 +53,7 @@ function RecipeDetails() {
                 </li>
               ))}
             </ul>
-            <p data-testid="instructions">
-              {recipe.strInstructions}
-            </p>
+            <p data-testid="instructions">{recipe.strInstructions}</p>
             {recipe.strYoutube && (
               <iframe
                 data-testid="video"
@@ -67,6 +65,27 @@ function RecipeDetails() {
                 allowFullScreen
               />
             )}
+            <section>
+              <h2>Receitas recomendadas</h2>
+              <div style={ { overflowX: 'auto', display: 'flex', width: '420px' } }>
+                {recommendations.map((recommendation, index) => (
+                  <div
+                    key={ recommendation.idDrink || recommendation.idMeal }
+                    data-testid={ `${index}-recommendation-card` }
+                    style={ {
+                      flex: '0 0 auto',
+                      width: '200px',
+                      border: '1px solid #ccc',
+                      margin: '5px',
+                    } }
+                  >
+                    <h3 data-testid={ `${index}-recommendation-title` }>
+                      {recommendation.strDrink || recommendation.strMeal}
+                    </h3>
+                  </div>
+                ))}
+              </div>
+            </section>
           </div>
         ) : (
           <p>Carregando detalhes da receita...</p>
