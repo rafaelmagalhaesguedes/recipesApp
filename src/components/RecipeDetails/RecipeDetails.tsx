@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { getIngredientsList } from '../../helpers/helpers';
-import { fetchRecipeDetails, fetchRecommendations } from '../../helpers/api';
+import { fetchRecipeDetails } from '../../helpers/api';
 import FavoriteButton from './FavoriteButton/FavoriteButton';
 import ShareButton from './ShareButton/ShareButton';
 import StartRecipeButton from './StartRecipeButton/StartRecipeButton';
 import { ContainerRecipeDetails, Wrapper } from './Styles';
+import CarouselDetails from './CarouselDetails/CarouselDetails';
 
 function RecipeDetails() {
   const location = useLocation();
@@ -13,7 +14,6 @@ function RecipeDetails() {
   const isDrinksPage = location.pathname.includes('drinks');
 
   const [recipe, setRecipe] = useState<any>();
-  const [recommendations, setRecommendations] = useState<any[]>([]);
 
   useEffect(() => {
     if (!id) return;
@@ -21,9 +21,6 @@ function RecipeDetails() {
       try {
         const recipeData = await fetchRecipeDetails(id, isDrinksPage);
         setRecipe(recipeData);
-
-        const data = await fetchRecommendations(isDrinksPage ? 'drinks' : 'meals');
-        setRecommendations(data.slice(0, 6));
       } catch (error) {
         console.error(error);
       }
@@ -78,32 +75,7 @@ function RecipeDetails() {
                 allowFullScreen
               />
             )}
-            <section>
-              <h2>Receitas recomendadas</h2>
-              <div style={ { overflowX: 'auto', display: 'flex', width: '100%' } }>
-                {recommendations.map((recommendation, index) => (
-                  <div
-                    key={ recommendation.idDrink || recommendation.idMeal }
-                    data-testid={ `${index}-recommendation-card` }
-                    style={ {
-                      flex: '0 0 auto',
-                      width: '140px',
-                      border: '1px solid #ccc',
-                      margin: '5px',
-                    } }
-                  >
-                    <h3 data-testid={ `${index}-recommendation-title` }>
-                      {recommendation.strDrink || recommendation.strMeal}
-                    </h3>
-                    <img
-                      src={ recommendation.strDrinkThumb || recommendation.strMealThumb }
-                      alt="recipe"
-                      width={ 140 }
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
+            <CarouselDetails isDrinksPage={ isDrinksPage } />
             <StartRecipeButton />
           </div>
         ) : (
