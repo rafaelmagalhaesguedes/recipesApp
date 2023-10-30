@@ -13,7 +13,7 @@ function FavoriteButton({ recipe } : any) {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
     const newRecipe = {
       id,
-      type: isDrinksPage ? 'drinks' : 'meals',
+      type: isDrinksPage ? 'drink' : 'meal',
       nationality: recipe.strArea || '',
       category: recipe.strCategory,
       alcoholicOrNot: recipe.strAlcoholic || '',
