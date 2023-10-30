@@ -95,6 +95,11 @@ function RecipeDetails() {
                     <h3 data-testid={ `${index}-recommendation-title` }>
                       {recommendation.strDrink || recommendation.strMeal}
                     </h3>
+                    <img
+                      src={ recommendation.strDrinkThumb || recommendation.strMealThumb }
+                      alt="recipe"
+                      width={ 140 }
+                    />
                   </div>
                 ))}
               </div>
