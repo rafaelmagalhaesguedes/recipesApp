@@ -21,6 +21,8 @@ function App() {
             <Route path="/profile" element={ <Profile /> } />
             <Route path="/done-recipes" />
             <Route path="/favorite-recipes" />
+            <Route path="/meals/:id/in-progress" />
+            <Route path="/drinks/:id/in-progress" />
           </Route>
         </Routes>
       </AuthProvider>
