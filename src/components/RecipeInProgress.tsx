@@ -6,9 +6,28 @@ type DataDetailsType = {
   image: string;
   title: string;
   category?: string;
-  alcoholicOrNot?: boolean;
+  alcoholicOrNot?: string;
   ingredients: string[];
   instructions: string;
+};
+
+/*
+  Função para pegar os ingredientes e medidas de uma receita
+*/
+function getIngredientsList(recipeObj: any) {
+  const ingredientsList = [];
+
+  for (let i = 1; i <= 20; i++) {
+    const ingredient = recipeObj[`strIngredient${i}`];
+    const measure = recipeObj[`strMeasure${i}`];
+
+    if (ingredient && measure) {
+      ingredientsList.push(`${ingredient} - ${measure}`);
+    } else if (ingredient) {
+      ingredientsList.push(ingredient);
+    }
+  }
+  return ingredientsList;
 }
 
 export default function RecipeInProgress() {
@@ -16,7 +35,16 @@ export default function RecipeInProgress() {
   const { pathname } = useLocation();
   const page = pathname.split('/')[1];
   const [dataById, setDataById] = useState<MealsType | DrinkType>();
-  const [dataDetails, setDataDetails] = useState();
+  const [dataDetails, setDataDetails] = useState<DataDetailsType>();
+  const [checkedIngredients, setCheckedIngredients] = useState<string[]>([]);
+
+  const handleCheckboxChange = (ingredient: string) => {
+    if (checkedIngredients.includes(ingredient)) {
+      setCheckedIngredients(checkedIngredients.filter((item) => item !== ingredient));
+    } else {
+      setCheckedIngredients([...checkedIngredients, ingredient]);
+    }
+  };
 
   useEffect(() => {
     const fetchById = async (type: string, idSearch: string) => {
@@ -30,20 +58,67 @@ export default function RecipeInProgress() {
       }
     };
     if (page && id) {
-      const recipeApi = fetchById(page, id);
+      const typePage = page === 'meals' ? 'meal' : 'cocktail';
+      const recipeApi = fetchById(typePage, id);
       recipeApi.then((data) => setDataById(data.meals[0] || data.drinks[0]));
     }
   }, [id, page]);
-  const imageSrc = dataById
-   && ('strMealThumb' in dataById ? dataById.strMealThumb : dataById.strDrinkThumb);
-   const title = dataById && ('strMeal' in dataById ? dataById.strMeal : dataById.strDrink);
-  return (
-    <div>
-      <div>Recipe</div>
-      {dataById && (
-        <img src={ imageSrc } alt="recipe" data-testid="recipe-photo" />;
-        <h2>{}</h2>
-      )}
-    </div>
-  );
+
+  useEffect(() => {
+    if (dataById && 'strMeal' in dataById) {
+      const ingredientsList = getIngredientsList(dataById);
+      const recipeDetails: DataDetailsType = {
+        image: dataById.strMealThumb,
+        title: dataById.strMeal,
+        category: dataById.strCategory,
+        ingredients: ingredientsList,
+        instructions: dataById.strInstructions,
+      };
+      setDataDetails(recipeDetails);
+    } else if (dataById && 'strDrink' in dataById) {
+      const ingredientsList = getIngredientsList(dataById);
+      const recipeDetails: DataDetailsType = {
+        image: dataById.strDrinkThumb,
+        title: dataById.strDrink,
+        alcoholicOrNot: dataById.strAlcoholic,
+        ingredients: ingredientsList,
+        instructions: dataById.strInstructions,
+      };
+      setDataDetails(recipeDetails);
+    }
+  }, [dataById, page]);
+
+  if (dataById && dataDetails) {
+    return (
+      <div>
+        <div>Recipe</div>
+        <div>
+          <img src={ dataDetails.image } alt="recipe" data-testid="recipe-photo" />
+          <h2 data-testid="recipe-title">{ dataDetails.title }</h2>
+          <button data-testid="share-btn">Compartilhar</button>
+          <button data-testid="favorite-btn">Favoritar</button>
+          {dataDetails.category && (
+            <div data-testid="recipe-category">{ dataDetails.category }</div>
+          )}
+          {dataDetails.alcoholicOrNot && (
+            <div>{ dataDetails.alcoholicOrNot }</div>
+          )}
+          <p data-testid="instructions">{ dataDetails.instructions }</p>
+          <button data-testid="finish-recipe-btn">Finalizar</button>
+          {dataDetails.ingredients.map((ingredient, index) => (
+            <label key={ index } data-testid={ `${index}-ingredient-step` }>
+              {ingredient}
+              <input
+                type="checkbox"
+                checked={ checkedIngredients.includes(ingredient) }
+                onChange={ () => handleCheckboxChange(ingredient) }
+              />
+            </label>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return <div>Loading...</div>;
 }

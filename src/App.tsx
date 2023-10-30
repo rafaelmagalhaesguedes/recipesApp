@@ -8,6 +8,7 @@ import Drinks from './components/Drinks';
 import Meals from './components/Meals';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
+import RecipeInProgress from './components/RecipeInProgress';
 
 function App() {
   return (
@@ -21,9 +22,9 @@ function App() {
             <Route path="/profile" element={ <Profile /> } />
             <Route path="/done-recipes" />
             <Route path="/favorite-recipes" />
-            <Route path="/meals/:id/in-progress" />
-            <Route path="/drinks/:id/in-progress" />
           </Route>
+          <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
+          <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
         </Routes>
       </AuthProvider>
       <Footer />
