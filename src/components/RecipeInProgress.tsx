@@ -6,22 +6,8 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { fetchById } from '../helpers/api';
 import { handleDoneRecipes, handleFavoriteClick } from '../helpers/localStorage';
-
-function getIngredientsList(recipeObj: any) {
-  const ingredientsList = [];
-
-  for (let i = 1; i <= 20; i++) {
-    const ingredient = recipeObj[`strIngredient${i}`];
-    const measure = recipeObj[`strMeasure${i}`];
-
-    if (ingredient && measure) {
-      ingredientsList.push(`${ingredient} - ${measure}`);
-    } else if (ingredient) {
-      ingredientsList.push(ingredient);
-    }
-  }
-  return ingredientsList;
-}
+import { getIngredientsList } from '../helpers/helpers';
+import shareIcon from '../images/shareIcon.svg';
 
 export default function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();
@@ -32,6 +18,9 @@ export default function RecipeInProgress() {
   const [checkedIngredients, setCheckedIngredients] = useState<string[]>([]);
   const navigate = useNavigate();
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
+  const recipeLink = window.location.href;
+  const recipeLinkFormated = recipeLink.split('/in-progress')[0];
 
   useEffect(() => {
     if (dataById && 'strMeal' in dataById) {
@@ -110,12 +99,25 @@ export default function RecipeInProgress() {
     navigate('/done-recipes');
     if (dataById) handleDoneRecipes(dataById);
   };
+
+  const handleClickShare = () => {
+    navigator.clipboard.writeText(recipeLinkFormated);
+    setIsLinkCopied(true);
+  };
   if (dataById && dataDetails) {
     return (
       <div className="recipeInProgress">
         <img src={ dataDetails.image } alt="recipe" data-testid="recipe-photo" />
         <h2 data-testid="recipe-title">{ dataDetails.title }</h2>
-        <button data-testid="share-btn">Compartilhar</button>
+        <div>
+          <button
+            data-testid="share-btn"
+            onClick={ handleClickShare }
+          >
+            <img src={ shareIcon } alt="shareButton" />
+          </button>
+          {isLinkCopied && <p>Link copied!</p>}
+        </div>
         <button
           data-testid="favorite-btn"
           onClick={ () => handleFavoriteClick(dataById, setIsFavorite) }
