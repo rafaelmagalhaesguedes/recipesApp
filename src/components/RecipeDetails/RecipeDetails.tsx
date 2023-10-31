@@ -16,11 +16,12 @@ function RecipeDetails() {
   const [recipe, setRecipe] = useState<any>();
 
   useEffect(() => {
-    if (!id) return;
     const fetchData = async () => {
       try {
-        const recipeData = await fetchRecipeDetails(id, isDrinksPage);
-        setRecipe(recipeData);
+        if (id) {
+          const recipeData = await fetchRecipeDetails(id, isDrinksPage);
+          setRecipe(recipeData);
+        }
       } catch (error) {
         console.error(error);
       }

@@ -32,6 +32,32 @@ beforeEach(() => {
 });
 
 describe('RecipeDetails', () => {
+  it('test fetch api connect', async () => {
+    await act(async () => {
+      renderWithRouter(<App />, { route: MEAL_ROUTE });
+    });
+
+    expect(window.location.pathname).toBe(MEAL_ROUTE);
+
+    expect(fetch).toHaveBeenCalledTimes(2);
+  });
+
+  it('should display an error message when the fetch request fails', async () => {
+    global.fetch = vi.fn().mockImplementation(() => Promise.reject(new Error('Fetch request failed')));
+
+    await act(async () => {
+      renderWithRouter(<App />, { route: MEAL_ROUTE });
+    });
+
+    expect(screen.getByText('Fetch request failed')).toBeInTheDocument();
+  });
+
+  it('should display a loading message while the fetch request is in progress', () => {
+    renderWithRouter(<App />, { route: MEAL_ROUTE });
+
+    expect(screen.getByText('Carregando detalhes da receita...')).toBeInTheDocument();
+  });
+
   it('elements are on the screen', async () => {
     await act(async () => {
       renderWithRouter(<App />, { route: MEAL_ROUTE });
@@ -68,8 +94,4 @@ describe('RecipeDetails', () => {
     const ingredients = screen.getAllByTestId(/ingredient-name-and-measure/i);
     expect(ingredients.length).toBe(3);
   });
-
-  
-
-
 });
