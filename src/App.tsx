@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import RecipeInProgress from './components/RecipeInProgress';
 import DoneRecipes from './components/DoneRecipes';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
+import Recipes from './components/Recipes';
 
 function App() {
   return (
@@ -18,12 +19,12 @@ function App() {
         <Routes>
           <Route path="/" element={ <Login /> } />
           <Route path="/" element={ <Header /> }>
-            <Route path="/meals" element={ <Meals /> } />
-            <Route path="/drinks" element={ <Drinks /> } />
             <Route path="/profile" element={ <Profile /> } />
             <Route path="/done-recipes" element={ <DoneRecipes /> } />
             <Route path="/favorite-recipes" />
           </Route>
+          <Route path="/meals" element={ <Recipes type="meals" /> } />
+          <Route path="/drinks" element={ <Recipes type="drinks" /> } />
           <Route path="/meals/:id" element={ <RecipeDetails /> } />
           <Route path="/drinks/:id" element={ <RecipeDetails /> } />
           <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />

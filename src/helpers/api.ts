@@ -68,3 +68,33 @@ export const fetchRecommendations = async (type: string) => {
     return [];
   }
 };
+
+export const fetchSearchCategory = async (type: string, category: string) => {
+  const urlAPI = `https://www.the${type}db.com/api/json/v1/1/filter.php?c=${category}`;
+
+  try {
+    const response = await fetch(urlAPI);
+    const dataAPI = await response.json();
+    return dataAPI;
+  } catch (error) {
+    console.error(`Error fetching ${type} recipes by category ${category}:`, error);
+    throw new Error(`Error fetching ${type} recipes by category ${category}`);
+  }
+};
+
+export async function fetchRecipes(type: 'meals' | 'drinks'): Promise<any[]> {
+  const apiUrl = `https://www.${type === 'meals' ? 'themealdb' : 'thecocktaildb'}.com/api/json/v1/1/search.php?s=`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (type === 'meals') {
+      return data.meals.slice(0, 12);
+    }
+    return data.drinks.slice(0, 12);
+  } catch (error) {
+    console.error(`Error fetching ${type === 'meals' ? 'meals' : 'drinks'}: `, error);
+    return [];
+  }
+}

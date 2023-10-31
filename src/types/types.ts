@@ -116,3 +116,5 @@ export type DataDetailsType = {
   ingredients: string[];
   instructions: string;
 };
+
+export type RecipeType = 'meals' | 'drinks';
