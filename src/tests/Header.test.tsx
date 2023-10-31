@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Header from '../components/Header';
 import renderWithRouter from '../utils/renderWithRouter';
-import DataProvider from '../context/DataContext';
+import DataProvider from '../context/RecipesProvider';
 
 describe('Header Component', () => {
   const PROFILE_ROUTE = '/profile';
