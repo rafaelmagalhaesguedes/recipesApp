@@ -17,13 +17,9 @@ function RecipeDetails() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        if (id) {
-          const recipeData = await fetchRecipeDetails(id, isDrinksPage);
-          setRecipe(recipeData);
-        }
-      } catch (error) {
-        console.error(error);
+      if (id) {
+        const recipeData = await fetchRecipeDetails(id, isDrinksPage);
+        setRecipe(recipeData);
       }
     };
     fetchData();
