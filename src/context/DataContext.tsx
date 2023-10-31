@@ -1,4 +1,4 @@
-import React, {
+/* import React, {
   createContext,
   useContext,
   useReducer,
@@ -56,3 +56,4 @@ export const useData = (): DataContextType => {
   return context;
 };
 export default DataProvider;
+ */

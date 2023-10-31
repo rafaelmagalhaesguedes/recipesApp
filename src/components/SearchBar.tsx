@@ -1,45 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useData } from '../context/DataContext';
-import { DrinkType, MealsType } from '../types/types';
+import { useContext, useEffect, useState } from 'react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import {
   fetchSearchByIngredients,
   fetchSearchByName,
   fetchSearchFirtsLetter,
 } from '../helpers/api';
+import { RecipesContext } from '../context/RecipesContext';
 
 function SearchBar() {
+  const { setSearchData, searchData } = useContext(RecipesContext);
+  const [page, setPage] = useState('meal');
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [formData, setFormData] = useState({
     search: '',
     filter: '',
   });
-  const [data, setData] = useState<MealsType[] | DrinkType[]>([]);
-  const { dispatch } = useData();
-  const [page, setPage] = useState('meal');
-  const navigate = useNavigate();
-
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    if (pathname === '/drinks') {
-      setPage('cocktail');
-    } else {
-      setPage('meal');
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    dispatch({ type: 'SET_SEARCH_DATA', payload: data });
-    if (data.length === 1) {
-      if ('idDrink' in data[0]) {
-        const { idDrink } = data[0];
-        navigate(`/drinks/${idDrink}`);
-      } else if ('idMeal' in data[0]) {
-        const { idMeal } = data[0];
-        navigate(`/meals/${idMeal}`);
-      }
-    }
-  }, [dispatch, data, navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
@@ -49,11 +25,13 @@ function SearchBar() {
       setFormData({ ...formData, search: value });
     }
   };
+
   const testResult = (result: any = null) => {
     if (result === null) {
       window.alert("Sorry, we haven't found any recipes for these filters.");
     }
   };
+
   const handleSubmit = async () => {
     const { filter, search } = formData;
     let fetchResult = [];
@@ -78,16 +56,36 @@ function SearchBar() {
         break;
     }
     if ('meals' in fetchResult) {
-      setData(fetchResult.meals || []);
+      setSearchData(fetchResult.meals || []);
       testResult(fetchResult.meals);
     } else if ('drinks' in fetchResult) {
-      setData(fetchResult.drinks || []);
+      setSearchData(fetchResult.drinks || []);
       testResult(fetchResult.drinks);
     } else {
-      setData([]);
+      setSearchData('');
       testResult();
     }
   };
+
+  useEffect(() => {
+    if (pathname === '/drinks') {
+      setPage('cocktail');
+    } else {
+      setPage('meal');
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (searchData.length === 1) {
+      if ('idDrink' in searchData[0]) {
+        const { idDrink } = searchData[0];
+        navigate(`/drinks/${idDrink}`);
+      } else if ('idMeal' in searchData[0]) {
+        const { idMeal } = searchData[0];
+        navigate(`/meals/${idMeal}`);
+      }
+    }
+  }, [searchData, navigate]);
 
   return (
     <div>
@@ -141,16 +139,18 @@ function SearchBar() {
         Search
       </button>
       {/*  testes render data */}
-      {data.slice(0, 12).map((el: any, index) => (
+      {searchData && searchData.slice(0, 12).map((el: any, index: any) => (
         <div key={ index } data-testid={ `${index}-recipe-card` }>
           <img
             src={ el.strMealThumb || el.strDrinkThumb }
             alt={ el.strMeal || el.strDrink }
             data-testid={ `${index}-card-img` }
           />
-          <h2 data-testid={ `${index}-card-name` }>
-            {el.strMeal || el.strDrink}
-          </h2>
+          <Link to={ `/meals/${el.idMeal}` }>
+            <h2 data-testid={ `${index}-card-name` }>
+              {el.strMeal || el.strDrink}
+            </h2>
+          </Link>
         </div>
       ))}
     </div>
