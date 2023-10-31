@@ -5,21 +5,24 @@ import CategoryFilter from './CategoryFilter';
 
 function Recipes({ type }: { type: 'meals' | 'drinks' }) {
   const [recipes, setRecipes] = useState<any[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchRecipes(type);
-        setRecipes(data.slice(0, 12));
+        const filteredRecipes = selectedCategory
+          ? data.filter((recipe) => recipe.strCategory === selectedCategory)
+          : data;
+        setRecipes(filteredRecipes.slice(0, 12));
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
-  }, [type]);
+  }, [type, selectedCategory]);
 
-  const handleCategorySelect = (category : string) => {
+  const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
   };
 
@@ -45,9 +48,7 @@ function Recipes({ type }: { type: 'meals' | 'drinks' }) {
               data-testid={ `${index}-card-img` }
             />
             <h2 data-testid={ `${index}-card-name` }>
-              {recipe.strMeal
-             || recipe.strDrink}
-
+              {recipe.strMeal || recipe.strDrink}
             </h2>
           </Link>
         </div>
