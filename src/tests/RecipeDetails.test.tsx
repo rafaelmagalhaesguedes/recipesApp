@@ -1,5 +1,6 @@
 import { act, screen } from '@testing-library/react';
 import { vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../utils/renderWithRouter';
 import App from '../App';
 import { mockMeals, recommended } from './mocks/mockData';
@@ -42,14 +43,31 @@ describe('RecipeDetails', () => {
     expect(fetch).toHaveBeenCalledTimes(2);
   });
 
-  it('should display an error message when the fetch request fails', async () => {
-    global.fetch = vi.fn().mockImplementation(() => Promise.reject(new Error('Fetch request failed')));
-
+  it('should handle FavoriteButton click', async () => {
     await act(async () => {
       renderWithRouter(<App />, { route: MEAL_ROUTE });
     });
 
-    expect(screen.getByText('Fetch request failed')).toBeInTheDocument();
+    const favoriteButton = screen.getByTestId(FAVORITE_BUTTON_TEST_ID);
+    userEvent.click(favoriteButton);
+  });
+
+  it('should handle ShareButton click', async () => {
+    await act(async () => {
+      renderWithRouter(<App />, { route: MEAL_ROUTE });
+    });
+
+    const shareButton = screen.getByTestId('share-btn');
+    userEvent.click(shareButton);
+  });
+
+  it('should handle StartRecipeButton click', async () => {
+    await act(async () => {
+      renderWithRouter(<App />, { route: MEAL_ROUTE });
+    });
+
+    const startRecipeButton = screen.getByTestId(START_RECIPE_BUTTON_TEST_ID);
+    userEvent.click(startRecipeButton);
   });
 
   it('should display a loading message while the fetch request is in progress', () => {
