@@ -107,3 +107,12 @@ export type DrinkType = {
   strCreativeCommonsConfirmed: string;
   dateModified: string;
 };
+
+export type DataDetailsType = {
+  image: string;
+  title: string;
+  category?: string;
+  alcoholicOrNot?: string;
+  ingredients: string[];
+  instructions: string;
+};

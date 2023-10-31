@@ -23,7 +23,7 @@ function StartRecipeButton() {
     const updatedInProgressRecipes = { ...inProgressRecipes };
 
     if (!isRecipeInProgress() && id) {
-      updatedInProgressRecipes[key] = { ...updatedInProgressRecipes[key], [id]: true };
+      updatedInProgressRecipes[key] = { ...updatedInProgressRecipes[key], [id]: [] };
       localStorage.setItem('inProgressRecipes', JSON.stringify(updatedInProgressRecipes));
     }
 
