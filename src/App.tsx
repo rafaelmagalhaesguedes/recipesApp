@@ -1,4 +1,3 @@
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
@@ -10,6 +9,7 @@ import Profile from './components/Profile';
 import Footer from './components/Footer';
 import RecipeInProgress from './components/RecipeInProgress';
 import DoneRecipes from './components/DoneRecipes';
+import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 
 function App() {
   return (
@@ -24,6 +24,8 @@ function App() {
             <Route path="/done-recipes" element={ <DoneRecipes /> } />
             <Route path="/favorite-recipes" />
           </Route>
+          <Route path="/meals/:id" element={ <RecipeDetails /> } />
+          <Route path="/drinks/:id" element={ <RecipeDetails /> } />
           <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
           <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
         </Routes>
