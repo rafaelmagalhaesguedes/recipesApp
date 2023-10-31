@@ -39,7 +39,8 @@ export const fetchById = async (type: string, idSearch: string) => {
     return dataAPI;
   } catch (error) {
     console.error(error);
-
+  }
+};
 export const fetchRecipeDetails = async (id: string, isDrinksPage: boolean) => {
   const API_URL = isDrinksPage
     ? `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`

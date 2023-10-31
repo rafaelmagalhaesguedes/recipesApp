@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { act } from 'react-dom/test-utils';
-import DataProvider from '../context/DataContext';
+import DataProvider from '../context/RecipesProvider';
 import App from '../App';
 import renderWithRouter from '../utils/renderWithRouter';
 import { mealIdMock, drinkIdMock } from '../helpers/recipeInProgressMocks';
