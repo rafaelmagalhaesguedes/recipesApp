@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import blackHeartIcon from '../../../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../../../images/whiteHeartIcon.svg';
@@ -9,8 +9,20 @@ function FavoriteButton({ recipe } : any) {
   const isDrinksPage = location.pathname.includes('drinks');
   const [isFavorited, setIsFavorited] = useState(false);
 
-  const handleFavoriteClick = () => {
+  useEffect(() => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    const isRecipeFavorited = favoriteRecipes
+      .some((favRecipe: any) => favRecipe.id === id);
+    setIsFavorited(isRecipeFavorited);
+  }, [id]);
+
+  const handleFavoriteClick = () => {
+    let favoriteRecipes = [];
+    try {
+      favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    } catch (error) {
+      console.error('Error parsing favoriteRecipes from localStorage:', error);
+    }
     const newRecipe = {
       id,
       type: isDrinksPage ? 'drink' : 'meal',
@@ -36,11 +48,11 @@ function FavoriteButton({ recipe } : any) {
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
   };
   return (
-    <button onClick={ handleFavoriteClick } data-testid="favorite-btn">
+    <button onClick={ handleFavoriteClick }>
       {isFavorited ? (
-        <img src={ blackHeartIcon } alt="Favorite" />
+        <img src={ blackHeartIcon } alt="Favorite" data-testid="favorite-btn" />
       ) : (
-        <img src={ whiteHeartIcon } alt="Favorite" />
+        <img src={ whiteHeartIcon } alt="Favorite" data-testid="favorite-btn" />
       )}
     </button>
   );
