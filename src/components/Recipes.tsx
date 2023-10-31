@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchRecipes } from '../helpers/api';
+import CategoryFilter from './CategoryFilter';
 
 function Recipes({ type }: { type: 'meals' | 'drinks' }) {
   const [recipes, setRecipes] = useState<any[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,8 +19,23 @@ function Recipes({ type }: { type: 'meals' | 'drinks' }) {
     fetchData();
   }, [type]);
 
+  const handleCategorySelect = (category : string) => {
+    setSelectedCategory(category);
+  };
+
+  const handleClearFilters = () => {
+    setSelectedCategory('');
+  };
+
+  const categories = ['Category1', 'Category2', 'Category3'];
   return (
     <div>
+      <CategoryFilter
+        categories={ categories }
+        onSelectCategory={ handleCategorySelect }
+        onClearFilters={ handleClearFilters }
+      />
+
       {recipes.map((recipe, index) => (
         <div key={ index } data-testid={ `${index}-recipe-card` }>
           <Link to={ `/${type}/${recipe.idMeal || recipe.idDrink}` }>
