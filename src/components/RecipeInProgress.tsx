@@ -119,10 +119,13 @@ export default function RecipeInProgress() {
           {isLinkCopied && <p>Link copied!</p>}
         </div>
         <button
-          data-testid="favorite-btn"
           onClick={ () => handleFavoriteClick(dataById, setIsFavorite) }
         >
-          <img src={ isFavorite ? blackHeartIcon : whiteHeartIcon } alt="favorite" />
+          {isFavorite ? (
+            <img data-testid="favorite-btn" src={ blackHeartIcon } alt="Favorite" />
+          ) : (
+            <img data-testid="favorite-btn" src={ whiteHeartIcon } alt="Favorite" />
+          )}
         </button>
         {dataDetails.category && (
           <div data-testid="recipe-category">{ dataDetails.category }</div>

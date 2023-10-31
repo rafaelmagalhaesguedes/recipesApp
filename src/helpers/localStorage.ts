@@ -1,4 +1,3 @@
-import { type } from '@testing-library/user-event/dist/types/utility';
 import { DrinkType, MealsType } from '../types/types';
 
 export const handleDoneRecipes = (dataById : MealsType | DrinkType) => {
