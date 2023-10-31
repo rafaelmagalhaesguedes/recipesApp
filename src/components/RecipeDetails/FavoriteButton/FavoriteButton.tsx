@@ -49,11 +49,11 @@ function FavoriteButton({ recipe } : any) {
   };
   return (
     <button onClick={ handleFavoriteClick }>
-      {isFavorited ? (
-        <img src={ blackHeartIcon } alt="Favorite" data-testid="favorite-btn" />
-      ) : (
-        <img src={ whiteHeartIcon } alt="Favorite" data-testid="favorite-btn" />
-      )}
+      <img
+        src={ isFavorited ? blackHeartIcon : whiteHeartIcon }
+        alt="Favorite"
+        data-testid="favorite-btn"
+      />
     </button>
   );
 }
