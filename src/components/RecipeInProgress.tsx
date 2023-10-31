@@ -1,20 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { DrinkType, MealsType } from '../types/types';
+import { DrinkType, MealsType, DataDetailsType } from '../types/types';
 import './RecipeInProgress.css';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import { fetchById } from '../helpers/api';
+import { handleDoneRecipes, handleFavoriteClick } from '../helpers/localStorage';
 
-type DataDetailsType = {
-  image: string;
-  title: string;
-  category?: string;
-  alcoholicOrNot?: string;
-  ingredients: string[];
-  instructions: string;
-};
-
-/*
-  Função para pegar os ingredientes e medidas de uma receita
-*/
 function getIngredientsList(recipeObj: any) {
   const ingredientsList = [];
 
@@ -39,26 +31,22 @@ export default function RecipeInProgress() {
   const [dataDetails, setDataDetails] = useState<DataDetailsType>();
   const [checkedIngredients, setCheckedIngredients] = useState<string[]>([]);
   const navigate = useNavigate();
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  const setLocalStorage = () => {
+  useEffect(() => {
     if (dataById && 'strMeal' in dataById) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
-        meals: {
-          [dataById.idMeal]: checkedIngredients,
-        },
+        meals: { [dataById.idMeal]: checkedIngredients },
       }));
     } else if (dataById && 'strDrink' in dataById) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
-        drinks: {
-          [dataById.idDrink]: checkedIngredients,
-        },
+        drinks: { [dataById.idDrink]: checkedIngredients },
       }));
     }
-  };
+  }, [checkedIngredients, dataById]);
+
   useEffect(() => {
-    setLocalStorage();
-  }, [checkedIngredients]);
-  useEffect(() => {
+    const favRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
     const inProgress = localStorage.getItem('inProgressRecipes');
     const parsedInProgress = inProgress ? JSON.parse(inProgress) : {};
     if (id) {
@@ -68,6 +56,7 @@ export default function RecipeInProgress() {
         setCheckedIngredients(parsedInProgress.drinks[id]);
       }
     }
+    if (favRecipes.find((fav: any) => fav.id === id)) setIsFavorite(true);
   }, [id]);
 
   const handleCheckboxChange = (ingredient: string) => {
@@ -80,16 +69,6 @@ export default function RecipeInProgress() {
   };
 
   useEffect(() => {
-    const fetchById = async (type: string, idSearch: string) => {
-      const urlAPI = `https://www.the${type}db.com/api/json/v1/1/lookup.php?i=${idSearch}`;
-      try {
-        const response = await fetch(urlAPI);
-        const dataAPI = await response.json();
-        return dataAPI;
-      } catch (error) {
-        console.error(error);
-      }
-    };
     if (page && id) {
       const typePage = page === 'meals' ? 'meal' : 'cocktail';
       const recipeApi = fetchById(typePage, id);
@@ -126,93 +105,58 @@ export default function RecipeInProgress() {
       return true;
     }
   };
-  const handleLocalStorage = () => {
-    const doneRecipes = localStorage.getItem('doneRecipes');
-    const parsedDoneRecipes = doneRecipes ? JSON.parse(doneRecipes) : [];
-    const date = new Date();
-    const formatedDate = date.toISOString();
-    let newDoneRecipe = {};
-    if (dataById && 'strMeal' in dataById) {
-      newDoneRecipe = {
-        id: dataById?.idMeal,
-        nationality: dataById?.strArea || '',
-        name: dataById.strMeal,
-        category: dataById?.strCategory || '',
-        image: dataById.strMealThumb,
-        tags: dataById?.strTags ? dataById.strTags.split(',') : [],
-        alcoholicOrNot: '',
-        type: 'meal',
-        doneDate: formatedDate,
-      };
-    } else if (dataById && 'strDrink' in dataById) {
-      newDoneRecipe = {
-        id: dataById.idDrink,
-        nationality: '',
-        name: dataById.strDrink,
-        category: dataById?.strCategory || '',
-        image: dataById.strDrinkThumb,
-        tags: dataById?.strTags ? dataById.strTags.split(',') : [],
-        alcoholicOrNot: dataById.strAlcoholic,
-        type: 'drink',
-        doneDate: formatedDate,
-      };
-    }
-    localStorage.setItem(
-      'doneRecipes',
-      JSON.stringify([...parsedDoneRecipes, newDoneRecipe]),
-    );
-  };
+
   const handleFinished = () => {
     navigate('/done-recipes');
-    handleLocalStorage();
+    if (dataById) handleDoneRecipes(dataById);
   };
   if (dataById && dataDetails) {
     return (
       <div className="recipeInProgress">
-        <div>Recipe</div>
-        <div>
-          <img src={ dataDetails.image } alt="recipe" data-testid="recipe-photo" />
-          <h2 data-testid="recipe-title">{ dataDetails.title }</h2>
-          <button data-testid="share-btn">Compartilhar</button>
-          <button data-testid="favorite-btn">Favoritar</button>
-          {dataDetails.category && (
-            <div data-testid="recipe-category">{ dataDetails.category }</div>
-          )}
-          {dataDetails.alcoholicOrNot && (
-            <div data-testid="recipe-category">{ dataDetails.alcoholicOrNot }</div>
-          )}
-          <p data-testid="instructions">{ dataDetails.instructions }</p>
-          <div className="ingredients-container">
-            {dataDetails.ingredients.map((ingredient, index) => (
-              <label
-                key={ index }
-                data-testid={ `${index}-ingredient-step` }
-                style={ {
-                  textDecoration: checkedIngredients.includes(ingredient)
-                    ? 'line-through solid rgb(0, 0, 0)' : 'none',
-                } }
-              >
-                {ingredient}
-                <input
-                  type="checkbox"
-                  checked={ checkedIngredients.includes(ingredient) }
-                  onChange={ () => handleCheckboxChange(ingredient) }
-                />
-              </label>
-            ))}
-          </div>
-          <button
-            data-testid="finish-recipe-btn"
-            disabled={ !verifyRecipeDone() }
-            onClick={ handleFinished }
-          >
-            Finalizar Receita
-
-          </button>
+        <img src={ dataDetails.image } alt="recipe" data-testid="recipe-photo" />
+        <h2 data-testid="recipe-title">{ dataDetails.title }</h2>
+        <button data-testid="share-btn">Compartilhar</button>
+        <button
+          data-testid="favorite-btn"
+          onClick={ () => handleFavoriteClick(dataById, setIsFavorite) }
+        >
+          <img src={ isFavorite ? blackHeartIcon : whiteHeartIcon } alt="favorite" />
+        </button>
+        {dataDetails.category && (
+          <div data-testid="recipe-category">{ dataDetails.category }</div>
+        )}
+        {dataDetails.alcoholicOrNot && (
+          <div data-testid="recipe-category">{ dataDetails.alcoholicOrNot }</div>
+        )}
+        <p data-testid="instructions">{ dataDetails.instructions }</p>
+        <div className="ingredients-container">
+          {dataDetails.ingredients.map((ingredient, index) => (
+            <label
+              key={ index }
+              data-testid={ `${index}-ingredient-step` }
+              style={ {
+                textDecoration: checkedIngredients.includes(ingredient)
+                  ? 'line-through solid rgb(0, 0, 0)' : 'none',
+              } }
+            >
+              {ingredient}
+              <input
+                type="checkbox"
+                checked={ checkedIngredients.includes(ingredient) }
+                onChange={ () => handleCheckboxChange(ingredient) }
+              />
+            </label>
+          ))}
         </div>
+        <button
+          data-testid="finish-recipe-btn"
+          onClick={ handleFinished }
+          disabled={ !verifyRecipeDone() }
+        >
+          Finalizar Receita
+        </button>
       </div>
     );
   }
-
   return <div>Loading...</div>;
 }
