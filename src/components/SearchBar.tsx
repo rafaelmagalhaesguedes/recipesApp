@@ -5,7 +5,7 @@ import {
   fetchSearchByName,
   fetchSearchFirtsLetter,
 } from '../helpers/api';
-import { RecipesContext } from '../context/RecipesContext';
+import RecipesContext from '../context/RecipesContext';
 
 function SearchBar() {
   const { setSearchData, searchData } = useContext(RecipesContext);
@@ -80,7 +80,7 @@ function SearchBar() {
       if ('idDrink' in searchData[0]) {
         const { idDrink } = searchData[0];
         navigate(`/drinks/${idDrink}`);
-      } else if ('idMeal' in searchData[0]) {
+      } if ('idMeal' in searchData[0]) {
         const { idMeal } = searchData[0];
         navigate(`/meals/${idMeal}`);
       }

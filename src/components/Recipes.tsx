@@ -1,59 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { fetchRecipes } from '../helpers/api';
+import { useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { fetchAPI } from '../helpers/helpers';
+import RecipiesContext from '../context/RecipesContext';
 import CategoryFilter from './CategoryFilter';
+import RenderRecipes from './RecipeRender';
+import { DrinkType, MealsType } from '../types/types';
+import { fetchRecipes } from '../helpers/api';
 
-function Recipes({ type }: { type: 'meals' | 'drinks' }) {
-  const [recipes, setRecipes] = useState<any[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
+function Recipes() {
+  const {
+    updateRecipesList,
+    loading,
+    updateLoading,
+  } = useContext(RecipiesContext);
+
+  const { pathname } = useLocation();
+
+  const apiURL = pathname === '/drinks' ? 'thecocktaildb' : 'themealdb';
+
+  const endpoints = {
+    initialList: `https://www.${apiURL}.com/api/json/v1/1/search.php?s=`,
+    categories: `https://www.${apiURL}.com/api/json/v1/1/list.php?c=list`,
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchRecipes(type);
-        const filteredRecipes = selectedCategory
-          ? data.filter((recipe) => recipe.strCategory === selectedCategory)
-          : data;
-        setRecipes(filteredRecipes.slice(0, 12));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, [type, selectedCategory]);
+    async function fetchResult() {
+      updateLoading(true);
+      const fetch = await fetchRecipes(pathname.replace('/', ''));
+      updateRecipesList(fetch);
+      updateLoading(false);
+    }
+    fetchResult();
+  }, [endpoints.initialList, pathname, updateLoading, updateRecipesList]);
 
-  const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category);
-  };
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
 
-  const handleClearFilters = () => {
-    setSelectedCategory('');
-  };
-
-  const categories = ['Category1', 'Category2', 'Category3'];
   return (
-    <div>
-      <CategoryFilter
-        categories={ categories }
-        onSelectCategory={ handleCategorySelect }
-        onClearFilters={ handleClearFilters }
-      />
-
-      {recipes.map((recipe, index) => (
-        <div key={ index } data-testid={ `${index}-recipe-card` }>
-          <Link to={ `/${type}/${recipe.idMeal || recipe.idDrink}` }>
-            <img
-              src={ recipe.strMealThumb || recipe.strDrinkThumb }
-              alt={ recipe.strMeal || recipe.strDrink }
-              data-testid={ `${index}-card-img` }
-            />
-            <h2 data-testid={ `${index}-card-name` }>
-              {recipe.strMeal || recipe.strDrink}
-            </h2>
-          </Link>
-        </div>
-      ))}
-    </div>
+    <section>
+      <CategoryFilter endpoints={ endpoints } />
+      <RenderRecipes listLength={ 12 } />
+    </section>
   );
 }
 

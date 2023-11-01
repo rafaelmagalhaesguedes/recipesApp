@@ -1,8 +1,6 @@
 import { createContext } from 'react';
+import { RecipesContextType } from '../types/types';
 
-type RecipesContextType = {
-  setSearchData: (search: string) => void;
-  searchData: any;
-};
+const RecipesContext = createContext({} as RecipesContextType);
 
-export const RecipesContext = createContext({} as RecipesContextType);
+export default RecipesContext;

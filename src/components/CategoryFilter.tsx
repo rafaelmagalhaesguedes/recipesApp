@@ -1,28 +1,65 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { fetchAPI } from '../helpers/helpers';
+import FilterButton from './FilterButton';
+import RecipiesContext from '../context/RecipesContext';
+import { DrinkType, MealsType } from '../types/types';
 
-interface CategoryFilterProps {
+type CategoryProps = {
+  endpoints: {
+    initialList: string;
+    categories: string;
+  };
+};
+
+interface CategoryApiResponse {
   categories: string[];
-  onSelectCategory: (category: string) => void;
-  onClearFilters: () => void;
 }
 
-function CategoryFilter({ categories,
-  onSelectCategory, onClearFilters }: CategoryFilterProps) {
+function CategoryFilter({ endpoints }: CategoryProps) {
+  const { categories, initialList } = endpoints;
+  const { updateRecipesList } = useContext(RecipiesContext);
+
+  const [categoriesList, setCategoriesList] = useState<any[]>([]);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data: CategoryApiResponse = await fetchAPI(categories);
+        console.log(data);
+        console.log(data[pathname.replace('/', '')]);
+        const categoryList: string[] = data[pathname.replace('/', '')];
+        setCategoriesList(categoryList.slice(0, 5));
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, [categories]);
+
+  const handleClick = async () => {
+    try {
+      const recipesData = await fetchAPI(initialList);
+      updateRecipesList(Object.values(recipesData)[0] as DrinkType[] | MealsType[]);
+    } catch (error) {
+      console.error('Error fetching recipes:', error);
+    }
+  };
+
   return (
-    <div>
-      <button data-testid="All-category-filter" onClick={ onClearFilters }>
+    <section>
+      <button data-testid="All-category-filter" onClick={ handleClick }>
         All
       </button>
-      {categories.map((category, index) => (
-        <button
-          key={ index }
-          onClick={ () => onSelectCategory(category) }
-          data-testid={ `${category}-category-filter` }
-        >
-          {category}
-        </button>
+      {categoriesList?.map((categoryName) => (
+        <FilterButton
+          key={ categoryName.strCategory }
+          buttonInfo={ { categoryName, initialList } }
+        />
       ))}
-    </div>
+    </section>
   );
 }
 
