@@ -63,7 +63,7 @@ export default function Header() {
             src={ searchIcon }
           />
         </button>
-      ) : <SearchBar /> }
+      ) : null }
 
       {searchVisible && (
         <SearchBar />
