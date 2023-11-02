@@ -3,11 +3,14 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import RecipesProvider from './context/RecipesProvider';
+import AuthProvider from './context/AuthContext';
 
 ReactDOM.createRoot(document.getElementById('root') as Element).render(
-  <RecipesProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </RecipesProvider>,
+  <AuthProvider>
+    <RecipesProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </RecipesProvider>
+  </AuthProvider>,
 );
