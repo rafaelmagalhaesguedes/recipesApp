@@ -158,7 +158,7 @@ describe('SearchBar Component', () => {
     await user.click(searchBtn);
 
     waitFor(() => {
-      expect(window.location.pathname).toBe('http://localhost:3000/drinks/12518');
+      expect(window.location.pathname).toBe('/drinks/12518');
     });
 
     const title = await screen.findByText('Whisky Mac');
