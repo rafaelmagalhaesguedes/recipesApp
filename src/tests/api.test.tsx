@@ -7,8 +7,10 @@ import {
 } from '../helpers/api';
 
 describe('API Functions', () => {
+  const mockResponse = (data: { drinks?: never[]; meals?: never[]; }) => Promise.resolve({ json: () => Promise.resolve(data) });
+
   it('fetchSearchByIngredients calls the correct API endpoint', async () => {
-    global.fetch = jest.fn().mockResolvedValue({ json: jest.fn().mockResolvedValue({}) });
+    global.fetch = jest.fn().mockResolvedValue(mockResponse({ drinks: [] }));
 
     await fetchSearchByIngredients('drinks', 'vodka');
 
@@ -16,7 +18,7 @@ describe('API Functions', () => {
   });
 
   it('fetchSearchByName calls the correct API endpoint', async () => {
-    global.fetch = jest.fn().mockResolvedValue({ json: jest.fn().mockResolvedValue({}) });
+    global.fetch = jest.fn().mockResolvedValue(mockResponse({ drinks: [] }));
 
     await fetchSearchByName('drinks', 'margarita');
 
@@ -24,7 +26,7 @@ describe('API Functions', () => {
   });
 
   it('fetchSearchFirtsLetter calls the correct API endpoint', async () => {
-    global.fetch = jest.fn().mockResolvedValue({ json: jest.fn().mockResolvedValue({}) });
+    global.fetch = jest.fn().mockResolvedValue(mockResponse({ drinks: [] }));
 
     await fetchSearchFirtsLetter('drinks', 'a');
 
@@ -32,16 +34,15 @@ describe('API Functions', () => {
   });
 
   it('fetchCategories calls the correct API endpoint', async () => {
-    global.fetch = jest.fn().mockResolvedValue({ json: jest.fn().mockResolvedValue({ meals: [] }) });
+    global.fetch = jest.fn().mockResolvedValue(mockResponse({ meals: [] }));
 
     await fetchCategories('meals');
 
     expect(fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v2/1/list.php?c=list');
   });
 
-  // Example test for fetchRecipes function
   it('fetchRecipes calls the correct API endpoint', async () => {
-    global.fetch = jest.fn().mockResolvedValue({ json: jest.fn().mockResolvedValue({ drinks: [] }) });
+    global.fetch = jest.fn().mockResolvedValue(mockResponse({ drinks: [] }));
 
     await fetchRecipes('drinks');
 
