@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
-import DataProvider from '../context/RecipesProvider';
+import RecipesProvider from '../context/RecipesProvider';
 import App from '../App';
 import renderWithRouter from '../utils/renderWithRouter';
 
@@ -15,7 +15,7 @@ const BUTTON_SEARCH = 'exec-search-btn';
 
 describe('SearchBar Component', () => {
   test('Check elements SearchBar render', async () => {
-    const { user } = renderWithRouter(<DataProvider><App /></DataProvider>, { route: '/meals' });
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: '/meals' });
 
     const searchButton = screen.getByTestId(ICON_BUTTON);
     expect(searchButton).toBeInTheDocument();
@@ -30,9 +30,9 @@ describe('SearchBar Component', () => {
 
   test('Check button search', async () => {
     render(
-      <DataProvider>
+      <RecipesProvider>
         <BrowserRouter><SearchBar /></BrowserRouter>
-      </DataProvider>,
+      </RecipesProvider>,
     );
     const inputSearch = screen.getByTestId(SEARCH_INPUT);
     fireEvent.change(inputSearch, { target: { value: 'Potato' } });
@@ -45,7 +45,7 @@ describe('SearchBar Component', () => {
   });
 
   test('Check if the first letter confirmation alert works correctly', async () => {
-    const { user } = renderWithRouter(<DataProvider><App /></DataProvider>, { route: '/meals' });
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: '/meals' });
 
     const iconButton = screen.getByTestId(ICON_BUTTON);
     await user.click(iconButton);
@@ -64,7 +64,7 @@ describe('SearchBar Component', () => {
   });
 
   test('Check if you dont have Drinks recipes trigger an alert', async () => {
-    const { user } = renderWithRouter(<DataProvider><App /></DataProvider>, { route: '/drinks' });
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: '/drinks' });
 
     const searchIcon = screen.getByTestId(ICON_BUTTON);
     await user.click(searchIcon);
@@ -85,7 +85,7 @@ describe('SearchBar Component', () => {
   });
 
   test('Check if you dont have recipes for different foods, an alert', async () => {
-    const { user } = renderWithRouter(<DataProvider><App /></DataProvider>, { route: '/meals' });
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: '/meals' });
 
     const searchIcon = screen.getByTestId(ICON_BUTTON);
     await user.click(searchIcon);
@@ -106,7 +106,7 @@ describe('SearchBar Component', () => {
   });
 
   test('Check if you call the correct API for the meals page', async () => {
-    const { user } = renderWithRouter(<DataProvider><App /></DataProvider>, { route: '/meals' });
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: '/meals' });
     const fetch = vi.spyOn(global, 'fetch');
 
     const searchHeaderBtn = screen.getByTestId(ICON_BUTTON);
@@ -125,7 +125,7 @@ describe('SearchBar Component', () => {
   });
 
   test('Check if you call the correct API for the drinks page', async () => {
-    const { user } = renderWithRouter(<DataProvider><App /></DataProvider>, { route: '/drinks' });
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: '/drinks' });
     const fetch = vi.spyOn(global, 'fetch');
 
     const searchHeaderBtn = screen.getByTestId(ICON_BUTTON);
@@ -144,7 +144,7 @@ describe('SearchBar Component', () => {
   });
 
   test('Verifica se ao receber somente um item ao pesquisar na página Drinks, é redirecionado para a página de detalhes do item', async () => {
-    const { user } = renderWithRouter(<DataProvider><App /></DataProvider>, { route: '/drinks' });
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: '/drinks' });
 
     const iconButton = screen.getByTestId(ICON_BUTTON);
     await user.click(iconButton);

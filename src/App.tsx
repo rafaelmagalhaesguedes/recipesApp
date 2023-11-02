@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
 import AuthProvider from './context/AuthContext';
 import Header from './components/Header';
+
 import Profile from './components/Profile';
 import Footer from './components/Footer';
 import RecipeInProgress from './components/RecipeInProgress';
@@ -18,11 +19,10 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route path="/" element={ <Login /> } />
-            <Route path="/" element={ <Header /> }>
-              <Route path="/profile" element={ <Profile /> } />
-              <Route path="/done-recipes" element={ <DoneRecipes /> } />
-              <Route path="/favorite-recipes" />
-            </Route>
+            <Route path="/" element={ <Header /> } />
+            <Route path="/profile" element={ <Profile /> } />
+            <Route path="/done-recipes" element={ <DoneRecipes /> } />
+            <Route path="/favorite-recipes" />
             <Route path="/meals" element={ <Recipes /> } />
             <Route path="/drinks" element={ <Recipes /> } />
             <Route path="/meals/:id" element={ <RecipeDetails /> } />

@@ -1,5 +1,4 @@
-import React, { createContext,
-  useState, ReactNode, Dispatch, SetStateAction } from 'react';
+import React, { useState, ReactNode, Dispatch, SetStateAction } from 'react';
 import { DrinkType, MealsType } from '../types/types';
 import RecipesContext from './RecipesContext';
 

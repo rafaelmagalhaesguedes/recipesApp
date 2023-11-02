@@ -1,10 +1,8 @@
 import { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { fetchAPI } from '../helpers/helpers';
 import RecipiesContext from '../context/RecipesContext';
 import CategoryFilter from './CategoryFilter';
 import RenderRecipes from './RecipeRender';
-import { DrinkType, MealsType } from '../types/types';
 import { fetchRecipes } from '../helpers/api';
 
 function Recipes() {

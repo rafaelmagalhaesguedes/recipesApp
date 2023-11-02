@@ -13,7 +13,7 @@ type CategoryProps = {
 };
 
 interface CategoryApiResponse {
-  categories: string[];
+  [key: string]: string[];
 }
 
 function CategoryFilter({ endpoints }: CategoryProps) {
@@ -27,8 +27,6 @@ function CategoryFilter({ endpoints }: CategoryProps) {
     const fetchCategories = async () => {
       try {
         const data: CategoryApiResponse = await fetchAPI(categories);
-        console.log(data);
-        console.log(data[pathname.replace('/', '')]);
         const categoryList: string[] = data[pathname.replace('/', '')];
         setCategoriesList(categoryList.slice(0, 5));
       } catch (error) {
@@ -37,7 +35,7 @@ function CategoryFilter({ endpoints }: CategoryProps) {
     };
 
     fetchCategories();
-  }, [categories]);
+  }, [categories, pathname]);
 
   const handleClick = async () => {
     try {

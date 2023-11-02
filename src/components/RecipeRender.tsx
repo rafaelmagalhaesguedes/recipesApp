@@ -9,7 +9,7 @@ type RenderRecipesProps = {
 };
 
 function RenderRecipes({ listLength }: RenderRecipesProps) {
-  const { recipes, recipesList } = useContext(RecipesContext);
+  const { recipesList } = useContext(RecipesContext);
   const { pathname } = useLocation();
 
   return (

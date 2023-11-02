@@ -130,6 +130,7 @@ export type RecipesContextType = {
   updateRecipesList: React.Dispatch<React.SetStateAction<DrinkType[] | MealsType[]>>;
   loading: boolean;
   updateLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  renderRecipes: DrinkType[] | MealsType[],
   recipes: InProgressRecipesType
   recipesList: []
 };
