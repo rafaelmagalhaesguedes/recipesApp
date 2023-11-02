@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { getIngredientsList } from '../../helpers/helpers';
 import { fetchRecipeDetails } from '../../helpers/api';
-import FavoriteButton from './FavoriteButton/FavoriteButton';
-import ShareButton from './ShareButton/ShareButton';
-import StartRecipeButton from './StartRecipeButton/StartRecipeButton';
+import FavoriteButton from '../../components/FavoriteButton';
+import ShareButton from '../../components/ShareButton';
+import StartRecipeButton from '../../components/StartRecipeButton';
 import { ContainerRecipeDetails, Wrapper } from './Styles';
-import CarouselDetails from './CarouselDetails/CarouselDetails';
+import CarouselDetails from '../../components/CarouselDetails';
 
 function RecipeDetails() {
   const location = useLocation();

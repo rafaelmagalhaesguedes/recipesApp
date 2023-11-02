@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import RecipesProvider from '../context/RecipesProvider';
 import App from '../App';
-import renderWithRouter from '../utils/renderWithRouter';
+import renderWithRouter from '../helpers/renderWithRouter';
 
 const ICON_BUTTON = 'search-top-btn';
 const SEARCH_INPUT = 'search-input';

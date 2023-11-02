@@ -12,7 +12,6 @@ export const ContainerRecipeDetails = styled.section`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 30px;
-  width: 360px;
+  width: 340px;
   height: 640px;
 `;

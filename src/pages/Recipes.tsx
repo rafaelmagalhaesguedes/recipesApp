@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import RecipiesContext from '../context/RecipesContext';
-import CategoryFilter from './CategoryFilter';
-import RenderRecipes from './RecipeRender';
+import CategoryFilter from '../components/CategoryFilter';
+import RenderRecipes from '../components/RecipeRender';
 import { fetchRecipes } from '../helpers/api';
-import SearchResult from './SearchResult';
+import SearchResult from '../components/SearchResult';
 
 function Recipes() {
   const {
