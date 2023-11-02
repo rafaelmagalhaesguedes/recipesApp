@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-max-depth */
 import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthProvider from './context/AuthContext';
@@ -11,22 +10,28 @@ import RecipesProvider from './context/RecipesProvider';
 import Layout from './components/Layout';
 
 function App() {
+  const layout = (
+    <Route element={ <Layout /> }>
+      <Route path="/profile" element={ <Profile /> } />
+      <Route path="/done-recipes" element={ <DoneRecipes /> } />
+      <Route path="/meals" element={ <Recipes /> } />
+      <Route path="/drinks" element={ <Recipes /> } />
+      <Route path="/meals/:id" element={ <RecipeDetails /> } />
+      <Route path="/drinks/:id" element={ <RecipeDetails /> } />
+      <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
+      <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
+    </Route>
+  );
+  const route = (
+    <Routes>
+      {layout}
+    </Routes>
+  );
   return (
     <div className="meals">
       <RecipesProvider>
         <AuthProvider>
-          <Routes>
-            <Route element={ <Layout /> }>
-              <Route path="/profile" element={ <Profile /> } />
-              <Route path="/done-recipes" element={ <DoneRecipes /> } />
-              <Route path="/meals" element={ <Recipes /> } />
-              <Route path="/drinks" element={ <Recipes /> } />
-              <Route path="/meals/:id" element={ <RecipeDetails /> } />
-              <Route path="/drinks/:id" element={ <RecipeDetails /> } />
-              <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
-              <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
-            </Route>
-          </Routes>
+          {route}
         </AuthProvider>
       </RecipesProvider>
     </div>
