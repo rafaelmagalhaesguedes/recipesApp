@@ -4,12 +4,12 @@ import RecipiesContext from '../context/RecipesContext';
 import CategoryFilter from './CategoryFilter';
 import RenderRecipes from './RecipeRender';
 import { fetchRecipes } from '../helpers/api';
+import SearchResult from './SearchResult';
 
 function Recipes() {
   const {
     updateRecipesList,
-    loading,
-    updateLoading,
+    searchData,
   } = useContext(RecipiesContext);
 
   const { pathname } = useLocation();
@@ -23,22 +23,21 @@ function Recipes() {
 
   useEffect(() => {
     async function fetchResult() {
-      updateLoading(true);
       const fetch = await fetchRecipes(pathname.replace('/', ''));
       updateRecipesList(fetch);
-      updateLoading(false);
     }
     fetchResult();
-  }, [endpoints.initialList, pathname, updateLoading, updateRecipesList]);
-
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
+  }, [endpoints.initialList, pathname, updateRecipesList]);
 
   return (
     <section>
       <CategoryFilter endpoints={ endpoints } />
-      <RenderRecipes listLength={ 12 } />
+
+      {searchData ? (
+        <SearchResult />
+      ) : (
+        <RenderRecipes listLength={ 12 } />
+      )}
     </section>
   );
 }
