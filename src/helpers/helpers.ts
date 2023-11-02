@@ -1,6 +1,3 @@
-/*
-  Função para pegar os ingredientes e medidas de uma receita
-*/
 export function getIngredientsList(recipeObj: any) {
   const ingredientsList = [];
 
@@ -16,3 +13,9 @@ export function getIngredientsList(recipeObj: any) {
   }
   return ingredientsList;
 }
+
+export const fetchAPI = async (url: string) => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+};

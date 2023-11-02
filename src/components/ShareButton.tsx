@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import shareIcon from '../../../images/shareIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 
 function ShareButton() {
   const [isLinkCopied, setIsLinkCopied] = useState(false);

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, RenderResult } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import App from '../App';
+import AuthProvider from '../context/AuthContext';
 
 const VALID_EMAIL = 'valid-email@example.com';
 const INVALID_EMAIL = 'invalid-email';
@@ -16,7 +17,9 @@ describe('Login Component Tests', () => {
   beforeEach(() => {
     app = render(
       <BrowserRouter>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </BrowserRouter>,
     );
 

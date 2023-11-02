@@ -116,3 +116,19 @@ export type DataDetailsType = {
   ingredients: string[];
   instructions: string;
 };
+
+export type InProgressRecipesType = object & {
+  meals: { [recipeId: string]: string[] };
+  drinks: { [recipeId: string]: string[] };
+};
+
+export type RecipeType = 'meals' | 'drinks';
+
+export type RecipesContextType = {
+  setSearchData: (search: string) => void;
+  searchData: any;
+  updateRecipesList: React.Dispatch<React.SetStateAction<DrinkType[] | MealsType[]>>;
+  loading: boolean;
+  updateLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  recipesList: DrinkType[] | MealsType[],
+};

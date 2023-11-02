@@ -1,25 +1,21 @@
 import { Route, Routes } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './components/Login';
-import AuthProvider from './context/AuthContext';
-import Header from './components/Header';
-import Drinks from './components/Drinks';
-import Meals from './components/Meals';
-import Profile from './components/Profile';
-import Footer from './components/Footer';
-import RecipeInProgress from './components/RecipeInProgress';
-import DoneRecipes from './components/DoneRecipes';
-import RecipeDetails from './components/RecipeDetails/RecipeDetails';
+import Login from './pages/Login';
+import Layout from './components/Layout';
+import Recipes from './pages/Recipes';
+import RecipeDetails from './pages/RecipeDetails/RecipeDetails';
+import RecipeInProgress from './pages/RecipeInProgress/RecipeInProgress';
+import DoneRecipes from './pages/DoneRecipes';
+import Profile from './pages/Profile';
 
 function App() {
   return (
-    <div className="meals">
-      <AuthProvider>
+    <div className="container">
+      <div className="wrapper-mobile">
         <Routes>
           <Route path="/" element={ <Login /> } />
-          <Route path="/" element={ <Header /> }>
-            <Route path="/meals" element={ <Meals /> } />
-            <Route path="/drinks" element={ <Drinks /> } />
+          <Route path="/" element={ <Layout /> }>
+            <Route path="/meals" element={ <Recipes /> } />
+            <Route path="/drinks" element={ <Recipes /> } />
             <Route path="/profile" element={ <Profile /> } />
             <Route path="/done-recipes" element={ <DoneRecipes /> } />
             <Route path="/favorite-recipes" />
@@ -29,8 +25,7 @@ function App() {
           <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
           <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
         </Routes>
-      </AuthProvider>
-      <Footer />
+      </div>
     </div>
   );
 }

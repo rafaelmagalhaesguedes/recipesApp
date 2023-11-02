@@ -1,7 +1,7 @@
 import { act, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from '../utils/renderWithRouter';
+import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
 import { mockMeals, recommended } from './mocks/mockData';
 

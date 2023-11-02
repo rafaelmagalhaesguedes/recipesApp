@@ -26,10 +26,8 @@ function Login() {
   };
 
   const handleSubmit = () => {
-    if (isFormValid) {
-      localStorage.setItem('user', JSON.stringify({ email: state.email }));
-      navigate('/meals');
-    }
+    localStorage.setItem('user', JSON.stringify({ email: state.email }));
+    navigate('/meals');
   };
 
   return (

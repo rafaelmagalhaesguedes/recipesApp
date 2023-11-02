@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Header from '../components/Header';
-import renderWithRouter from '../utils/renderWithRouter';
+import renderWithRouter from '../helpers/renderWithRouter';
 import DataProvider from '../context/RecipesProvider';
 
 describe('Header Component', () => {

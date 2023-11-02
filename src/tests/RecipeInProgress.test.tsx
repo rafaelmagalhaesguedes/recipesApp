@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { act } from 'react-dom/test-utils';
 import DataProvider from '../context/RecipesProvider';
 import App from '../App';
-import renderWithRouter from '../utils/renderWithRouter';
+import renderWithRouter from '../helpers/renderWithRouter';
 import { mealIdMock, drinkIdMock } from '../helpers/recipeInProgressMocks';
 
 const RECIPE_IMAGE = 'recipe-photo';

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchRecommendations } from '../../../helpers/api';
+import { fetchRecommendations } from '../helpers/api';
 
 interface CarouselDetailsProps {
   isDrinksPage: boolean;
@@ -30,7 +30,7 @@ function CarouselDetails({ isDrinksPage }: CarouselDetailsProps) {
             data-testid={ `${index}-recommendation-card` }
             style={ {
               flex: '0 0 auto',
-              width: '140px',
+              width: '160px',
               border: '1px solid #ccc',
               margin: '5px',
             } }
@@ -41,7 +41,7 @@ function CarouselDetails({ isDrinksPage }: CarouselDetailsProps) {
             <img
               src={ recommendation.strDrinkThumb || recommendation.strMealThumb }
               alt="recipe"
-              width={ 140 }
+              width={ 150 }
             />
           </div>
         ))}

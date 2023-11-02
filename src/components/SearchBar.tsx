@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   fetchSearchByIngredients,
   fetchSearchByName,
   fetchSearchFirtsLetter,
 } from '../helpers/api';
-import { RecipesContext } from '../context/RecipesContext';
+import RecipesContext from '../context/RecipesContext';
 
 function SearchBar() {
   const { setSearchData, searchData } = useContext(RecipesContext);
@@ -62,7 +62,7 @@ function SearchBar() {
       setSearchData(fetchResult.drinks || []);
       testResult(fetchResult.drinks);
     } else {
-      setSearchData('');
+      setSearchData('meal');
       testResult();
     }
   };
@@ -80,7 +80,7 @@ function SearchBar() {
       if ('idDrink' in searchData[0]) {
         const { idDrink } = searchData[0];
         navigate(`/drinks/${idDrink}`);
-      } else if ('idMeal' in searchData[0]) {
+      } if ('idMeal' in searchData[0]) {
         const { idMeal } = searchData[0];
         navigate(`/meals/${idMeal}`);
       }
@@ -138,21 +138,6 @@ function SearchBar() {
       >
         Search
       </button>
-      {/*  testes render data */}
-      {searchData && searchData.slice(0, 12).map((el: any, index: any) => (
-        <div key={ index } data-testid={ `${index}-recipe-card` }>
-          <img
-            src={ el.strMealThumb || el.strDrinkThumb }
-            alt={ el.strMeal || el.strDrink }
-            data-testid={ `${index}-card-img` }
-          />
-          <Link to={ `/meals/${el.idMeal}` }>
-            <h2 data-testid={ `${index}-card-name` }>
-              {el.strMeal || el.strDrink}
-            </h2>
-          </Link>
-        </div>
-      ))}
     </div>
   );
 }

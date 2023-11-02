@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { DrinkType, MealsType, DataDetailsType } from '../types/types';
+import { DrinkType, MealsType, DataDetailsType } from '../../types/types';
 import './RecipeInProgress.css';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import { fetchById } from '../helpers/api';
-import { handleDoneRecipes, handleFavoriteClick } from '../helpers/localStorage';
-import { getIngredientsList } from '../helpers/helpers';
-import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import { fetchById } from '../../helpers/api';
+import { handleDoneRecipes, handleFavoriteClick } from '../../helpers/localStorage';
+import { getIngredientsList } from '../../helpers/helpers';
+import shareIcon from '../../images/shareIcon.svg';
 
 export default function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();

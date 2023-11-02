@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer/Footer';
 
 describe('Testando o arquivo Footer.js', () => {
   it('Teste se o arquivo Footer.js contém os 2 ícones, um para comidas e outro para bebidas.', () => {

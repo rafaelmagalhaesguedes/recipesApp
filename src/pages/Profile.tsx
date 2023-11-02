@@ -1,5 +1,5 @@
-import Footer from './Footer';
-import Header from './Header';
+import Footer from '../components/Footer/Footer';
+import Header from '../components/Header';
 
 function Profile() {
   return (

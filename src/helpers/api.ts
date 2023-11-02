@@ -68,3 +68,54 @@ export const fetchRecommendations = async (type: string) => {
     return [];
   }
 };
+
+export const fetchSearchCategory = async (type: string, category: string) => {
+  const urlAPI = `https://www.the${type}db.com/api/json/v1/1/filter.php?c=${category}`;
+
+  try {
+    const response = await fetch(urlAPI);
+    const dataAPI = await response.json();
+    return dataAPI;
+  } catch (error) {
+    console.error(`Error fetching ${type} recipes by category ${category}:`, error);
+    throw new Error(`Error fetching ${type} recipes by category ${category}`);
+  }
+};
+
+export async function fetchRecipes(type: string): Promise<any[]> {
+  const apiUrl = `https://www.${type === 'meals' ? 'themealdb' : 'thecocktaildb'}.com/api/json/v1/1/search.php?s=`;
+  console.log(apiUrl);
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (type === 'meals') {
+      return data.meals.slice(0, 12);
+    }
+    return data.drinks.slice(0, 12);
+  } catch (error) {
+    console.error(`Error fetching ${type === 'meals' ? 'meals' : 'drinks'}: `, error);
+    return [];
+  }
+}
+
+export const fetchCategories = async (type: 'meals' | 'drinks'): Promise<string[]> => {
+  const apiUrl = `https://www.${type === 'meals' ? 'themealdb' : 'thecocktaildb'}.com/api/json/v2/1/list.php?c=list`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (data && data.meals) {
+      const categories = data.meals.slice(0, 5).map(
+        (category: any) => category.strCategory,
+      );
+      return categories;
+    }
+    return [];
+  } catch (error) {
+    console.error(`Error fetching ${
+      type === 'meals' ? 'food' : 'drink'} categories: `, error);
+    return [];
+  }
+};
