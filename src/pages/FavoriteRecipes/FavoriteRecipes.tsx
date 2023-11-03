@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import { FavoriteRecipes } from '../../types/types';
 
 function FavoriteRecipes() {
-  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [favoriteRecipes, setFavoriteRecipes] = useState<FavoriteRecipes[]>([]);
+  const [shared, setShared] = useState(false);
 
   useEffect(() => {
     const savedRecipes = localStorage.getItem('favoriteRecipes');
     const data = savedRecipes ? JSON.parse(savedRecipes) : [];
     setFavoriteRecipes(data);
   }, []);
+
+  const handleClickShare = (recipeId: number, recipeType: string) => {
+    const recipeLink = `${window.location.origin}/${recipeType}s/${recipeId}`;
+    navigator.clipboard.writeText(recipeLink);
+    setShared((prev) => !prev);
+    return shared;
+  };
 
   return (
     <div>
@@ -27,19 +36,38 @@ function FavoriteRecipes() {
               src={ recipe.image }
               alt={ recipe.name }
             />
-            <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
-            <p data-testid={ `${index}-horizontal-top-text` }>
-              {recipe.type === 'meal' ? recipe.nationality : recipe.alcoholicOrNot}
-              {' - '}
-              {recipe.category}
-            </p>
-            <button data-testid={ `${index}-horizontal-share-btn` }>
-              <img src={ shareIcon } alt="Share" />
-              Share
+            <div>
+              <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+
+              <div>
+                { (recipe.type === 'meal') && (
+                  <p data-testid={ `${index}-horizontal-top-text` }>
+                    {`${recipe.nationality} - ${recipe.category}`}
+                  </p>
+                )}
+
+                { (recipe.type === 'drink') && (
+                  <p data-testid={ `${index}-horizontal-top-text` }>
+                    {recipe.alcoholicOrNot}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <button onClick={ () => handleClickShare(recipe.id, recipe.type) }>
+              {!shared && <img
+                src={ shareIcon }
+                data-testid={ `${index}-horizontal-share-btn` }
+                alt="Share"
+              />}
+              {shared && <span>Link copied!</span>}
             </button>
-            <button data-testid={ `${index}-horizontal-favorite-btn` }>
-              <img src={ blackHeartIcon } alt="Favorite" />
-              Favorite
+            <button>
+              <img
+                src={ blackHeartIcon }
+                data-testid={ `${index}-horizontal-favorite-btn` }
+                alt="Favorite"
+              />
             </button>
           </div>
         ))}
