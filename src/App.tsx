@@ -4,7 +4,7 @@ import Layout from './components/Layout';
 import Recipes from './pages/Recipes';
 import RecipeDetails from './pages/RecipeDetails/RecipeDetails';
 import RecipeInProgress from './pages/RecipeInProgress/RecipeInProgress';
-import DoneRecipes from './pages/DoneRecipes';
+import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
 import Profile from './pages/Profile';
 
 function App() {
