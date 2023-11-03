@@ -1,3 +1,15 @@
+export type DoneRecipesType = {
+  id: number;
+  type: string;
+  name: string;
+  image: string;
+  alcoholicOrNot: string;
+  category: string;
+  nationality: string;
+  doneDate: string;
+  tags: string[];
+};
+
 export type MealsType = {
   idMeal: string;
   strMeal: string;
