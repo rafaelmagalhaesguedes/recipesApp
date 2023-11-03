@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import shareIcon from '../../images/shareIcon.svg';
 import { ContainerDoneRecipes, Image, Wrapper } from './Styles';
+import { DoneRecipesType } from '../../types/types';
 
 function DoneRecipes() {
-  const [doneRecipes, setDoneRecipes] = useState<any>([]);
+  const [doneRecipes, setDoneRecipes] = useState<DoneRecipesType[]>([]);
   const [filter, setFilter] = useState('all');
   const [message, setMessage] = useState('');
 
@@ -16,7 +17,7 @@ function DoneRecipes() {
     }
   }, []);
 
-  const filteredRecipes = doneRecipes.filter((recipe: any) => {
+  const filteredRecipes = doneRecipes.filter((recipe: DoneRecipesType) => {
     if (filter === 'meal') {
       return recipe.type === 'meal';
     }
@@ -58,7 +59,7 @@ function DoneRecipes() {
         </section>
 
         <section className="card">
-          {filteredRecipes && filteredRecipes.map((recipe: any, index: any) => (
+          {filteredRecipes && filteredRecipes.map((recipe: DoneRecipesType, index) => (
             <div key={ index }>
               <Link to={ `/${recipe.type}s/${recipe.id}` }>
                 <Image
