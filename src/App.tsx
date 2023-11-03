@@ -19,7 +19,7 @@ function App() {
             <Route path="/drinks" element={ <Recipes /> } />
             <Route path="/profile" element={ <Profile /> } />
             <Route path="/done-recipes" element={ <DoneRecipes /> } />
-            <Route path="/favorite-recipes" element={ <FavoriteRecipes/>} />
+            <Route path="/favorite-recipes" element={ <FavoriteRecipes /> } />
           </Route>
           <Route path="/meals/:id" element={ <RecipeDetails /> } />
           <Route path="/drinks/:id" element={ <RecipeDetails /> } />

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import shareIcon from '../../images/shareIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
-const FavoriteRecipes = () => {
+function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   useEffect(() => {
-    const savedRecipes = localStorage.getItem('favoriteRecipes')
-    const data = savedRecipes ? JSON.parse(savedRecipes): [];
+    const savedRecipes = localStorage.getItem('favoriteRecipes');
+    const data = savedRecipes ? JSON.parse(savedRecipes) : [];
     setFavoriteRecipes(data);
   }, []);
 
@@ -19,21 +21,31 @@ const FavoriteRecipes = () => {
       </div>
       <div>
         {favoriteRecipes.map((recipe: any, index: any) => (
-          <div key={index}>
+          <div key={ index }>
             <img
-              data-testid={`${index}-horizontal-image`}
-              src={recipe.image}
-              alt={recipe.name}
+              data-testid={ `${index}-horizontal-image` }
+              src={ recipe.image }
+              alt={ recipe.name }
             />
-            <p data-testid={`${index}-horizontal-top-text`}>{recipe.category}</p>
-            <p data-testid={`${index}-horizontal-name`}>{recipe.name}</p>
-            <button data-testid={`${index}-horizontal-share-btn`}>Share</button>
-            <button data-testid={`${index}-horizontal-favorite-btn`}>Favorite</button>
+            <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+            <p data-testid={ `${index}-horizontal-top-text` }>
+              {recipe.type === 'meal' ? recipe.nationality : recipe.alcoholicOrNot}
+              {' - '}
+              {recipe.category}
+            </p>
+            <button data-testid={ `${index}-horizontal-share-btn` }>
+              <img src={ shareIcon } alt="Share" />
+              Share
+            </button>
+            <button data-testid={ `${index}-horizontal-favorite-btn` }>
+              <img src={ blackHeartIcon } alt="Favorite" />
+              Favorite
+            </button>
           </div>
         ))}
       </div>
     </div>
   );
-};
+}
 
 export default FavoriteRecipes;
