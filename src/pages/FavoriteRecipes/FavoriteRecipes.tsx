@@ -39,7 +39,7 @@ function FavoriteRecipes() {
 
   const filterAll = () => {
     setFavoriteRecipes(JSON.parse(localStorage.getItem('favoriteRecipes')
-    || '[]'));
+    || '[]') );
   };
 
   return (
