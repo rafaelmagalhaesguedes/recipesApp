@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import { FavoriteRecipes } from '../../types/types';
@@ -20,37 +21,74 @@ function FavoriteRecipes() {
     return shared;
   };
 
+  const filterMeals = () => {
+    const meals = favoriteRecipes.filter((recipe: any) => recipe.type === 'meal');
+    setFavoriteRecipes(meals);
+  };
+
+  const filterDrinks = () => {
+    const drinks = favoriteRecipes.filter((recipe: any) => recipe.type === 'drink');
+    setFavoriteRecipes(drinks);
+  };
+
+  const filterAll = () => {
+    setFavoriteRecipes(JSON.parse(localStorage.getItem('favoriteRecipes')
+    || '[]'));
+  };
+
   return (
     <div>
       <div>
-        <button data-testid="filter-by-all-btn">All</button>
-        <button data-testid="filter-by-meal-btn">Meals</button>
-        <button data-testid="filter-by-drink-btn">Drinks</button>
+        <button
+          onClick={ () => filterAll() }
+          data-testid="filter-by-all-btn"
+        >
+          All
+        </button>
+
+        <button
+          onClick={ () => filterMeals() }
+          data-testid="filter-by-meal-btn"
+        >
+          Meals
+        </button>
+
+        <button
+          onClick={ () => filterDrinks() }
+          data-testid="filter-by-drink-btn"
+        >
+          Drinks
+        </button>
       </div>
+
       <div>
-        {favoriteRecipes.map((recipe: any, index: any) => (
+        {favoriteRecipes.map((recipe: any, index: number) => (
           <div key={ index }>
-            <img
-              data-testid={ `${index}-horizontal-image` }
-              src={ recipe.image }
-              alt={ recipe.name }
-            />
-            <div>
+            <Link
+              to={ recipe.type === 'meal'
+                ? `/meals/${recipe.id}` : `/drinks/${recipe.id}` }
+            >
               <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
 
-              <div>
-                { (recipe.type === 'meal') && (
-                  <p data-testid={ `${index}-horizontal-top-text` }>
-                    {`${recipe.nationality} - ${recipe.category}`}
-                  </p>
-                )}
+              <img
+                data-testid={ `${index}-horizontal-image` }
+                src={ recipe.image }
+                alt={ recipe.name }
+              />
+            </Link>
 
-                { (recipe.type === 'drink') && (
-                  <p data-testid={ `${index}-horizontal-top-text` }>
-                    {recipe.alcoholicOrNot}
-                  </p>
-                )}
-              </div>
+            <div>
+              { (recipe.type === 'meal') && (
+                <p data-testid={ `${index}-horizontal-top-text` }>
+                  {`${recipe.nationality} - ${recipe.category}`}
+                </p>
+              )}
+
+              { (recipe.type === 'drink') && (
+                <p data-testid={ `${index}-horizontal-top-text` }>
+                  {recipe.alcoholicOrNot}
+                </p>
+              )}
             </div>
 
             <button onClick={ () => handleClickShare(recipe.id, recipe.type) }>
