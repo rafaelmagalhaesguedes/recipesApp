@@ -21,6 +21,12 @@ function FavoriteRecipes() {
     return shared;
   };
 
+  const handleFavorite = (id: string) => {
+    const favorites = favoriteRecipes.filter((recipe: any) => recipe.id !== id);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
+    setFavoriteRecipes(favorites);
+  };
+
   const filterMeals = () => {
     const meals = favoriteRecipes.filter((recipe: any) => recipe.type === 'meal');
     setFavoriteRecipes(meals);
@@ -62,7 +68,7 @@ function FavoriteRecipes() {
       </div>
 
       <div>
-        {favoriteRecipes.map((recipe: any, index: number) => (
+        {favoriteRecipes.length > 0 && favoriteRecipes.map((recipe: any, index: number) => (
           <div key={ index }>
             <Link
               to={ recipe.type === 'meal'
@@ -99,7 +105,9 @@ function FavoriteRecipes() {
               />}
               {shared && <span>Link copied!</span>}
             </button>
-            <button>
+            <button
+              onClick={ () => handleFavorite(recipe.id) }
+            >
               <img
                 src={ blackHeartIcon }
                 data-testid={ `${index}-horizontal-favorite-btn` }
