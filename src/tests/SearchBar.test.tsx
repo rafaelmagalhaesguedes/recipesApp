@@ -44,6 +44,26 @@ describe('SearchBar Component', () => {
     fireEvent.click(filterButton);
   });
 
+  test('Check if the first letter search works correctly', async () => {
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: '/meals' });
+
+    const searchIcon = screen.getByTestId(ICON_BUTTON);
+    await user.click(searchIcon);
+
+    const searchInput = screen.getByTestId(SEARCH_INPUT);
+    const firstLetterRadio = screen.getByTestId(FIRST_LETTER_SEARCH_RADIO);
+    const searchBtn = screen.getByTestId(BUTTON_SEARCH);
+
+    const fetch = vi.spyOn(global, 'fetch');
+
+    await user.type(searchInput, 'a');
+    await user.click(firstLetterRadio);
+    await user.click(searchBtn);
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?f=a');
+  });
+
   test('Check if the first letter confirmation alert works correctly', async () => {
     const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: '/meals' });
 
@@ -162,6 +182,28 @@ describe('SearchBar Component', () => {
     });
 
     const title = await screen.findByText('Whisky Mac');
+    expect(title).toBeInTheDocument();
+  });
+
+  test('Verifica se ao receber somente um item ao pesquisar na página Meals, é redirecionado para a página de detalhes do item', async () => {
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: '/meals' });
+
+    const iconButton = screen.getByTestId(ICON_BUTTON);
+    await user.click(iconButton);
+
+    const searchInput = screen.getByTestId(SEARCH_INPUT);
+    const nameRadio = screen.getByTestId(NAME_SEARCH_RADIO);
+    const searchBtn = screen.getByTestId(BUTTON_SEARCH);
+
+    await user.type(searchInput, 'Arrabiata');
+    await user.click(nameRadio);
+    await user.click(searchBtn);
+
+    waitFor(() => {
+      expect(window.location.pathname).toBe('/meals/52771');
+    });
+
+    const title = await screen.findByText('Spicy Arrabiata Penne');
     expect(title).toBeInTheDocument();
   });
 });
