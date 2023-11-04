@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FaCheck } from 'react-icons/fa';
 
 export const LoginContainer = styled.section`
   display: flex;
@@ -6,7 +7,7 @@ export const LoginContainer = styled.section`
   align-items: center;
 `;
 
-export const LoginLogo = styled.div`
+export const Logo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,16 +16,15 @@ export const LoginLogo = styled.div`
   height: 380px;
 `;
 
-export const LogoImg = styled.img`
+export const ImageLogo = styled.img`
   width: 198px;
   height: 158px;
-  margin-top: 100px;
+  margin-top: 130px;
 `;
 
-export const ImageTomato = styled.img`
-`;
+export const ImageTomato = styled.img``;
 
-export const LoginTitle = styled.h1`
+export const TitleLogin = styled.h1`
   font-size: 18px;
   font-style: italic;
   font-weight: 500;
@@ -36,16 +36,25 @@ export const LoginTitle = styled.h1`
   text-transform: uppercase;
 `;
 
-export const LoginInput = styled.input`
+export const InputEmail = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
+
+export const InputsLogin = styled.input`
   width: 276px;
   height: 40px;
   border-radius: 5px;
-  padding: 0 20px;
+  padding: 0 23px 0 17px;
   border: 0.5px solid #d0d0d0;
   margin: 5px 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
   
   &::placeholder {
-    color: gray;
+    color: #41197F;
   }
   
   &:focus {
@@ -54,13 +63,27 @@ export const LoginInput = styled.input`
   }
 `;
 
+export const ValidIcon = styled(FaCheck)`
+  color: green;
+  width: 12px;
+  position: absolute;
+  margin: 16px 8px;
+`;
+
+export const InvalidIcon = styled(FaCheck)`
+  color: red;
+  position: absolute;
+  width: 12px;
+  margin: 16px 8px;
+`;
+
 export const LoginButton = styled.button`
   width: 276px;
   height: 40px;
   border-radius: 5px;
-  background: #FCC436;
+  background: #41197F;
   border: none;
-  color: white;
+  color: #FFFFFF;
   text-transform: uppercase;
   font-weight: 900;
   cursor: pointer;

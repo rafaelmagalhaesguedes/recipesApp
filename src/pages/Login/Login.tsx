@@ -4,19 +4,24 @@ import { useAuth } from '../../context/AuthContext';
 import logoImg from '../../images/logo.png';
 import tomatoImg from '../../images/tomato.png';
 import {
-  ImageTomato,
-  LoginButton,
   LoginContainer,
-  LoginInput,
-  LoginLogo,
-  LoginTitle,
-  LogoImg,
+  Logo,
+  ImageLogo,
+  ImageTomato,
+  TitleLogin,
+  InputEmail,
+  InputsLogin,
+  ValidIcon,
+  InvalidIcon,
+  LoginButton,
 } from './Styles';
 
 function Login() {
   const navigate = useNavigate();
   const { state, dispatch } = useAuth();
   const [isFormValid, setIsFormValid] = useState(false);
+  const validateEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email);
+  const validatePassword = state.password.length > 6;
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const email = e.target.value;
@@ -39,29 +44,45 @@ function Login() {
   const handleSubmit = () => {
     localStorage.setItem('user', JSON.stringify({ email: state.email }));
     navigate('/meals');
+    state.email = '';
+    state.password = '';
   };
 
   return (
     <LoginContainer>
-      <LoginLogo>
-        <LogoImg src={ logoImg } alt="Logo" />
+      <Logo>
+        <ImageLogo src={ logoImg } alt="Logo" />
         <ImageTomato src={ tomatoImg } alt="Tomato" />
-      </LoginLogo>
-      <LoginTitle>Login</LoginTitle>
-      <LoginInput
-        type="email"
-        value={ state.email }
-        onChange={ handleEmailChange }
-        placeholder="Email"
-        data-testid="email-input"
-      />
-      <LoginInput
-        type="password"
-        value={ state.password }
-        onChange={ handlePasswordChange }
-        placeholder="Password"
-        data-testid="password-input"
-      />
+      </Logo>
+      <TitleLogin>Login</TitleLogin>
+      <InputEmail>
+        <InputsLogin
+          type="email"
+          value={ state.email }
+          onChange={ handleEmailChange }
+          placeholder="Email"
+          data-testid="email-input"
+        />
+        {validateEmail ? (
+          <ValidIcon />
+        ) : (
+          <InvalidIcon />
+        )}
+      </InputEmail>
+      <InputEmail>
+        <InputsLogin
+          type="password"
+          value={ state.password }
+          onChange={ handlePasswordChange }
+          placeholder="Password"
+          data-testid="password-input"
+        />
+        {validatePassword ? (
+          <ValidIcon />
+        ) : (
+          <InvalidIcon />
+        )}
+      </InputEmail>
       <LoginButton
         data-testid="login-submit-btn"
         onClick={ handleSubmit }
