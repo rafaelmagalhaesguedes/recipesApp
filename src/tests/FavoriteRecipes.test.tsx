@@ -128,4 +128,32 @@ describe('FavoriteRecipes', () => {
     const linkCopied = await screen.findByText('Link copied!');
     expect(linkCopied).toBeInTheDocument();
   });
+
+  it('should remove recipe from favorite recipes when favorite button is clicked', () => {
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+
+    render(
+      <BrowserRouter>
+        <FavoriteRecipes />
+      </BrowserRouter>,
+    );
+
+    const buttonAll = screen.getByRole('button', { name: /all/i });
+    fireEvent.click(buttonAll);
+
+    const meal = screen.getByText('Meal 1');
+    expect(meal).toBeInTheDocument();
+
+    const drink = screen.getByText('Drink 1');
+    expect(drink).toBeInTheDocument();
+
+    const buttonMeal = screen.getByTestId('0-horizontal-favorite-btn');
+    fireEvent.click(buttonMeal);
+
+    const mealRemoved = screen.queryByText('Meal 1');
+    expect(mealRemoved).not.toBeInTheDocument();
+
+    const drinkRemoved = screen.getByText('Drink 1');
+    expect(drinkRemoved).toBeInTheDocument();
+  });
 });
