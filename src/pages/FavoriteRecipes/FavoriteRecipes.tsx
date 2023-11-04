@@ -8,6 +8,7 @@ function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState<FavoriteRecipesType[]>([]);
   const [shared, setShared] = useState(false);
 
+  // Get Favorites data
   useEffect(() => {
     const savedRecipes = localStorage.getItem('favoriteRecipes');
     const data = savedRecipes ? JSON.parse(savedRecipes) : [];
