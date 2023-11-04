@@ -6,6 +6,7 @@ import RecipeDetails from './pages/RecipeDetails/RecipeDetails';
 import RecipeInProgress from './pages/RecipeInProgress/RecipeInProgress';
 import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
 import Profile from './pages/Profile';
+import FavoriteRecipes from './pages/FavoriteRecipes/FavoriteRecipes';
 
 function App() {
   return (

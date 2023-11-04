@@ -10,6 +10,41 @@ export type DoneRecipesType = {
   tags: string[];
 };
 
+export type FavoriteRecipesType = {
+  id: number,
+  category: string,
+  name: string,
+  image: string,
+  nationality: string,
+  type: string,
+  alcoholicOrNot: string
+};
+
+export type DataDetailsType = {
+  image: string;
+  title: string;
+  category?: string;
+  alcoholicOrNot?: string;
+  ingredients: string[];
+  instructions: string;
+};
+
+export type InProgressRecipesType = object & {
+  meals: { [recipeId: string]: string[] };
+  drinks: { [recipeId: string]: string[] };
+};
+
+export type RecipeType = 'meals' | 'drinks';
+
+export type RecipesContextType = {
+  setSearchData: (search: string) => void;
+  searchData: any;
+  updateRecipesList: React.Dispatch<React.SetStateAction<DrinkType[] | MealsType[]>>;
+  loading: boolean;
+  updateLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  recipesList: DrinkType[] | MealsType[],
+};
+
 export type MealsType = {
   idMeal: string;
   strMeal: string;
@@ -118,29 +153,4 @@ export type DrinkType = {
   strImageAttribution: string | null;
   strCreativeCommonsConfirmed: string;
   dateModified: string;
-};
-
-export type DataDetailsType = {
-  image: string;
-  title: string;
-  category?: string;
-  alcoholicOrNot?: string;
-  ingredients: string[];
-  instructions: string;
-};
-
-export type InProgressRecipesType = object & {
-  meals: { [recipeId: string]: string[] };
-  drinks: { [recipeId: string]: string[] };
-};
-
-export type RecipeType = 'meals' | 'drinks';
-
-export type RecipesContextType = {
-  setSearchData: (search: string) => void;
-  searchData: any;
-  updateRecipesList: React.Dispatch<React.SetStateAction<DrinkType[] | MealsType[]>>;
-  loading: boolean;
-  updateLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  recipesList: DrinkType[] | MealsType[],
 };
