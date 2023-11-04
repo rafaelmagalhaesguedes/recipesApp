@@ -1,6 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
+import logoImg from '../../images/logo.png';
+import tomatoImg from '../../images/tomato.png';
+import {
+  ImageTomato,
+  LoginButton,
+  LoginContainer,
+  LoginInput,
+  LoginLogo,
+  LoginTitle,
+  LogoImg,
+} from './Styles';
 
 function Login() {
   const navigate = useNavigate();
@@ -31,29 +42,34 @@ function Login() {
   };
 
   return (
-    <div>
-      <input
+    <LoginContainer>
+      <LoginLogo>
+        <LogoImg src={ logoImg } alt="Logo" />
+        <ImageTomato src={ tomatoImg } alt="Tomato" />
+      </LoginLogo>
+      <LoginTitle>Login</LoginTitle>
+      <LoginInput
         type="email"
         value={ state.email }
         onChange={ handleEmailChange }
         placeholder="Email"
         data-testid="email-input"
       />
-      <input
+      <LoginInput
         type="password"
         value={ state.password }
         onChange={ handlePasswordChange }
         placeholder="Password"
         data-testid="password-input"
       />
-      <button
+      <LoginButton
         data-testid="login-submit-btn"
         onClick={ handleSubmit }
         disabled={ !isFormValid }
       >
         entrar
-      </button>
-    </div>
+      </LoginButton>
+    </LoginContainer>
   );
 }
 
