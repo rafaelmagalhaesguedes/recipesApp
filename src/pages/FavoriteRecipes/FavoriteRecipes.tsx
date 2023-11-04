@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
-import { FavoriteRecipes } from '../../types/types';
+import { FavoriteRecipesType } from '../../types/types';
 
 function FavoriteRecipes() {
-  const [favoriteRecipes, setFavoriteRecipes] = useState<FavoriteRecipes[]>([]);
+  const [favoriteRecipes, setFavoriteRecipes] = useState<FavoriteRecipesType[]>([]);
   const [shared, setShared] = useState(false);
 
   useEffect(() => {
@@ -21,25 +21,27 @@ function FavoriteRecipes() {
     return shared;
   };
 
-  const handleFavorite = (id: string) => {
-    const favorites = favoriteRecipes.filter((recipe: any) => recipe.id !== id);
+  const handleFavorite = (id: number) => {
+    const favorites = favoriteRecipes
+      .filter((recipe: FavoriteRecipesType) => recipe.id !== id);
     localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
     setFavoriteRecipes(favorites);
   };
 
   const filterMeals = () => {
-    const meals = favoriteRecipes.filter((recipe: any) => recipe.type === 'meal');
+    const meals = favoriteRecipes
+      .filter((recipe: FavoriteRecipesType) => recipe.type === 'meal');
     setFavoriteRecipes(meals);
   };
 
   const filterDrinks = () => {
-    const drinks = favoriteRecipes.filter((recipe: any) => recipe.type === 'drink');
+    const drinks = favoriteRecipes
+      .filter((recipe: FavoriteRecipesType) => recipe.type === 'drink');
     setFavoriteRecipes(drinks);
   };
 
   const filterAll = () => {
-    setFavoriteRecipes(JSON.parse(localStorage.getItem('favoriteRecipes')
-    || '[]') );
+    setFavoriteRecipes(JSON.parse(localStorage.getItem('favoriteRecipes') || '[]'));
   };
 
   return (
@@ -68,8 +70,25 @@ function FavoriteRecipes() {
       </div>
 
       <div>
-        {favoriteRecipes.length > 0 && favoriteRecipes.map((recipe: any, index: number) => (
+        {favoriteRecipes && favoriteRecipes.map((recipe: FavoriteRecipesType, index) => (
           <div key={ index }>
+            <button onClick={ () => handleClickShare(recipe.id, recipe.type) }>
+              {!shared && <img
+                src={ shareIcon }
+                data-testid={ `${index}-horizontal-share-btn` }
+                alt="Share"
+              />}
+              {shared && <span>Link copied!</span>}
+            </button>
+            <button
+              onClick={ () => handleFavorite(recipe.id) }
+            >
+              <img
+                data-testid={ `${index}-horizontal-favorite-btn` }
+                src={ blackHeartIcon }
+                alt="Favorite"
+              />
+            </button>
             <Link
               to={ recipe.type === 'meal'
                 ? `/meals/${recipe.id}` : `/drinks/${recipe.id}` }
@@ -80,6 +99,7 @@ function FavoriteRecipes() {
                 data-testid={ `${index}-horizontal-image` }
                 src={ recipe.image }
                 alt={ recipe.name }
+                width={ 340 }
               />
             </Link>
 
@@ -96,24 +116,6 @@ function FavoriteRecipes() {
                 </p>
               )}
             </div>
-
-            <button onClick={ () => handleClickShare(recipe.id, recipe.type) }>
-              {!shared && <img
-                src={ shareIcon }
-                data-testid={ `${index}-horizontal-share-btn` }
-                alt="Share"
-              />}
-              {shared && <span>Link copied!</span>}
-            </button>
-            <button
-              onClick={ () => handleFavorite(recipe.id) }
-            >
-              <img
-                src={ blackHeartIcon }
-                data-testid={ `${index}-horizontal-favorite-btn` }
-                alt="Favorite"
-              />
-            </button>
           </div>
         ))}
       </div>
