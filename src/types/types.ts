@@ -144,3 +144,14 @@ export type RecipesContextType = {
   updateLoading: React.Dispatch<React.SetStateAction<boolean>>;
   recipesList: DrinkType[] | MealsType[],
 };
+
+export type FavoriteRecipes = {
+  id: string,
+  category: string,
+  name: string,
+  img: string,
+  nationality: string,
+  index: number,
+  type: string,
+  alcoholicOrNot: string
+};
