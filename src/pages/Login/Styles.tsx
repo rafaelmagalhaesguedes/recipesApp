@@ -15,7 +15,7 @@ export const Logo = styled.div`
   align-items: center;
   flex-direction: column;
   background: #41197F;
-  width: 100%;
+  width: 360px;
   height: 380px;
 `;
 
@@ -26,7 +26,7 @@ export const ImageLogo = styled.img`
 `;
 
 export const ImageTomato = styled.img`
-  width: 100%;
+  width: 360px;
 `;
 
 export const TitleLogin = styled.h1`
