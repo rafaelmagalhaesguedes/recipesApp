@@ -5,34 +5,26 @@ import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 
 export default function Header() {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('Meals');
   const [showSearchButton, setShowSearchButton] = useState(true);
   const [searchVisible, setSearchVisible] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    switch (pathname) {
-      case '/drinks':
-        setTitle('Drinks');
-        break;
-      case '/meals':
-        setTitle('Meals');
-        break;
-      case '/profile':
-        setShowSearchButton(false);
-        setTitle('Profile');
-        break;
-      case '/done-recipes':
-        setShowSearchButton(false);
-        setTitle('Done Recipes');
-        break;
-      case '/favorite-recipes':
-        setShowSearchButton(false);
-        setTitle('Favorite Recipes');
-        break;
-      default:
-        setTitle('');
+    if (pathname === '/drinks') {
+      setTitle('Drinks');
+    } else if (pathname === '/meals') {
+      setTitle('Meals');
+    } else if (pathname === '/profile') {
+      setShowSearchButton(false);
+      setTitle('Profile');
+    } else if (pathname === '/done-recipes') {
+      setShowSearchButton(false);
+      setTitle('Done Recipes');
+    } else if (pathname === '/favorite-recipes') {
+      setShowSearchButton(false);
+      setTitle('Favorite Recipes');
     }
   }, [pathname]);
 
