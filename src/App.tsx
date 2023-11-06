@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import Login from './pages/Login';
+import Login from './pages/Login/Login';
 import Layout from './components/Layout';
 import Recipes from './pages/Recipes';
 import RecipeDetails from './pages/RecipeDetails/RecipeDetails';
@@ -10,24 +10,20 @@ import FavoriteRecipes from './pages/FavoriteRecipes/FavoriteRecipes';
 
 function App() {
   return (
-    <div className="container">
-      <div className="wrapper-mobile">
-        <Routes>
-          <Route path="/" element={ <Login /> } />
-          <Route path="/" element={ <Layout /> }>
-            <Route path="/meals" element={ <Recipes /> } />
-            <Route path="/drinks" element={ <Recipes /> } />
-            <Route path="/profile" element={ <Profile /> } />
-            <Route path="/done-recipes" element={ <DoneRecipes /> } />
-            <Route path="/favorite-recipes" element={ <FavoriteRecipes /> } />
-          </Route>
-          <Route path="/meals/:id" element={ <RecipeDetails /> } />
-          <Route path="/drinks/:id" element={ <RecipeDetails /> } />
-          <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
-          <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
-        </Routes>
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={ <Login /> } />
+      <Route path="/" element={ <Layout /> }>
+        <Route path="/meals" element={ <Recipes /> } />
+        <Route path="/drinks" element={ <Recipes /> } />
+        <Route path="/profile" element={ <Profile /> } />
+        <Route path="/done-recipes" element={ <DoneRecipes /> } />
+        <Route path="/favorite-recipes" element={ <FavoriteRecipes /> } />
+      </Route>
+      <Route path="/meals/:id" element={ <RecipeDetails /> } />
+      <Route path="/drinks/:id" element={ <RecipeDetails /> } />
+      <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
+      <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
+    </Routes>
   );
 }
 export default App;
