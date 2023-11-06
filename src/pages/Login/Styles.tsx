@@ -5,6 +5,8 @@ export const LoginContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 100vh;
 `;
 
 export const Logo = styled.div`
@@ -13,6 +15,7 @@ export const Logo = styled.div`
   align-items: center;
   flex-direction: column;
   background: #41197F;
+  width: 100%;
   height: 380px;
 `;
 
@@ -22,7 +25,9 @@ export const ImageLogo = styled.img`
   margin-top: 130px;
 `;
 
-export const ImageTomato = styled.img``;
+export const ImageTomato = styled.img`
+  width: 100%;
+`;
 
 export const TitleLogin = styled.h1`
   font-size: 18px;
@@ -52,7 +57,8 @@ export const InputsLogin = styled.input`
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.6px;
-  
+  color: darkblue;
+
   &::placeholder {
     color: #41197F;
   }
