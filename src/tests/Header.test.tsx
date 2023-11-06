@@ -1,8 +1,7 @@
-import { fireEvent, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import Header from '../components/Header';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
-import DataProvider from '../context/RecipesProvider';
+import App from '../App';
+import RecipesProvider from '../context/RecipesProvider';
 
 describe('Header Component', () => {
   const PROFILE_ROUTE = '/profile';
@@ -12,60 +11,79 @@ describe('Header Component', () => {
   const FAVORITE_RECIPES_ROUTE = '/favorite-recipes';
   const titleTestId = 'page-title';
   const btnSearchId = 'search-top-btn';
+  const btnProfile = 'profile-top-btn';
 
-  it('checks if the profile icon redirects to the profile page', () => {
-    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: PROFILE_ROUTE });
-    const profileButton = screen.getByTestId('profile-top-btn');
-    userEvent.click(profileButton);
-    screen.findByText('Profile');
+  it('checks if the header is rendered', () => {
+    renderWithRouter(<App />, { route: MEALS_ROUTE });
+
+    const title = screen.getByTestId(titleTestId);
+    const btnSearch = screen.getByTestId(btnSearchId);
+    const profileBtn = screen.getByTestId('profile-top-btn');
+
+    expect(title).toBeInTheDocument();
+    expect(btnSearch).toBeInTheDocument();
+    expect(profileBtn).toBeInTheDocument();
+  });
+
+  it('checks if the /meals is rendered with the correct title', () => {
+    renderWithRouter(<App />, { route: MEALS_ROUTE });
+
+    const title = screen.getByTestId(titleTestId);
+
+    expect(title).toHaveTextContent('Meals');
+  });
+
+  it('checks if the /drinks is rendered with the correct title', () => {
+    renderWithRouter(<App />, { route: DRINKS_ROUTE });
+
+    const title = screen.getByTestId(titleTestId);
+
+    expect(title).toHaveTextContent('Drinks');
+  });
+
+  it('checks if the /profile is rendered with the correct title', () => {
+    renderWithRouter(<App />, { route: PROFILE_ROUTE });
+
+    const title = screen.getByTestId(titleTestId);
+
+    expect(title).toHaveTextContent('Profile');
+  });
+
+  it('checks if the /done-recipes is rendered with the correct title', () => {
+    renderWithRouter(<App />, { route: DONE_RECIPES_ROUTE });
+
+    const title = screen.getByTestId(titleTestId);
+
+    expect(title).toHaveTextContent('Done Recipes');
+  });
+
+  it('checks if the /favorite-recipes is rendered with the correct title', () => {
+    renderWithRouter(<App />, { route: FAVORITE_RECIPES_ROUTE });
+
+    const title = screen.getByTestId(titleTestId);
+
+    expect(title).toHaveTextContent('Favorite Recipes');
+  });
+
+  it('checks if the profile icon redirects to the profile page', async () => {
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: MEALS_ROUTE });
+
+    const profileButton = screen.getByTestId(btnProfile);
+    await user.click(profileButton);
 
     const title = screen.getByTestId(titleTestId);
     expect(title).toBeInTheDocument();
   });
 
-  it('hide search button when route is /profile', () => {
-    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: PROFILE_ROUTE });
+  it('search bar appears/desappear', async () => {
+    const { user } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>, { route: MEALS_ROUTE });
 
-    const profileButton = screen.getByTestId('profile-top-btn');
-    profileButton.click();
-    expect(screen.queryByTestId(btnSearchId)).toBeNull();
-  });
-
-  it('search bar appears', () => {
-    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: MEALS_ROUTE });
     const searchButton = screen.getByTestId(btnSearchId);
 
-    fireEvent.click(searchButton);
+    expect(screen.queryByTestId('search-input')).not.toBeInTheDocument();
+
+    await user.click(searchButton);
 
     expect(screen.getByTestId('search-input')).toBeInTheDocument();
-
-    fireEvent.click(searchButton);
-    expect(screen.queryByTestId('search-input')).toBeNull();
-  });
-
-  it('search button doesnt appear', () => {
-    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: PROFILE_ROUTE });
-    expect(screen.queryByTestId(btnSearchId)).toBeNull();
-  });
-
-  it('test route drinks', () => {
-    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: DRINKS_ROUTE });
-    const title = screen.getByTestId(titleTestId);
-
-    expect(title).toBeInTheDocument();
-  });
-
-  it('test route /done-recipes', () => {
-    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: DONE_RECIPES_ROUTE });
-    const title = screen.getByTestId(titleTestId);
-
-    expect(title).toBeInTheDocument();
-  });
-
-  it('test route /favorite-recipes', () => {
-    renderWithRouter(<DataProvider><Header /></DataProvider>, { route: FAVORITE_RECIPES_ROUTE });
-    const title = screen.getByTestId(titleTestId);
-
-    expect(title).toBeInTheDocument();
   });
 });
