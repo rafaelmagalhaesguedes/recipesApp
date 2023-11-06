@@ -6,7 +6,6 @@ function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Retrieve email from localStorage
     const storedEmail = localStorage.getItem('user');
     if (storedEmail) {
       const parsedEmail = JSON.parse(storedEmail).email;
@@ -15,24 +14,20 @@ function Profile() {
   }, []);
 
   const handleDoneRecipesClick = () => {
-    // Redirect to the 'made recipes' screen
     navigate('/done-recipes');
   };
 
   const handleFavoriteRecipesClick = () => {
-    // Redirect to the 'favorite recipes' screen
     navigate('/favorite-recipes');
   };
 
   const handleLogoutClick = () => {
-    // Clear localStorage and redirect to the login screen
     localStorage.clear();
     navigate('/');
   };
 
   return (
     <div>
-      <h2>Profile</h2>
       <div>
         <p>
           Email:
