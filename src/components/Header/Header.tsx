@@ -6,7 +6,7 @@ import iconRecipes from '../../images/icon_recipes_app.png';
 import icontText from '../../images/logo_title_recipes_app.png';
 import iconMeal from '../../images/iconDish.png';
 import iconDrink from '../../images/iconDrink.png';
-import SearchBar from '../SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 import {
   HeaderNavbar,
   HeaderTitle,
