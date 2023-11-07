@@ -11,6 +11,7 @@ import iconDrink from '../../images/iconDrink.png';
 import iconFavorites from '../../images/iconFavorites.png';
 import iconDone from '../../images/iconDone.png';
 import iconProfile from '../../images/iconProfile.png';
+import SearchBar from '../SearchBar';
 //
 import {
   HeaderNavbar,
@@ -19,7 +20,6 @@ import {
   NavbarButtons,
   NavbarLogo,
 } from './Styles';
-import SearchBar from '../SearchBar/SearchBar';
 
 export default function Header() {
   const [title, setTitle] = useState('');
