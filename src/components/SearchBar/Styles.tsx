@@ -5,7 +5,7 @@ export const SearchBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 108px;
+  height: 120px;
   border-radius: 10px;
   background: #41197F;
 `;
@@ -66,7 +66,7 @@ export const SearchBarFilterItem = styled.div`
 
 export const ButtonSearch = styled.button`
   width: 210px;
-  height: 25px;
+  height: 30px;
   border-radius: 5px;
   text-transform: uppercase;
   color: white;
