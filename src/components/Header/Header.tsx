@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import searchIcon from '../../images/searchIcon.png';
+//
 import iconRecipes from '../../images/icon_recipes_app.png';
 import icontText from '../../images/logo_title_recipes_app.png';
+import searchIcon from '../../images/searchIcon.png';
 import profileIcon from '../../images/profileIcon.png';
+//
 import iconMeal from '../../images/iconDish.png';
 import iconDrink from '../../images/iconDrink.png';
 import iconFavorites from '../../images/iconFavorites.png';
 import iconDone from '../../images/iconDone.png';
 import iconProfile from '../../images/iconProfile.png';
+//
 import SearchBar from '../SearchBar/SearchBar';
 import {
   HeaderNavbar,
