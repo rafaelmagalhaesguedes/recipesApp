@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { DrinkType, MealsType, DataDetailsType } from '../../types/types';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import whiteHeartIcon from '../../images/likeUnselected.png';
+import blackHeartIcon from '../../images/likeSelected.png';
 import { fetchById } from '../../helpers/api';
 import { handleDoneRecipes, handleFavoriteClick } from '../../helpers/localStorage';
 import { getIngredientsList } from '../../helpers/helpers';
-import shareIcon from '../../images/shareIcon.svg';
-import { ButtonsContainer, CategoryContainer, ContainerHeader, ContainerRecipeInProgress,
-  FinishButton, ImageContainer, LinkCopiedText, RecipeImage, RecipeTitle, ShareFavButton, Wrapper } from './Styles';
+import shareIcon from '../../images/Share.svg';
+import { ButtonsContainer, CategoryContainer, CheckboxIngredients, ContainerBtnsCategory, ContainerHeader, ContainerRecipeInProgress,
+  FinishButton, Heading3, ImageContainer, IngredientsContainer, InstructionsContainer, LinkCopiedText,
+  RecipeImage, RecipeTitle, ShareButton, ShareFavButton, Wrapper } from './Styles';
 
 export default function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();
@@ -133,7 +134,6 @@ export default function RecipeInProgress() {
                 <img data-testid="favorite-btn" src={ whiteHeartIcon } alt="Favorite" />
               )}
             </ShareFavButton>
-            {isLinkCopied && <LinkCopiedText>Link copied!</LinkCopiedText>}
           </ButtonsContainer>
           <CategoryContainer>
             {dataDetails.category && (
@@ -146,8 +146,9 @@ export default function RecipeInProgress() {
           </CategoryContainer>
         </ContainerHeader>
         <Wrapper>
-          <h3>Ingredients</h3>
-          <div className="ingredients-container">
+          {isLinkCopied && <LinkCopiedText>Link copied!</LinkCopiedText>}
+          <Heading3>Ingredients</Heading3>
+          <IngredientsContainer>
             {dataDetails.ingredients.map((ingredient, index) => (
               <label
                 key={ index }
@@ -157,16 +158,19 @@ export default function RecipeInProgress() {
                     ? 'line-through solid rgb(0, 0, 0)' : 'none',
                 } }
               >
-                {ingredient}
-                <input
+                <CheckboxIngredients
                   type="checkbox"
                   checked={ checkedIngredients.includes(ingredient) }
                   onChange={ () => handleCheckboxChange(ingredient) }
                 />
+                {ingredient}
               </label>
             ))}
-          </div>
-          <p data-testid="instructions">{ dataDetails.instructions }</p>
+          </IngredientsContainer>
+          <Heading3>Instructions</Heading3>
+          <InstructionsContainer>
+            <p data-testid="instructions">{ dataDetails.instructions }</p>
+          </InstructionsContainer>
           <FinishButton
             data-testid="finish-recipe-btn"
             onClick={ handleFinished }

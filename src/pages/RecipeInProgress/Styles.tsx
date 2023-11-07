@@ -4,18 +4,19 @@ export const ContainerRecipeInProgress = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 360px;
+  width: 100%;
   height: 100%;
   margin: 0;
 `;
 
 export const ContainerHeader = styled.div`
-display: flex;
-flex-direction: column;
-width: 360px;
-margin-top: 0px;
-object-position: top;
-margin-bottom: 150px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  margin-top: 0;
+  margin-bottom: 10px;
 `;
 
 export const ImageContainer = styled.div`
@@ -33,29 +34,41 @@ export const RecipeImage = styled.img`
 `;
 
 export const RecipeTitle = styled.h2`
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: #FFF;
   text-align: center;
-  font-family: Epilogue;
+  font-family: Epilogue, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 900;
   line-height: normal;
   letter-spacing: 2.1px;
   text-transform: uppercase;
-  margin-top: -90px;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 340px;
+  width: 360px;
   height: 100%;
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: 10px;
-  padding: 15px;
-  align-items: center;
+  padding: 10px;
+`;
+
+export const Heading3 = styled.h3`
+  color: #1A1B1C;
+  font-family: Epilogue, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 2.1px;
+  margin-bottom: 10px;
+  text-align: left;
 `;
 
 export const FinishButton = styled.button`
@@ -80,8 +93,8 @@ export const FinishButton = styled.button`
 `;
 
 export const ShareFavButton = styled.button`
-  background-color: #ccc;
-  border: 1px solid #dddddd;
+  background: none;
+  border: none;
   border-radius: 5px;
   padding: 10px;
   display: flex;
@@ -90,8 +103,8 @@ export const ShareFavButton = styled.button`
   margin-bottom: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin-right: 10px;
 
   &:hover {
@@ -99,32 +112,82 @@ export const ShareFavButton = styled.button`
   }
 
   img {
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
   }
 `;
 
 export const ButtonsContainer = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: right;
-margin-top: -90px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  top: 15px;
+  right: 15px;
 `;
 
 export const LinkCopiedText = styled.p`
-  margin-top: 10px;
   font-size: 16px;
   color: #4d4d4d;
+  padding: 2px;
+  margin-bottom: 5px;
 `;
 
 export const CategoryContainer = styled.div`
+  position: absolute;
   display: flex;
   color: #FCC436;
-  flex-shrink: 0;
   font-family: Epilogue;
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-top: -40px;
-  margin-left: 10px;`;
+  left: 15px;
+  top: 20px;
+  `;
+
+export const IngredientsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  padding: 10px;
+  align-items: left;
+  margin-bottom: 10px;
+  align-self: center;
+
+  label {
+    margin-bottom: 5px;
+    color: #1A1B1C;
+    font-family: Epilogue, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  `;
+
+export const CheckboxIngredients = styled.input`
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+      border: 2px solid #FCC436;
+      border-radius: 3px;
+
+      &:checked {
+        background-color: #FCC436;
+      }
+      `;
+
+export const InstructionsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: justify;
+  align-self: center;
+  `;
