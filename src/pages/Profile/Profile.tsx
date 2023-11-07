@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './Profile.module.css';
 
 function Profile() {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Retrieve email from localStorage
     const storedEmail = localStorage.getItem('user');
     if (storedEmail) {
       const parsedEmail = JSON.parse(storedEmail).email;
@@ -15,35 +15,32 @@ function Profile() {
   }, []);
 
   const handleDoneRecipesClick = () => {
-    // Redirect to the 'made recipes' screen
     navigate('/done-recipes');
   };
 
   const handleFavoriteRecipesClick = () => {
-    // Redirect to the 'favorite recipes' screen
     navigate('/favorite-recipes');
   };
 
   const handleLogoutClick = () => {
-    // Clear localStorage and redirect to the login screen
     localStorage.clear();
     navigate('/');
   };
 
   return (
-    <div>
-      <h2>Profile</h2>
-      <div>
-        <p>
+    <div className={ styles.profileContainer }>
+      <div className={ styles.userInfo }>
+        <p className={ styles.userP }>
           Email:
           {' '}
           <span data-testid="profile-email">{email}</span>
         </p>
       </div>
-      <div>
+      <div className={ styles.buttonsContainer }>
         <button
           data-testid="profile-done-btn"
           onClick={ handleDoneRecipesClick }
+          className={ `${styles.profileButton} ${styles.doneButton}` }
         >
           Done Recipes
 
@@ -51,6 +48,7 @@ function Profile() {
         <button
           data-testid="profile-favorite-btn"
           onClick={ handleFavoriteRecipesClick }
+          className={ `${styles.profileButton} ${styles.favoriteButton}` }
         >
           Favorite Recipes
 
@@ -58,6 +56,7 @@ function Profile() {
         <button
           data-testid="profile-logout-btn"
           onClick={ handleLogoutClick }
+          className={ `${styles.profileButton} ${styles.logoutButton}` }
         >
           Logout
 

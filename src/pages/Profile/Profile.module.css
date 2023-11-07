@@ -1,0 +1,64 @@
+.profileContainer {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.profileHeading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.userInfo {
+  margin-bottom: 20px;
+}
+
+.userInfo p {
+  margin: 0;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.profileButton {
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  width: 200px;
+}
+
+.profileButton:hover {
+  background-color: #45a049;
+}
+
+.doneButton {
+  background-color: #4caf50;
+}
+
+.doneButton:hover {
+  background-color: #45a049;
+}
+
+.favoriteButton {
+  background-color: #ff9800;
+}
+
+.favoriteButton:hover {
+  background-color: #e68a00;
+}
+
+.logoutButton {
+  background-color: #f44336;
+}
+
+.logoutButton:hover {
+  background-color: #d32f2f;
+}
