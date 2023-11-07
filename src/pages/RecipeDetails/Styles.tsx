@@ -56,7 +56,7 @@ export const Wrapper = styled.div`
   height: 100%;
   margin-top: 0px;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 5px;
 
   button {
     position: fixed;
@@ -160,13 +160,14 @@ export const CategoryContainer = styled.div`
 export const IngredientsContainer = styled.ul`
   display: flex;
   flex-direction: column;
-  width: 340px;
+  width: 315px;
   border: 1px solid #bdbdbd;
   border-radius: 5px;
   padding: 10px;
   align-items: left;
   margin-bottom: 10px;
-  align-self: center;
+  margin-left: 12px;
+  margin-right: auto;
 
   li {
     margin-left: 15px;
@@ -183,11 +184,12 @@ export const IngredientsContainer = styled.ul`
 export const InstructionsContainer = styled.div`
 display: flex;
 flex-direction: column;
-width: 340px;
+width: 315px;
 border: 1px solid #bdbdbd;
 border-radius: 5px;
 padding: 10px;
 text-align: justify;
-align-self: center;
+margin-left: 12px;
+margin-right: auto;
 margin-bottom: 10px;
 `;

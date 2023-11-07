@@ -56,7 +56,8 @@ export const Wrapper = styled.div`
   height: 100%;
   margin-top: 0px;
   margin-bottom: 10px;
-  padding: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
 `;
 
 export const Heading3 = styled.h3`
@@ -158,13 +159,15 @@ export const CategoryContainer = styled.div`
 export const IngredientsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 340px;
+  width: 315px;
   border: 1px solid #bdbdbd;
   border-radius: 5px;
   padding: 10px;
   align-items: left;
   margin-bottom: 10px;
-  align-self: center;
+  margin-left: 12px;
+  margin-right: auto;
+  max-width: 100%;
 
   label {
     margin-bottom: 5px;
@@ -193,10 +196,12 @@ export const CheckboxIngredients = styled.input`
 export const InstructionsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 340px;
+  width: 315px;
   border: 1px solid #bdbdbd;
   border-radius: 5px;
   padding: 10px;
   text-align: justify;
   align-self: center;
+  margin-left: 12px;
+  margin-right: auto;
   `;
