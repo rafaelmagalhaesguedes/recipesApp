@@ -1,32 +1,32 @@
+import { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 function StartRecipeButton() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { id } = useParams();
+  const key = pathname.includes('meals') ? 'meals' : 'drinks';
 
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
   const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes') || '{}');
 
   const isDone = doneRecipes.find((recipe: any) => recipe.id === id);
 
-  const isRecipeInProgress = () => {
-    const key = pathname.includes('meals') ? 'meals' : 'drinks';
-    console.log(key);
+  const isRecipeInProgress = useCallback(() => {
     const allRecipes = inProgressRecipes[key];
     if (!id) return;
     return allRecipes && allRecipes[id];
-  };
+  }, [id, inProgressRecipes, key]);
 
-  const handleStartRecipeClick = () => {
-    const key = pathname.includes('meals') ? 'meals' : 'drinks';
+  useEffect(() => {
     const updatedInProgressRecipes = { ...inProgressRecipes };
-
     if (!isRecipeInProgress() && id) {
       updatedInProgressRecipes[key] = { ...updatedInProgressRecipes[key], [id]: [] };
       localStorage.setItem('inProgressRecipes', JSON.stringify(updatedInProgressRecipes));
     }
+  }, [id, inProgressRecipes, key, isRecipeInProgress]);
 
+  const handleStartRecipeClick = () => {
     if (key === 'meals') {
       navigate(`/meals/${id}/in-progress`);
     } else if (key === 'drinks') {
