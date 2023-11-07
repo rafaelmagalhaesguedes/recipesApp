@@ -7,9 +7,11 @@ import { fetchById } from '../../helpers/api';
 import { handleDoneRecipes, handleFavoriteClick } from '../../helpers/localStorage';
 import { getIngredientsList } from '../../helpers/helpers';
 import shareIcon from '../../images/Share.svg';
-import { ButtonsContainer, CategoryContainer, CheckboxIngredients, ContainerBtnsCategory, ContainerHeader, ContainerRecipeInProgress,
-  FinishButton, Heading3, ImageContainer, IngredientsContainer, InstructionsContainer, LinkCopiedText,
-  RecipeImage, RecipeTitle, ShareButton, ShareFavButton, Wrapper } from './Styles';
+import { ButtonsContainer, CategoryContainer, CheckboxIngredients,
+  ContainerHeader, ContainerRecipeInProgress,
+  FinishButton, Heading3, ImageContainer, IngredientsContainer,
+  InstructionsContainer, LinkCopiedText,
+  RecipeImage, RecipeTitle, ShareFavButton, Wrapper } from './Styles';
 
 export default function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();

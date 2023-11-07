@@ -5,7 +5,9 @@ import { fetchRecipeDetails } from '../../helpers/api';
 import FavoriteButton from '../../components/FavoriteButton';
 import ShareButton from '../../components/ShareButton';
 import StartRecipeButton from '../../components/StartRecipeButton';
-import { ButtonsContainer, CategoryContainer, ContainerHeader, ContainerRecipeDetails, Heading3, ImageContainer, IngredientsContainer, InstructionsContainer, RecipeImage, RecipeTitle, Wrapper } from './Styles';
+import { ButtonsContainer, CategoryContainer, ContainerHeader,
+  ContainerRecipeDetails, Heading3, ImageContainer, IngredientsContainer,
+  InstructionsContainer, RecipeImage, RecipeTitle, Wrapper } from './Styles';
 import CarouselDetails from '../../components/CarouselDetails/CarouselDetails';
 
 function RecipeDetails() {
