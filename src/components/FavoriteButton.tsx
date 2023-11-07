@@ -3,11 +3,33 @@ import { useLocation, useParams } from 'react-router-dom';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
-function FavoriteButton({ recipe } : any) {
+type FavoriteButtonProps = {
+  recipe: {
+    strArea: string,
+    strCategory: string,
+    strAlcoholic: string,
+    strMeal: string,
+    strDrink: string,
+    strMealThumb: string,
+    strDrinkThumb: string,
+  }
+};
+
+function FavoriteButton({ recipe } : FavoriteButtonProps) {
   const location = useLocation();
   const { id } = useParams<{ id: string }>();
   const isDrinksPage = location.pathname.includes('drinks');
   const [isFavorited, setIsFavorited] = useState(false);
+
+  const newRecipe = {
+    id,
+    type: isDrinksPage ? 'drink' : 'meal',
+    nationality: recipe.strArea || '',
+    category: recipe.strCategory,
+    alcoholicOrNot: recipe.strAlcoholic || '',
+    name: recipe.strMeal || recipe.strDrink,
+    image: recipe.strMealThumb || recipe.strDrinkThumb,
+  };
 
   useEffect(() => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
@@ -17,23 +39,10 @@ function FavoriteButton({ recipe } : any) {
   }, [id]);
 
   const handleFavoriteClick = () => {
-    let favoriteRecipes = [];
-    try {
-      favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
-    } catch (error) {
-      console.error('Error parsing favoriteRecipes from localStorage:', error);
-    }
-    const newRecipe = {
-      id,
-      type: isDrinksPage ? 'drink' : 'meal',
-      nationality: recipe.strArea || '',
-      category: recipe.strCategory,
-      alcoholicOrNot: recipe.strAlcoholic || '',
-      name: recipe.strMeal || recipe.strDrink,
-      image: recipe.strMealThumb || recipe.strDrinkThumb,
-    };
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
 
-    const index = favoriteRecipes.findIndex((favRecipe: any) => favRecipe.id === id);
+    const index = favoriteRecipes
+      .findIndex((favRecipe: any) => favRecipe.id === id);
 
     if (index !== -1) {
       // Se a receita já está favoritada, desfavorita
@@ -47,11 +56,12 @@ function FavoriteButton({ recipe } : any) {
     // Atualiza o localStorage com as receitas favoritas
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
   };
+
   return (
     <button onClick={ handleFavoriteClick }>
       <img
         src={ isFavorited ? blackHeartIcon : whiteHeartIcon }
-        alt="Favorite"
+        alt={ isFavorited ? 'love' : 'notLove' }
         data-testid="favorite-btn"
       />
     </button>
