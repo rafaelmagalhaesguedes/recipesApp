@@ -10,7 +10,6 @@ function DoneRecipes() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    // Get data Local Storage
     const storedRecipes = localStorage.getItem('doneRecipes');
     if (storedRecipes !== null) {
       setDoneRecipes(JSON.parse(storedRecipes));
