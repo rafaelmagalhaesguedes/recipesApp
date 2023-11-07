@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import RecipesContext from '../context/RecipesContext';
+import RecipesContext from '../../context/RecipesContext';
 import {
   fetchSearchByIngredients,
   fetchSearchByName,
   fetchSearchFirtsLetter,
-} from '../helpers/api';
+} from '../../helpers/api';
 import {
   ButtonSearch,
   SearchBarContainer,
   SearchBarFilter,
   SearchBarInput,
-} from './SearchBar/Styles';
+} from './Styles';
 
 function SearchBar() {
   const { setSearchData, searchData } = useContext(RecipesContext);
