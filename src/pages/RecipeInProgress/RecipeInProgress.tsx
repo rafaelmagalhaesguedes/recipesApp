@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { DrinkType, MealsType, DataDetailsType } from '../../types/types';
-import './RecipeInProgress.css';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import { fetchById } from '../../helpers/api';
 import { handleDoneRecipes, handleFavoriteClick } from '../../helpers/localStorage';
 import { getIngredientsList } from '../../helpers/helpers';
 import shareIcon from '../../images/shareIcon.svg';
+import { ButtonsContainer, CategoryContainer, ContainerHeader, ContainerRecipeInProgress,
+  FinishButton, ImageContainer, LinkCopiedText, RecipeImage, RecipeTitle, ShareFavButton, Wrapper } from './Styles';
 
 export default function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();
@@ -106,61 +107,75 @@ export default function RecipeInProgress() {
   };
   if (dataById && dataDetails) {
     return (
-      <div className="recipeInProgress">
-        <img src={ dataDetails.image } alt="recipe" data-testid="recipe-photo" />
-        <h2 data-testid="recipe-title">{ dataDetails.title }</h2>
-        <div>
-          <button
-            data-testid="share-btn"
-            onClick={ handleClickShare }
-          >
-            <img src={ shareIcon } alt="shareButton" />
-          </button>
-          {isLinkCopied && <p>Link copied!</p>}
-        </div>
-        <button
-          onClick={ () => handleFavoriteClick(dataById, setIsFavorite) }
-        >
-          {isFavorite ? (
-            <img data-testid="favorite-btn" src={ blackHeartIcon } alt="Favorite" />
-          ) : (
-            <img data-testid="favorite-btn" src={ whiteHeartIcon } alt="Favorite" />
-          )}
-        </button>
-        {dataDetails.category && (
-          <div data-testid="recipe-category">{ dataDetails.category }</div>
-        )}
-        {dataDetails.alcoholicOrNot && (
-          <div data-testid="recipe-category">{ dataDetails.alcoholicOrNot }</div>
-        )}
-        <p data-testid="instructions">{ dataDetails.instructions }</p>
-        <div className="ingredients-container">
-          {dataDetails.ingredients.map((ingredient, index) => (
-            <label
-              key={ index }
-              data-testid={ `${index}-ingredient-step` }
-              style={ {
-                textDecoration: checkedIngredients.includes(ingredient)
-                  ? 'line-through solid rgb(0, 0, 0)' : 'none',
-              } }
+      <ContainerRecipeInProgress>
+        <ContainerHeader>
+          <ImageContainer>
+            <RecipeImage
+              src={ dataDetails.image }
+              alt="recipe"
+              data-testid="recipe-photo"
+            />
+          </ImageContainer>
+          <RecipeTitle data-testid="recipe-title">{ dataDetails.title }</RecipeTitle>
+          <ButtonsContainer>
+            <ShareFavButton
+              data-testid="share-btn"
+              onClick={ handleClickShare }
             >
-              {ingredient}
-              <input
-                type="checkbox"
-                checked={ checkedIngredients.includes(ingredient) }
-                onChange={ () => handleCheckboxChange(ingredient) }
-              />
-            </label>
-          ))}
-        </div>
-        <button
-          data-testid="finish-recipe-btn"
-          onClick={ handleFinished }
-          disabled={ !verifyRecipeDone() }
-        >
-          Finalizar Receita
-        </button>
-      </div>
+              <img src={ shareIcon } alt="shareButton" />
+            </ShareFavButton>
+            <ShareFavButton
+              onClick={ () => handleFavoriteClick(dataById, setIsFavorite) }
+            >
+              {isFavorite ? (
+                <img data-testid="favorite-btn" src={ blackHeartIcon } alt="Favorite" />
+              ) : (
+                <img data-testid="favorite-btn" src={ whiteHeartIcon } alt="Favorite" />
+              )}
+            </ShareFavButton>
+            {isLinkCopied && <LinkCopiedText>Link copied!</LinkCopiedText>}
+          </ButtonsContainer>
+          <CategoryContainer>
+            {dataDetails.category && (
+              <div data-testid="recipe-category">{ dataDetails.category }</div>
+            )}
+
+            {dataDetails.alcoholicOrNot && (
+              <div data-testid="recipe-category">{ dataDetails.alcoholicOrNot }</div>
+            )}
+          </CategoryContainer>
+        </ContainerHeader>
+        <Wrapper>
+          <h3>Ingredients</h3>
+          <div className="ingredients-container">
+            {dataDetails.ingredients.map((ingredient, index) => (
+              <label
+                key={ index }
+                data-testid={ `${index}-ingredient-step` }
+                style={ {
+                  textDecoration: checkedIngredients.includes(ingredient)
+                    ? 'line-through solid rgb(0, 0, 0)' : 'none',
+                } }
+              >
+                {ingredient}
+                <input
+                  type="checkbox"
+                  checked={ checkedIngredients.includes(ingredient) }
+                  onChange={ () => handleCheckboxChange(ingredient) }
+                />
+              </label>
+            ))}
+          </div>
+          <p data-testid="instructions">{ dataDetails.instructions }</p>
+          <FinishButton
+            data-testid="finish-recipe-btn"
+            onClick={ handleFinished }
+            disabled={ !verifyRecipeDone() }
+          >
+            Finish Recipe
+          </FinishButton>
+        </Wrapper>
+      </ContainerRecipeInProgress>
     );
   }
   return <div>Loading...</div>;
