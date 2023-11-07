@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import profileIcon from '../../images/profileIcon.png';
 import searchIcon from '../../images/searchIcon.png';
 import iconRecipes from '../../images/icon_recipes_app.png';
 import icontText from '../../images/logo_title_recipes_app.png';
+import profileIcon from '../../images/profileIcon.png';
 import iconMeal from '../../images/iconDish.png';
 import iconDrink from '../../images/iconDrink.png';
+import iconFavorites from '../../images/iconFavorites.png';
+import iconDone from '../../images/iconDone.png';
+import iconProfile from '../../images/iconProfile.png';
 import SearchBar from '../SearchBar/SearchBar';
 import {
   HeaderNavbar,
@@ -23,27 +26,19 @@ export default function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    switch (pathname) {
-      case '/drinks':
-        setTitle('Drinks');
-        break;
-      case '/meals':
-        setTitle('Meals');
-        break;
-      case '/profile':
-        setShowSearchButton(false);
-        setTitle('Profile');
-        break;
-      case '/done-recipes':
-        setShowSearchButton(false);
-        setTitle('Done Recipes');
-        break;
-      case '/favorite-recipes':
-        setShowSearchButton(false);
-        setTitle('Favorite Recipes');
-        break;
-      default:
-        setTitle('');
+    if (pathname === '/drinks') {
+      setTitle('Drinks');
+    } else if (pathname === '/meals') {
+      setTitle('Meals');
+    } else if (pathname === '/profile') {
+      setShowSearchButton(false);
+      setTitle('Profile');
+    } else if (pathname === '/done-recipes') {
+      setShowSearchButton(false);
+      setTitle('Done Recipes');
+    } else if (pathname === '/favorite-recipes') {
+      setShowSearchButton(false);
+      setTitle('Favorite Recipes');
     }
   }, [pathname]);
 
@@ -85,7 +80,11 @@ export default function Header() {
         </NavbarButtons>
       </HeaderNavbar>
       <HeaderTitle>
-        <img src={ pathname === '/meals' ? iconMeal : iconDrink } alt="Dish" />
+        {pathname === '/meals' && <img src={ iconMeal } alt="Meals" /> }
+        {pathname === '/drinks' && <img src={ iconDrink } alt="Drinks" /> }
+        {pathname === '/profile' && <img src={ iconProfile } alt="Profile" /> }
+        {pathname === '/done-recipes' && <img src={ iconDone } alt="DoneRecipes" /> }
+        {pathname === '/favorite-recipes' && <img src={ iconFavorites } alt="Favorit" /> }
         <h1 data-testid="page-title">{title}</h1>
       </HeaderTitle>
       <div>
