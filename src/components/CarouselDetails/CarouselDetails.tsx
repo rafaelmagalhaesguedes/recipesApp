@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { fetchRecommendations } from '../helpers/api';
+import { fetchRecommendations } from '../../helpers/api';
+import { ContainerCarouselDetails } from './Style';
 
 interface CarouselDetailsProps {
   isDrinksPage: boolean;
@@ -21,8 +22,8 @@ function CarouselDetails({ isDrinksPage }: CarouselDetailsProps) {
   }, [isDrinksPage]);
 
   return (
-    <section>
-      <h2>Receitas recomendadas</h2>
+    <ContainerCarouselDetails>
+      <h2>Recommended</h2>
       <div style={ { overflowX: 'auto', display: 'flex', width: '100%' } }>
         {recommendations.map((recommendation, index) => (
           <div
@@ -35,18 +36,18 @@ function CarouselDetails({ isDrinksPage }: CarouselDetailsProps) {
               margin: '5px',
             } }
           >
-            <h3 data-testid={ `${index}-recommendation-title` }>
-              {recommendation.strDrink || recommendation.strMeal}
-            </h3>
             <img
               src={ recommendation.strDrinkThumb || recommendation.strMealThumb }
               alt="recipe"
               width={ 150 }
             />
+            <h3 data-testid={ `${index}-recommendation-title` }>
+              {recommendation.strDrink || recommendation.strMeal}
+            </h3>
           </div>
         ))}
       </div>
-    </section>
+    </ContainerCarouselDetails>
   );
 }
 

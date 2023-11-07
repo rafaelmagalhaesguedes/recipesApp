@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const ContainerRecipeInProgress = styled.section`
   display: flex;
@@ -126,11 +126,20 @@ export const ButtonsContainer = styled.div`
   right: 15px;
 `;
 
+const fadeOut = keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
 export const LinkCopiedText = styled.p`
   font-size: 16px;
   color: #4d4d4d;
   padding: 2px;
   margin-bottom: 5px;
+  animation: ${fadeOut} 2s linear forwards;
 `;
 
 export const CategoryContainer = styled.div`

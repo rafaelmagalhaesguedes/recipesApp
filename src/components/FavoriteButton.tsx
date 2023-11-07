@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/likeSelected.png';
+import whiteHeartIcon from '../images/likeUnselected.png';
 
 type FavoriteButtonProps = {
   recipe: {

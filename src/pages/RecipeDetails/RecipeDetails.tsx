@@ -5,8 +5,8 @@ import { fetchRecipeDetails } from '../../helpers/api';
 import FavoriteButton from '../../components/FavoriteButton';
 import ShareButton from '../../components/ShareButton';
 import StartRecipeButton from '../../components/StartRecipeButton';
-import { ContainerRecipeDetails, Wrapper } from './Styles';
-import CarouselDetails from '../../components/CarouselDetails';
+import { ButtonsContainer, CategoryContainer, ContainerHeader, ContainerRecipeDetails, Heading3, ImageContainer, IngredientsContainer, InstructionsContainer, RecipeImage, RecipeTitle, Wrapper } from './Styles';
+import CarouselDetails from '../../components/CarouselDetails/CarouselDetails';
 
 function RecipeDetails() {
   const location = useLocation();
@@ -25,62 +25,65 @@ function RecipeDetails() {
     fetchData();
   }, [id, isDrinksPage]);
 
-  return (
-    <ContainerRecipeDetails>
-      <Wrapper>
-        {recipe ? (
-          <div>
-            <h1 data-testid="recipe-title">{recipe.strMeal || recipe.strDrink}</h1>
-            {console.log(recipe.strMeal || recipe.strDrink)}
-            <img
+  if (recipe) {
+    return (
+      <ContainerRecipeDetails>
+        <ContainerHeader>
+          <ImageContainer>
+            <RecipeImage
               data-testid="recipe-photo"
               src={ recipe.strMealThumb || recipe.strDrinkThumb }
               alt="recipe"
-              width={ 300 }
             />
-            <div style={ { display: 'flex', gap: '1rem', margin: '10px 0' } }>
-              <div style={ { margin: '10px 0' } }>
-                <FavoriteButton recipe={ recipe } />
-              </div>
-              <div style={ { margin: '10px 0' } }>
-                <ShareButton />
-              </div>
-            </div>
+          </ImageContainer>
+          <RecipeTitle data-testid="recipe-title">
+            {recipe.strMeal || recipe.strDrink}
+          </RecipeTitle>
+          <ButtonsContainer>
+            <ShareButton />
+            <FavoriteButton recipe={ recipe } />
+          </ButtonsContainer>
+          <CategoryContainer>
             <p data-testid="recipe-category">{ recipe.strCategory }</p>
             {recipe.strAlcoholic && (
               <p data-testid="recipe-category">{ recipe.strAlcoholic }</p>
             )}
-            <ul>
-              {getIngredientsList(recipe).map((ingredient, index) => (
-                <li
-                  key={ index }
-                  data-testid={ `${index}-ingredient-name-and-measure` }
-                >
-                  {ingredient}
-                </li>
-              ))}
-            </ul>
+          </CategoryContainer>
+        </ContainerHeader>
+        <Wrapper>
+          <Heading3>Ingredients</Heading3>
+          <IngredientsContainer>
+            {getIngredientsList(recipe).map((ingredient, index) => (
+              <li
+                key={ index }
+                data-testid={ `${index}-ingredient-name-and-measure` }
+              >
+                {ingredient}
+              </li>
+            ))}
+          </IngredientsContainer>
+          <Heading3>Instructions</Heading3>
+          <InstructionsContainer>
             <p data-testid="instructions">{recipe.strInstructions}</p>
-            {recipe.strYoutube && (
-              <iframe
-                data-testid="video"
-                title="recipe-video"
-                width="100%"
-                height="315"
-                src={ recipe.strYoutube.replace('watch?v=', 'embed/') }
-                frameBorder="0"
-                allowFullScreen
-              />
-            )}
-            <CarouselDetails isDrinksPage={ isDrinksPage } />
-            <StartRecipeButton />
-          </div>
-        ) : (
-          <p>Carregando detalhes da receita...</p>
-        )}
-      </Wrapper>
-    </ContainerRecipeDetails>
-  );
+          </InstructionsContainer>
+          {recipe.strYoutube && (
+            <iframe
+              data-testid="video"
+              title="recipe-video"
+              width="100%"
+              height="315"
+              src={ recipe.strYoutube.replace('watch?v=', 'embed/') }
+              frameBorder="0"
+              allowFullScreen
+            />
+          )}
+          <CarouselDetails isDrinksPage={ isDrinksPage } />
+          <StartRecipeButton />
+        </Wrapper>
+      </ContainerRecipeDetails>
+    );
+  }
+  return <p>Carregando detalhes da receita...</p>;
 }
 
 export default RecipeDetails;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import shareIcon from '../images/shareIcon.svg';
+import shareIcon from '../images/Share.svg';
+import { LinkCopiedText } from '../pages/RecipeDetails/Styles';
 
 function ShareButton() {
   const [isLinkCopied, setIsLinkCopied] = useState(false);
@@ -21,7 +22,7 @@ function ShareButton() {
       >
         <img src={ shareIcon } alt="shareButton" />
       </button>
-      {isLinkCopied && <p>Link copied!</p>}
+      {isLinkCopied && <LinkCopiedText>Link copied!</LinkCopiedText>}
     </div>
   );
 }

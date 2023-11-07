@@ -38,7 +38,6 @@ function StartRecipeButton() {
     <div>
       {!isDone && (
         <button
-          style={ { position: 'fixed', bottom: '0px', left: '47%' } }
           data-testid="start-recipe-btn"
           onClick={ handleStartRecipeClick }
         >
