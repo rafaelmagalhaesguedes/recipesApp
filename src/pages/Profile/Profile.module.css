@@ -21,8 +21,14 @@
 }
 
 .buttonsContainer {
+  align-items: flex-start;
   display: flex;
+  flex-direction: column;
   gap: 10px;
+}
+
+.buttonIcon {
+  margin-right: 10px;
 }
 
 .profileButton {
@@ -31,8 +37,9 @@
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  height: 38.69px;
   padding: 10px 20px;
-  width: 200px;
+  width: 217.44px;
 }
 
 .profileButton:hover {

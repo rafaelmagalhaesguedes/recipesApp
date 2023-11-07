@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Layout from './components/Layout';
-import Recipes from './pages/Recipes';
+import Recipes from './pages/Recipes/Recipes';
 import RecipeDetails from './pages/RecipeDetails/RecipeDetails';
 import RecipeInProgress from './pages/RecipeInProgress/RecipeInProgress';
 import DoneRecipes from './pages/DoneRecipes/DoneRecipes';

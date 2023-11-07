@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { fetchAPI } from '../helpers/helpers';
-import FilterButton from './FilterButton';
-import RecipiesContext from '../context/RecipesContext';
-import { DrinkType, MealsType } from '../types/types';
+import { fetchAPI } from '../../helpers/helpers';
+import FilterButton from '../FilterButton';
+import RecipiesContext from '../../context/RecipesContext';
+import { DrinkType, MealsType } from '../../types/types';
+import styles from './CategoryFilter.module.css';
 
 type CategoryProps = {
   endpoints: {
@@ -47,8 +48,12 @@ function CategoryFilter({ endpoints }: CategoryProps) {
   };
 
   return (
-    <section>
-      <button data-testid="All-category-filter" onClick={ handleClick }>
+    <section className={ styles.buttonContainer }>
+      <button
+        className={ styles.filterButton }
+        data-testid="All-category-filter"
+        onClick={ handleClick }
+      >
         All
       </button>
       {categoriesList?.map((categoryName) => (

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import RecipeCard from './RecipeCard';
 import { DrinkType, MealsType } from '../types/types';
+import styles from '../pages/Recipes/Recipes.module.css';
 
 type RenderRecipesProps = {
   listLength: number;
@@ -14,7 +15,7 @@ function RenderRecipes({ listLength }: RenderRecipesProps) {
 
   return (
     <div>
-      <ul>
+      <ul className={ styles.recipesContainer }>
         {
             recipesList && recipesList.slice(0, listLength).map((recipe, index) => {
               const typedRecipe = recipe as DrinkType;
@@ -26,7 +27,12 @@ function RenderRecipes({ listLength }: RenderRecipesProps) {
                     to={ `${pathname}/${
                       typedRecipeMeal.idMeal || typedRecipe.idDrink}` }
                   >
-                    <RecipeCard cardIndex={ index } recipe={ typedRecipe } />
+                    <div>
+                      <RecipeCard
+                        cardIndex={ index }
+                        recipe={ typedRecipe }
+                      />
+                    </div>
                   </Link>
                 </li>
               );

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { fetchAPI } from '../helpers/helpers';
 import RecipiesContext from '../context/RecipesContext';
 import { DrinkType, MealsType } from '../types/types';
+import styles from './CategoryFilter/CategoryFilter.module.css';
 
 type ButtonProps = {
   buttonInfo: {
@@ -31,14 +32,17 @@ function FilterButton({ buttonInfo: { categoryName, initialList } }: ButtonProps
   };
 
   return (
-    <button
-      onClick={ handleClick }
-      key={ categoryName.strCategory }
-      data-testid={ `${categoryName.strCategory}-category-filter` }
-    >
-      {categoryName.strCategory}
+    <div >
+      <button
+        onClick={ handleClick }
+        key={ categoryName.strCategory }
+        data-testid={ `${categoryName.strCategory}-category-filter` }
+        className={ styles.filterButton }
+      >
+        {categoryName.strCategory}
 
-    </button>
+      </button>
+    </div>
   );
 }
 

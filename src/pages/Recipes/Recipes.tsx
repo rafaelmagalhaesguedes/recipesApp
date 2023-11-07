@@ -1,10 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import RecipiesContext from '../context/RecipesContext';
-import CategoryFilter from '../components/CategoryFilter';
-import RenderRecipes from '../components/RecipeRender';
-import { fetchRecipes } from '../helpers/api';
-import SearchResult from '../components/SearchResult';
+import RecipiesContext from '../../context/RecipesContext';
+import CategoryFilter from '../../components/CategoryFilter/CategoryFilter';
+import RenderRecipes from '../../components/RecipeRender';
+import { fetchRecipes } from '../../helpers/api';
+import SearchResult from '../../components/SearchResult';
+import styles from './Recipes.module.css';
 
 function Recipes() {
   const {
@@ -36,7 +37,9 @@ function Recipes() {
       {searchData ? (
         <SearchResult />
       ) : (
-        <RenderRecipes listLength={ 12 } />
+        <div>
+          <RenderRecipes listLength={ 12 } />
+        </div>
       )}
     </section>
   );

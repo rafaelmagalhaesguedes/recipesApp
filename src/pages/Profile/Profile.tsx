@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaCheckCircle, FaHeart, FaSignOutAlt } from 'react-icons/fa';
 import styles from './Profile.module.css';
 
 function Profile() {
@@ -29,8 +30,9 @@ function Profile() {
 
   return (
     <div className={ styles.profileContainer }>
+      <h2 className={ styles.profileHeading }>Profile</h2>
       <div className={ styles.userInfo }>
-        <p className={ styles.userP }>
+        <p>
           Email:
           {' '}
           <span data-testid="profile-email">{email}</span>
@@ -38,28 +40,33 @@ function Profile() {
       </div>
       <div className={ styles.buttonsContainer }>
         <button
+          className={ `${styles.profileButton} ${styles.doneButton}` }
           data-testid="profile-done-btn"
           onClick={ handleDoneRecipesClick }
-          className={ `${styles.profileButton} ${styles.doneButton}` }
         >
+          <FaCheckCircle
+            className={ `${styles.buttonIcon} ${styles.doneButtonIcon}` }
+          />
+          {' '}
           Done Recipes
-
         </button>
         <button
+          className={ `${styles.profileButton} ${styles.favoriteButton}` }
           data-testid="profile-favorite-btn"
           onClick={ handleFavoriteRecipesClick }
-          className={ `${styles.profileButton} ${styles.favoriteButton}` }
         >
+          <FaHeart className={ `${styles.buttonIcon} ${styles.favoriteButtonIcon}` } />
+          {' '}
           Favorite Recipes
-
         </button>
         <button
+          className={ `${styles.profileButton} ${styles.logoutButton}` }
           data-testid="profile-logout-btn"
           onClick={ handleLogoutClick }
-          className={ `${styles.profileButton} ${styles.logoutButton}` }
         >
+          <FaSignOutAlt className={ `${styles.buttonIcon} ${styles.logoutButtonIcon}` } />
+          {' '}
           Logout
-
         </button>
       </div>
     </div>
