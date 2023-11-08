@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { fetchAPI } from '../../helpers/helpers';
 import FilterButton from '../FilterButton';
 import RecipiesContext from '../../context/RecipesContext';
