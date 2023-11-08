@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 //
-import iconRecipes from '../../images/icon_recipes_app.png';
-import icontText from '../../images/logo_title_recipes_app.png';
-import searchIcon from '../../images/searchIcon.png';
-import profileIcon from '../../images/profileIcon.png';
+import iconRecipesMobile from '../../images/login/icon.png';
+import iconRecipes from '../../images/login/recipesApp.png';
+import searchIcon from '../../images/login/search.png';
+import profileIcon from '../../images/login/user_profile.png';
 //
-import iconMeal from '../../images/iconDish.png';
-import iconDrink from '../../images/iconDrink.png';
-import iconFavorites from '../../images/iconFavorites.png';
-import iconDone from '../../images/iconDone.png';
-import iconProfile from '../../images/iconProfile.png';
+import iconMeal from '../../images/login/meals.png';
+import iconDrink from '../../images/login/drink.png';
+import iconFavorites from '../../images/login/favorite.png';
+import iconDone from '../../images/login/done.png';
+import iconProfile from '../../images/login/profile.png';
 import SearchBar from '../SearchBar/SearchBar';
 //
 import {
@@ -57,15 +57,23 @@ export default function Header() {
     <HeaderWrapper>
       <HeaderNavbar>
         <NavbarLogo>
-          <img src={ iconRecipes } alt="Logo" width={ 42 } />
-          <img src={ icontText } alt="Logo" width={ 109 } height={ 16 } />
+          <Link to="/meals">
+            <img className="logo" src={ iconRecipes } alt="Logo" />
+          </Link>
+          <Link to="/meals">
+            <img className="logo_mobile" src={ iconRecipesMobile } alt="LogoMobile" />
+          </Link>
         </NavbarLogo>
+        <div className="navbar">
+          <SearchBar />
+        </div>
         <NavbarButtons>
           {showSearchButton ? (
             <button
               onClick={ toggleSearch }
             >
               <img
+                className="searchIcon"
                 data-testid="search-top-btn"
                 alt="searchIcon"
                 src={ searchIcon }
@@ -75,21 +83,23 @@ export default function Header() {
 
           <button onClick={ handleProfileChange }>
             <img
+              className="profileIcon"
               data-testid="profile-top-btn"
               alt="profileIcon"
               src={ profileIcon }
             />
           </button>
         </NavbarButtons>
+
+        <HeaderTitle>
+          {pathname === '/meals' && <img src={ iconMeal } alt="Meals" /> }
+          {pathname === '/drinks' && <img src={ iconDrink } alt="Drinks" /> }
+          {pathname === '/profile' && <img src={ iconProfile } alt="Profile" /> }
+          {pathname === '/done-recipes' && <img src={ iconDone } alt="DoneRecipes" /> }
+          {pathname === '/favorite-recipes' && <img src={ iconFavorites } alt="Favo" /> }
+          <h1 data-testid="page-title">{title}</h1>
+        </HeaderTitle>
       </HeaderNavbar>
-      <HeaderTitle>
-        {pathname === '/meals' && <img src={ iconMeal } alt="Meals" /> }
-        {pathname === '/drinks' && <img src={ iconDrink } alt="Drinks" /> }
-        {pathname === '/profile' && <img src={ iconProfile } alt="Profile" /> }
-        {pathname === '/done-recipes' && <img src={ iconDone } alt="DoneRecipes" /> }
-        {pathname === '/favorite-recipes' && <img src={ iconFavorites } alt="Favorit" /> }
-        <h1 data-testid="page-title">{title}</h1>
-      </HeaderTitle>
       <div>
         {searchVisible && (
           <SearchBar />
