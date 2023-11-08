@@ -139,13 +139,13 @@ function SearchBar() {
           />
           <label htmlFor="first-letter">First-Letter</label>
         </div>
+        <ButtonSearch
+          data-testid="exec-search-btn"
+          onClick={ () => handleSubmit() }
+        >
+          Search
+        </ButtonSearch>
       </SearchBarFilter>
-      <ButtonSearch
-        data-testid="exec-search-btn"
-        onClick={ () => handleSubmit() }
-      >
-        Search
-      </ButtonSearch>
     </SearchBarContainer>
   );
 }

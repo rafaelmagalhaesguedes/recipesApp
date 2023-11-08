@@ -1,18 +1,27 @@
 import styled from 'styled-components';
 
 export const SearchBarContainer = styled.div`
-  width: 338px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  height: 120px;
   border-radius: 10px;
-  background: #41197F;
+  margin: 15px;
+  gap: 10px;
+
+  @media screen and (max-width: 768px) {
+    width: 338px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 120px;
+    border-radius: 10px;
+    background: #41197F;
+  }
 `;
 
 export const SearchBarInput = styled.input`
-  width: 338px;
-  height: 40px;
+  width: 400px;
+  height: 35px;
   border-radius: 5px;
   border: 0.5px solid #c0c0c0;
   padding: 0 20px;
@@ -28,6 +37,27 @@ export const SearchBarInput = styled.input`
   &:focus {
     outline: none;
     border: 1px solid #41197F;
+  }
+
+  @media screen and (max-width: 360px) {
+    width: 338px;
+    height: 35px;
+    border-radius: 5px;
+    border: 0.5px solid #c0c0c0;
+    padding: 0 20px;
+    color: #41197F;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  
+    &::placeholder {
+      color: #B1B1B1;
+    }
+  
+    &:focus {
+      outline: none;
+      border: 1px solid #41197F;
+    }
   }
 `;
 
@@ -65,13 +95,12 @@ export const SearchBarFilterItem = styled.div`
 `;
 
 export const ButtonSearch = styled.button`
-  width: 210px;
+  width: 100px;
   height: 30px;
+  background-color: #df3626;
   border-radius: 5px;
   text-transform: uppercase;
   color: white;
-  border: none;
-  background: #FCC436;
-  margin-bottom: 13px;
+  border: 1px solid #df3626;
   cursor: pointer;
 `;
