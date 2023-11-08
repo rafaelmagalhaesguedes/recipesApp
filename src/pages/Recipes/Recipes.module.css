@@ -17,7 +17,7 @@
 
 .cardContainer {
   background-color: white;
-  border: 5px , 5px , 0 , 0 solid #ccc;
+  border: 2px solid rgba(128, 128, 128, 0.993);
   border-radius: 5px;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -57,9 +57,9 @@
 =======
 >>>>>>> 2845db5 (css de recipes)
 
-a{
-  text-decoration: none;
+a {
   color: rgba(0, 0, 0, 0.514);
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 =======
@@ -67,3 +67,7 @@ a{
 =======
 }
 >>>>>>> 2845db5 (css de recipes)
+=======
+  text-decoration: none;
+}
+>>>>>>> 950f44d (css de recipes)

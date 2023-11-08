@@ -9,8 +9,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    text-decoration: none;
+    text-decoration : none
   }
+  body{
+    background-color: rgb(235, 221, 204);
+   }
 `;
 
 export const Container = styled.div`
