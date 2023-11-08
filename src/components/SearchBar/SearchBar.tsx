@@ -1,11 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import RecipesContext from '../../context/RecipesContext';
 import {
   fetchSearchByIngredients,
   fetchSearchByName,
   fetchSearchFirtsLetter,
-} from '../helpers/api';
-import RecipesContext from '../context/RecipesContext';
+} from '../../helpers/api';
+import {
+  ButtonSearch,
+  SearchBarContainer,
+  SearchBarFilter,
+  SearchBarInput,
+} from './Styles';
 
 function SearchBar() {
   const { setSearchData, searchData } = useContext(RecipesContext);
@@ -88,57 +94,59 @@ function SearchBar() {
   }, [searchData, navigate]);
 
   return (
-    <div>
-      <input
+    <SearchBarContainer>
+      <SearchBarInput
         type="text"
-        placeholder="Buscar"
+        placeholder="Search"
         value={ formData.search }
         onChange={ handleChange }
         data-testid="search-input"
       />
 
-      <label>
-        <input
-          data-testid="ingredient-search-radio"
-          type="radio"
-          name="filter"
-          value="ingredient"
-          onChange={ handleChange }
-        />
-        Ingredient
+      <SearchBarFilter>
+        <div>
+          <input
+            data-testid="ingredient-search-radio"
+            type="radio"
+            id="ingredient"
+            name="filter"
+            value="ingredient"
+            onChange={ handleChange }
+          />
+          <label htmlFor="ingredient">Ingredient</label>
+        </div>
 
-      </label>
+        <div>
+          <input
+            data-testid="name-search-radio"
+            type="radio"
+            id="name"
+            name="filter"
+            value="name"
+            onChange={ handleChange }
+          />
+          <label htmlFor="name">Name</label>
+        </div>
 
-      <label>
-        <input
-          data-testid="name-search-radio"
-          type="radio"
-          name="filter"
-          value="name"
-          onChange={ handleChange }
-        />
-        Name
-
-      </label>
-
-      <label>
-        <input
-          data-testid="first-letter-search-radio"
-          type="radio"
-          name="filter"
-          value="first-letter"
-          onChange={ handleChange }
-        />
-        First-Letter
-
-      </label>
-      <button
+        <div>
+          <input
+            data-testid="first-letter-search-radio"
+            type="radio"
+            id="first-letter"
+            name="filter"
+            value="first-letter"
+            onChange={ handleChange }
+          />
+          <label htmlFor="first-letter">First-Letter</label>
+        </div>
+      </SearchBarFilter>
+      <ButtonSearch
         data-testid="exec-search-btn"
         onClick={ () => handleSubmit() }
       >
         Search
-      </button>
-    </div>
+      </ButtonSearch>
+    </SearchBarContainer>
   );
 }
 
