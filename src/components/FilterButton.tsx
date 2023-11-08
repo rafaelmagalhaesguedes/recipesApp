@@ -32,7 +32,7 @@ function FilterButton({ buttonInfo: { categoryName, initialList } }: ButtonProps
   };
 
   return (
-    <div >
+    <div>
       <button
         onClick={ handleClick }
         key={ categoryName.strCategory }

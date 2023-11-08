@@ -6,12 +6,12 @@
 
 .filterButton {
   align-items: center;
-  background-color: #4caf50;
+  background-color: brown;
   border-radius: 25px;
   color: white;
   display: flex;
   font-weight: 700;
-  margin-right: 10px;
+  margin-right: 4px;
   padding: 10px 20px;
 }
 

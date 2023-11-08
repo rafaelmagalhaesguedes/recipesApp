@@ -3,6 +3,7 @@
   gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   justify-items: center;
+  list-style-type: none;
   margin-top: 20px;
   padding: 20px;
 }
@@ -11,12 +12,11 @@
   background-color: white;
   border: 5px , 5px , 0 , 0 solid #ccc;
   border-radius: 5px;
-  padding: 10px;
   text-align: center;
 }
 
 .cardImage {
-  height: 240px;
+  height: 200px;
   margin-bottom: 10px;
   object-fit: cover;
   width: 200px;
@@ -29,4 +29,9 @@
 .listContainer {
   display: flex;
   justify-content: space-between;
+}
+
+a{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.514);
 }
