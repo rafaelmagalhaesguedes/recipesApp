@@ -1,27 +1,23 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import logoImg from '../../images/logo.png';
-import tomatoImg from '../../images/tomato.png';
+import logo from '../../images/login/recipesApp.png';
 import {
   LoginContainer,
-  Logo,
-  ImageLogo,
-  ImageTomato,
   TitleLogin,
   InputEmail,
   InputsLogin,
   ValidIcon,
   InvalidIcon,
-  LoginButton,
+  LoginWrapper,
+  LoginBg,
+  LoginBtn,
 } from './Styles';
 
 function Login() {
   const navigate = useNavigate();
   const { state, dispatch } = useAuth();
   const [isFormValid, setIsFormValid] = useState(false);
-  const validateEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email);
-  const validatePassword = state.password.length > 6;
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const email = e.target.value;
@@ -50,46 +46,38 @@ function Login() {
 
   return (
     <LoginContainer>
-      <Logo>
-        <ImageLogo src={ logoImg } alt="Logo" />
-        <ImageTomato src={ tomatoImg } alt="Tomato" />
-      </Logo>
-      <TitleLogin>Login</TitleLogin>
-      <InputEmail>
-        <InputsLogin
-          type="email"
-          value={ state.email }
-          onChange={ handleEmailChange }
-          placeholder="Email"
-          data-testid="email-input"
-        />
-        {validateEmail ? (
+      <LoginBg />
+      <LoginWrapper>
+        <img src={ logo } alt="logo" width={ 200 } />
+        <TitleLogin>Login</TitleLogin>
+        <InputEmail>
+          <InputsLogin
+            type="email"
+            value={ state.email }
+            onChange={ handleEmailChange }
+            placeholder="Email"
+            data-testid="email-input"
+          />
           <ValidIcon />
-        ) : (
+        </InputEmail>
+        <InputEmail>
+          <InputsLogin
+            type="password"
+            value={ state.password }
+            onChange={ handlePasswordChange }
+            placeholder="Password"
+            data-testid="password-input"
+          />
           <InvalidIcon />
-        )}
-      </InputEmail>
-      <InputEmail>
-        <InputsLogin
-          type="password"
-          value={ state.password }
-          onChange={ handlePasswordChange }
-          placeholder="Password"
-          data-testid="password-input"
-        />
-        {validatePassword ? (
-          <ValidIcon />
-        ) : (
-          <InvalidIcon />
-        )}
-      </InputEmail>
-      <LoginButton
-        data-testid="login-submit-btn"
-        onClick={ handleSubmit }
-        disabled={ !isFormValid }
-      >
-        entrar
-      </LoginButton>
+        </InputEmail>
+        <LoginBtn
+          data-testid="login-submit-btn"
+          onClick={ handleSubmit }
+          disabled={ !isFormValid }
+        >
+          entrar
+        </LoginBtn>
+      </LoginWrapper>
     </LoginContainer>
   );
 }

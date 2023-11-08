@@ -1,102 +1,126 @@
 import styled from 'styled-components';
-import { FaCheck } from 'react-icons/fa';
+import { FaUser, FaKey } from 'react-icons/fa';
+import bgLogin from '../../images/login/bg_login_2.jpg';
+import bgLoginMobile from '../../images/login/bg_login_mobile.jpg';
 
 export const LoginContainer = styled.section`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   width: 100%;
   height: 100vh;
+  background-image: url(${bgLogin});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    height: 100vh;
+    background-image: url(${bgLoginMobile});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
 `;
 
-export const Logo = styled.div`
+export const LoginBg = styled.div`
+  width: 60%;
+
+  @media only screen and (max-width: 768px) {
+    width: 0;
+  }
+`;
+
+export const LoginWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  background: #41197F;
-  width: 360px;
-  height: 380px;
-`;
+  padding: 0 55px;
+  width: 30%;
+  height: 100%;
+  margin-left: 25px;
 
-export const ImageLogo = styled.img`
-  width: 198px;
-  height: 158px;
-  margin-top: 130px;
-`;
-
-export const ImageTomato = styled.img`
-  width: 360px;
+  @media only screen and (max-width: 768px) {
+    justify-content: flex-end;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 15px;
+  }
 `;
 
 export const TitleLogin = styled.h1`
-  font-size: 18px;
-  font-style: italic;
-  font-weight: 500;
+  font-size: 22px;
+  font-weight: 900;
   line-height: 21px;
   letter-spacing: 0.165em;
-  text-align: center;
-  margin: 50px 0 10px 0;
-  color: #41197F;
+  color: white;
+  padding-bottom: 5px;
   text-transform: uppercase;
+  margin: 20px 0 10px 0;
+
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 25px;
+  }
 `;
 
 export const InputEmail = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
 `;
 
 export const InputsLogin = styled.input`
   width: 276px;
   height: 40px;
   border-radius: 5px;
-  padding: 0 23px 0 17px;
+  padding: 0 23px 0 30px;
   border: 0.5px solid #d0d0d0;
   margin: 5px 0;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.6px;
-  color: darkblue;
+  background: white;
+  color: black;
 
   &::placeholder {
-    color: #41197F;
+    color: black;
   }
   
   &:focus {
     outline: none;
-    border: 0.5px solid #41197F;
+    border: 1px solid #fff;
   }
 `;
 
-export const ValidIcon = styled(FaCheck)`
+export const ValidIcon = styled(FaUser)`
   color: green;
   width: 12px;
   position: absolute;
   margin: 16px 8px;
 `;
 
-export const InvalidIcon = styled(FaCheck)`
-  color: red;
+export const InvalidIcon = styled(FaKey)`
+  color: green;
   position: absolute;
   width: 12px;
   margin: 16px 8px;
 `;
 
-export const LoginButton = styled.button`
+export const LoginBtn = styled.button`
   width: 276px;
   height: 40px;
   border-radius: 5px;
-  background: #41197F;
+  background: #281f0e;
   border: none;
   color: #FFFFFF;
   text-transform: uppercase;
   font-weight: 900;
   cursor: pointer;
-  margin: 10px;
+  margin: 10px 0;
 
   &:disabled {
-    background: #ccc;
+    background: #3f3533;
     cursor: not-allowed;
   }
 `;
