@@ -7,13 +7,12 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: Gabarito , sans-serif;
   }
-
-  a {
-    text-decoration : none
-  }
   body{
     background-color: rgb(235, 221, 204);
    }
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const Container = styled.div`
