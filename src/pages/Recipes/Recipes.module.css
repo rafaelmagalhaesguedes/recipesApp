@@ -4,9 +4,13 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   justify-items: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
   list-style-type: none;
 =======
 >>>>>>> 1320be4 (css de recipes)
+=======
+  list-style-type: none;
+>>>>>>> 2845db5 (css de recipes)
   margin-top: 20px;
   padding: 20px;
 }
@@ -16,18 +20,25 @@
   border: 5px , 5px , 0 , 0 solid #ccc;
   border-radius: 5px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   padding: 10px;
 >>>>>>> 1320be4 (css de recipes)
+=======
+>>>>>>> 2845db5 (css de recipes)
   text-align: center;
 }
 
 .cardImage {
 <<<<<<< HEAD
+<<<<<<< HEAD
   height: 200px;
 =======
   height: 240px;
 >>>>>>> 1320be4 (css de recipes)
+=======
+  height: 200px;
+>>>>>>> 2845db5 (css de recipes)
   margin-bottom: 10px;
   object-fit: cover;
   width: 200px;
@@ -42,10 +53,17 @@
   justify-content: space-between;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2845db5 (css de recipes)
 
 a{
   text-decoration: none;
   color: rgba(0, 0, 0, 0.514);
+<<<<<<< HEAD
 }
 =======
 >>>>>>> 1320be4 (css de recipes)
+=======
+}
+>>>>>>> 2845db5 (css de recipes)
