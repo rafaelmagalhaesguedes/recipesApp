@@ -4,6 +4,7 @@ import iconDrink from '../../images/login/drink.png';
 import iconFavorites from '../../images/login/favorite.png';
 import iconDone from '../../images/login/done.png';
 import iconProfile from '../../images/login/profile.png';
+import iconLogout from '../../images/login/logout.png';
 import {
   NavbarResponsive,
   NavbarContainer,
@@ -60,6 +61,11 @@ function Navbar() {
           <NavLinked to="/profile" onClick={ closeMenu }>
             <img src={ iconProfile } alt="Profile" />
             Profile
+          </NavLinked>
+
+          <NavLinked to="/" onClick={ closeMenu }>
+            <img src={ iconLogout } alt="Logout" />
+            Logout
           </NavLinked>
         </NavbarLinks>
       </NavbarContainer>
