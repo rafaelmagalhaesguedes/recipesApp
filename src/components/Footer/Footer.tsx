@@ -7,7 +7,7 @@ import logoFooter from '../../images/login/recipesApp.png';
 function Footer() {
   return (
     <FooterContainer data-testid="footer">
-      <div>
+      <div className="linksFooter">
         <h3>Developed By.</h3>
         <p>Arley Silva</p>
         <p>Debora A. Silva</p>
@@ -27,10 +27,10 @@ function Footer() {
           <span>Recipes App</span>
         </Link>
       </div>
-      <div>
+      <div className="logfooter">
         <img className="logoFooter" src={ logoFooter } alt="logo" />
       </div>
-      <div>
+      <div className="buttonsFooter">
         <Link to="/drinks">
           <img
             data-testid="drinks-bottom-btn"
