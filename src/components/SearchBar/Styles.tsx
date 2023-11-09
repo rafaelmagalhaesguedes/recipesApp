@@ -59,6 +59,10 @@ export const SearchBarInput = styled.input`
       border: 1px solid #41197F;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    width: 338px;
+  }
 `;
 
 export const SearchBarFilter = styled.div`
@@ -87,6 +91,10 @@ export const SearchBarFilter = styled.div`
     margin: 5px;
     cursor: pointer;
   }
+
+  @media screen and (max-width: 768px) {
+    flex-flow: row wrap;
+    
 `;
 
 export const SearchBarFilterItem = styled.div`
