@@ -4,26 +4,28 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   justify-items: center;
   list-style-type: none;
-  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-top: 10px;
   padding: 20px;
 }
 
 .cardContainer {
   background-color: white;
-  border: 2px solid rgba(128, 128, 128, 0.993);
+  border: 1px solid rgba(128, 128, 128, 0.993);
   border-radius: 5px;
   text-align: center;
 }
 
 .cardImage {
   height: 200px;
-  margin-bottom: 10px;
   object-fit: cover;
   width: 200px;
 }
 
 .cardName {
   font-weight: 700;
+  padding: 10px;
+  text-align: left;
 }
 
 .listContainer {

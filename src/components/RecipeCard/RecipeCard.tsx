@@ -1,5 +1,5 @@
-import { DrinkType, MealsType } from '../types/types';
-import styles from '../pages/Recipes/Recipes.module.css';
+import { DrinkType, MealsType } from '../../types/types';
+import styles from './Recipes.module.css';
 
 type RecipeCardProps = {
   cardIndex: number,

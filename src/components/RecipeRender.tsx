@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
-import RecipeCard from './RecipeCard';
 import { DrinkType, MealsType } from '../types/types';
-import styles from '../pages/Recipes/Recipes.module.css';
+import styles from './RecipeCard/Recipes.module.css';
+import RecipeCard from './RecipeCard/RecipeCard';
 
 type RenderRecipesProps = {
   listLength: number;

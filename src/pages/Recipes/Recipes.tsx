@@ -5,7 +5,7 @@ import CategoryFilter from '../../components/CategoryFilter/CategoryFilter';
 import RenderRecipes from '../../components/RecipeRender';
 import { fetchRecipes } from '../../helpers/api';
 import SearchResult from '../../components/SearchResult';
-import styles from './Recipes.module.css';
+import { ContainerRecipes } from './Styles';
 
 function Recipes() {
   const {
@@ -31,7 +31,7 @@ function Recipes() {
   }, [endpoints.initialList, pathname, updateRecipesList]);
 
   return (
-    <section>
+    <ContainerRecipes>
       <CategoryFilter endpoints={ endpoints } />
 
       {searchData ? (
@@ -41,7 +41,7 @@ function Recipes() {
           <RenderRecipes listLength={ 12 } />
         </div>
       )}
-    </section>
+    </ContainerRecipes>
   );
 }
 

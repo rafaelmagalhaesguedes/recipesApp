@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import RecipeCard from '../components/RecipeCard';
+import RecipeCard from '../components/RecipeCard/RecipeCard';
 
 describe('RecipeCard', () => {
   const mockDrink: any = {

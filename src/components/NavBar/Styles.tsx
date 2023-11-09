@@ -101,7 +101,7 @@ export const NavLinked = styled(Link)`
   font-size: 1.3rem;
   text-decoration: none;
   cursor: pointer;
-  padding: 0 40px;
+  padding: 0 10px;
 
   img {
     width: 30px;

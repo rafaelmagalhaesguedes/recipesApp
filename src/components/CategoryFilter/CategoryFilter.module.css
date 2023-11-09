@@ -1,7 +1,8 @@
 .buttonContainer {
   align-items: center;
   display: flex;
-  margin-bottom: 20px;
+  justify-content: center;
+  margin: 20px 0 10px;
 }
 
 .filterButton {
