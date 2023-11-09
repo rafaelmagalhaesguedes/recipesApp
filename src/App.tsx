@@ -8,6 +8,7 @@ import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
 import Profile from './pages/Profile/Profile';
 import FavoriteRecipes from './pages/FavoriteRecipes/FavoriteRecipes';
 import { Container } from './GlobalStyle';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -20,11 +21,12 @@ function App() {
           <Route path="/profile" element={ <Profile /> } />
           <Route path="/done-recipes" element={ <DoneRecipes /> } />
           <Route path="/favorite-recipes" element={ <FavoriteRecipes /> } />
+          <Route path="/meals/:id" element={ <RecipeDetails /> } />
+          <Route path="/drinks/:id" element={ <RecipeDetails /> } />
+          <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
+          <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
         </Route>
-        <Route path="/meals/:id" element={ <RecipeDetails /> } />
-        <Route path="/drinks/:id" element={ <RecipeDetails /> } />
-        <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
-        <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
+        <Route path="*" element={ <PageNotFound /> } />
       </Routes>
     </Container>
   );
