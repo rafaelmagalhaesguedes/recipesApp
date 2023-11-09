@@ -6,28 +6,17 @@ export const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  background-color: #3f3533;
 
   @media screen and (max-width: 360px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 360px;
-    height: auto;
-
+    width: 100%;
     .navbar {
       display: none;
     }
   }
 
   @media screen and (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
-    height: auto;
-
     .navbar {
       display: none;
     }
@@ -40,7 +29,6 @@ export const HeaderNavbar = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: #3f3533;
   padding: 0 50px;
   height: 60px;
 
@@ -49,13 +37,11 @@ export const HeaderNavbar = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 360px;
-    background-color: #3f3533;
     padding: 0;
   }
 
   @media screen and (max-width: 768px) {
-    padding: 0 20px;
+    padding: 0;
   }
 `;
 
@@ -82,13 +68,14 @@ export const NavbarLogo = styled.div`
 
   @media screen and (max-width: 360px) {
     margin: 0;
+    padding: 0;
 
     .logo {
       display: none;
     }
 
     .logo_mobile {
-      display: block;
+      display: none;
     }
 
     img {
@@ -98,13 +85,14 @@ export const NavbarLogo = styled.div`
 
   @media screen and (max-width: 768px) {
     margin: 0;
+    padding: 0;
     
     .logo {
       display: none;
     }
 
     .logo_mobile {
-      display: block;
+      display: none;
     }
 
     img {
@@ -125,7 +113,7 @@ export const NavbarButtons = styled.div`
   }
 
   img {
-    margin: 0 10px;
+    margin: 0 20px;
     background-color: transparent;
     width: 26px;
   }
@@ -142,7 +130,7 @@ export const NavbarButtons = styled.div`
     }
     
     .searchIcon {
-      margin: 0 10px;
+      margin: 0 20px;
       background-color: transparent;
       width: 25px;
     }
@@ -176,5 +164,8 @@ export const HeaderTitle = styled.div`
 
   img {
     width: 50px;
+  }
+
+  @media screen and (max-width: 360px) {
   }
 `;

@@ -20,6 +20,7 @@ import {
   NavbarButtons,
   NavbarLogo,
 } from './Styles';
+import Navbar from '../NavBar/NavBar';
 
 export default function Header() {
   const [title, setTitle] = useState('');
@@ -67,6 +68,16 @@ export default function Header() {
         <div className="navbar">
           <SearchBar />
         </div>
+
+        <HeaderTitle>
+          {pathname === '/meals' && <img src={ iconMeal } alt="Meals" /> }
+          {pathname === '/drinks' && <img src={ iconDrink } alt="Drinks" /> }
+          {pathname === '/profile' && <img src={ iconProfile } alt="Profile" /> }
+          {pathname === '/done-recipes' && <img src={ iconDone } alt="DoneRecipes" /> }
+          {pathname === '/favorite-recipes' && <img src={ iconFavorites } alt="Favo" /> }
+          <h1 data-testid="page-title">{title}</h1>
+        </HeaderTitle>
+
         <NavbarButtons>
           {showSearchButton ? (
             <button
@@ -91,14 +102,7 @@ export default function Header() {
           </button>
         </NavbarButtons>
 
-        <HeaderTitle>
-          {pathname === '/meals' && <img src={ iconMeal } alt="Meals" /> }
-          {pathname === '/drinks' && <img src={ iconDrink } alt="Drinks" /> }
-          {pathname === '/profile' && <img src={ iconProfile } alt="Profile" /> }
-          {pathname === '/done-recipes' && <img src={ iconDone } alt="DoneRecipes" /> }
-          {pathname === '/favorite-recipes' && <img src={ iconFavorites } alt="Favo" /> }
-          <h1 data-testid="page-title">{title}</h1>
-        </HeaderTitle>
+        <Navbar />
       </HeaderNavbar>
       <div>
         {searchVisible && (
