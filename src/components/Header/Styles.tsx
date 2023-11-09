@@ -40,6 +40,7 @@ export const HeaderNavbar = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0;
+    position: relative;
   }
 
   @media screen and (max-width: 768px) {

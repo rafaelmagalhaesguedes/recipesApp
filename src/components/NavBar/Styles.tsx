@@ -86,6 +86,10 @@ export const NavbarLinks = styled.div`
   &.active {
     display: flex;
   }
+
+  @media only screen and ( max-width : 768px ) {
+    width: 100%;
+  }
 `;
 
 export const NavLinked = styled(Link)`
@@ -97,8 +101,13 @@ export const NavLinked = styled(Link)`
   font-size: 1.3rem;
   text-decoration: none;
   cursor: pointer;
+  padding: 0 40px;
 
   img {
     width: 30px;
+  }
+
+  @media only screen and ( max-width : 768px ) {
+    font-size: 1rem;
   }
 `;
