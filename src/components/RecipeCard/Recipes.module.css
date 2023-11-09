@@ -9,6 +9,17 @@
   padding: 20px;
 }
 
+.renderContainer {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  justify-items: center;
+  list-style-type: none;
+  margin-bottom: 50px;
+  margin-top: 10px;
+  padding: 20px;
+}
+
 .cardContainer {
   background-color: white;
   border: 1px solid rgba(128, 128, 128, 0.993);
@@ -38,3 +49,20 @@ a {
   text-decoration: none;
 }
 
+
+@media only screen and ( max-width : 768px ) {
+
+  .recipesContainer {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .renderContainer {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .cardImage {
+    height: 150px;
+    object-fit: cover;
+    width: 150px;
+  }
+}

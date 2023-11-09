@@ -38,7 +38,7 @@ export const FooterContainer = styled.footer`
     bottom: 0;
     position: fixed;
     background: #3f3533;
-    width: 360px;
+    width: 100%;
     height: 50px;
   
     display: flex;
@@ -70,7 +70,7 @@ export const FooterContainer = styled.footer`
     bottom: 0;
     position: fixed;
     background: #3f3533;
-    width: 360px;
+    width: 100%;
     height: 50px;
   
     display: flex;

@@ -15,7 +15,7 @@ function RenderRecipes({ listLength }: RenderRecipesProps) {
 
   return (
     <div>
-      <ul className={ styles.recipesContainer }>
+      <ul className={ styles.renderContainer }>
         {
             recipesList && recipesList.slice(0, listLength).map((recipe, index) => {
               const typedRecipe = recipe as DrinkType;
