@@ -11,6 +11,7 @@ export const HeaderWrapper = styled.div`
 
   @media screen and (max-width: 360px) {
     width: 100%;
+    background-color: #3f3533;
     .navbar {
       display: none;
     }
@@ -18,6 +19,7 @@ export const HeaderWrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     width: 100%;
+    background-color: #3f3533;
     .navbar {
       display: none;
     }
@@ -31,7 +33,7 @@ export const HeaderNavbar = styled.div`
   align-items: center;
   width: 100%;
   background-color: #3f3533;
-  padding: 0 50px;
+  padding-left: 20px;
   height: 60px;
 
   @media screen and (max-width: 360px) {
