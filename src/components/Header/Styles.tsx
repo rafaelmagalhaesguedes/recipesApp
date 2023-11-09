@@ -7,6 +7,8 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   width: 100%;
   background-color: #3f3533;
+  top: 0;
+  position: fixed;
 
   @media screen and (max-width: 360px) {
     width: 100%;
