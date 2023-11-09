@@ -19,7 +19,7 @@ interface CategoryApiResponse {
 
 function CategoryFilter({ endpoints }: CategoryProps) {
   const { categories, initialList } = endpoints;
-  const { updateRecipesList } = useContext(RecipiesContext);
+  const { updateRecipesList, updateLoading } = useContext(RecipiesContext);
 
   const [categoriesList, setCategoriesList] = useState<any[]>([]);
   const { pathname } = useLocation();
@@ -40,8 +40,10 @@ function CategoryFilter({ endpoints }: CategoryProps) {
 
   const handleClick = async () => {
     try {
+      updateLoading(true);
       const recipesData = await fetchAPI(initialList);
       updateRecipesList(Object.values(recipesData)[0] as DrinkType[] | MealsType[]);
+      updateLoading(false);
     } catch (error) {
       console.error('Error fetching recipes:', error);
     }

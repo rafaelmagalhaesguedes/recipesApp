@@ -13,7 +13,7 @@ type ButtonProps = {
 };
 
 function FilterButton({ buttonInfo: { categoryName, initialList } }: ButtonProps) {
-  const { updateRecipesList } = useContext(RecipiesContext);
+  const { updateRecipesList, updateLoading } = useContext(RecipiesContext);
 
   const [toggle, setToggle] = useState<boolean>(false);
 
@@ -22,11 +22,15 @@ function FilterButton({ buttonInfo: { categoryName, initialList } }: ButtonProps
   const handleClick = async () => {
     const apiURL = pathname === '/drinks' ? 'thecocktaildb' : 'themealdb';
     if (!toggle) {
+      updateLoading(true);
       const recipesData = await fetchAPI(`https://www.${apiURL}.com/api/json/v1/1/filter.php?c=${categoryName.strCategory}`);
       updateRecipesList(Object.values(recipesData)[0] as DrinkType[] | MealsType[]);
+      updateLoading(false);
     } else {
+      updateLoading(true);
       const recipesData = await fetchAPI(initialList);
       updateRecipesList(Object.values(recipesData)[0] as DrinkType[] | MealsType[]);
+      updateLoading(false);
     }
     setToggle(!toggle);
   };

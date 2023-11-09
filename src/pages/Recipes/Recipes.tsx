@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import RecipiesContext from '../../context/RecipesContext';
 import CategoryFilter from '../../components/CategoryFilter/CategoryFilter';
@@ -12,8 +12,9 @@ function Recipes() {
   const {
     updateRecipesList,
     searchData,
+    updateLoading,
+    loading,
   } = useContext(RecipiesContext);
-  const [loading, setLoading] = useState(false);
 
   const { pathname } = useLocation();
 
@@ -26,13 +27,13 @@ function Recipes() {
 
   useEffect(() => {
     async function fetchResult() {
-      setLoading(true);
+      updateLoading(true);
       const fetch = await fetchRecipes(pathname.replace('/', ''));
       updateRecipesList(fetch);
-      setLoading(false);
+      updateLoading(false);
     }
     fetchResult();
-  }, [endpoints.initialList, pathname, updateRecipesList]);
+  }, [pathname, updateRecipesList, updateLoading]);
 
   return (
     <ContainerRecipes>
