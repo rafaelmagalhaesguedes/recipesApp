@@ -1,17 +1,19 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import RecipiesContext from '../../context/RecipesContext';
 import CategoryFilter from '../../components/CategoryFilter/CategoryFilter';
 import RenderRecipes from '../../components/RecipeRender';
 import { fetchRecipes } from '../../helpers/api';
 import SearchResult from '../../components/SearchResult';
-import { ContainerRecipes } from './Styles';
+import { ContainerRecipes, LoadingRecipes } from './Styles';
+import Loading from '../../components/Loading/Loading';
 
 function Recipes() {
   const {
     updateRecipesList,
     searchData,
   } = useContext(RecipiesContext);
+  const [loading, setLoading] = useState(false);
 
   const { pathname } = useLocation();
 
@@ -24,8 +26,10 @@ function Recipes() {
 
   useEffect(() => {
     async function fetchResult() {
+      setLoading(true);
       const fetch = await fetchRecipes(pathname.replace('/', ''));
       updateRecipesList(fetch);
+      setLoading(false);
     }
     fetchResult();
   }, [endpoints.initialList, pathname, updateRecipesList]);
@@ -33,13 +37,18 @@ function Recipes() {
   return (
     <ContainerRecipes>
       <CategoryFilter endpoints={ endpoints } />
-
-      {searchData ? (
-        <SearchResult />
-      ) : (
+      {!loading ? (
         <div>
-          <RenderRecipes listLength={ 12 } />
+          {searchData ? (
+            <SearchResult />
+          ) : (
+            <RenderRecipes listLength={ 12 } />
+          )}
         </div>
+      ) : (
+        <LoadingRecipes>
+          <Loading />
+        </LoadingRecipes>
       )}
     </ContainerRecipes>
   );

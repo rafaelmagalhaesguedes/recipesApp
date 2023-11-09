@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import iconSpinner from '../../images/spinner.png';
+import iconSpinner from '../../images/login/loading.png';
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -18,8 +18,8 @@ export const IconSpinner = styled.span`
   animation: ${spin} 3s linear infinite;
   background-color: transparent;
   background-image: url(${iconSpinner});
-  height: 40px;
-  width: 40px;
+  height: 200px;
+  width: 200px;
 `;
 
 export const TextSpinner = styled.p`

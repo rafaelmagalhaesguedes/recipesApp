@@ -17,3 +17,10 @@ export const ContainerRecipes = styled.section`
     flex-direction: column;
   }
 `;
+
+export const LoadingRecipes = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+`;
