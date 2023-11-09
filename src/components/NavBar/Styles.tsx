@@ -91,7 +91,8 @@ export const NavbarLinks = styled.div`
   display: none;
 
   @media only screen and ( max-width : 768px ) {
-    background-color: #006494;
+    
+    background-color: #3f3533;
     color: white;
     flex-direction: column;
     height: 100vh;
@@ -109,32 +110,17 @@ export const NavbarLinks = styled.div`
   }
 `;
 
-export const NavLink = styled(Link)`
+export const NavLinked = styled(Link)`
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 2rem;
   color: white;
   font-size: 1.3rem;
   text-decoration: none;
-`;
+  cursor: pointer;
 
-export const UserInfos = styled.div`
-  @media only screen and ( max-width : 768px ) {
-  
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
+  img {
+    width: 30px;
   }
-`;
-
-export const UserImage = styled.img`
-  border-radius: 100%;
-  width: 40%;
-`;
-
-export const Username = styled.p`
-  color: white;
-  font-size: 1.2rem;
-  width: 60%;
 `;
