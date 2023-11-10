@@ -87,7 +87,7 @@ function FavoriteRecipes() {
       </FavoriteRecipesButtons>
 
       {favoriteRecipes.length === 0 && (
-        <MessageNoFound>Nenhuma receita favorita</MessageNoFound>
+        <MessageNoFound>Favorite Recipes is Empty!</MessageNoFound>
       )}
 
       <CardFavorites>
