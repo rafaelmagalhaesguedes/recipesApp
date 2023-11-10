@@ -15,13 +15,39 @@
   color: white;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   font-weight: 700;
+  gap: 5px;
   margin-right: 4px;
   outline: none;
   padding: 10px 20px;
   transition: background-color 0.3s ease;
 }
 
+.filterButton img {
+  width: 50px;
+}
+
 .filterButton:hover {
   background-color: rgba(184, 77, 77, 0.541);
+}
+
+@media only screen and ( max-width : 768px ) {
+
+  .buttonContainer {
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  .filterButton {
+    height: 100px;
+    width: 90px;
+  }
+
+  .filterButton img {
+    width: 50px;
+  }
 }

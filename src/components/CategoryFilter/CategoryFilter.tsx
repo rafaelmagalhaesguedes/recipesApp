@@ -5,6 +5,7 @@ import FilterButton from '../FilterButton';
 import RecipiesContext from '../../context/RecipesContext';
 import { DrinkType, MealsType } from '../../types/types';
 import styles from './CategoryFilter.module.css';
+import iconAll from '../../images/iconsFilter/iconAll.png';
 
 type CategoryProps = {
   endpoints: {
@@ -56,7 +57,7 @@ function CategoryFilter({ endpoints }: CategoryProps) {
         data-testid="All-category-filter"
         onClick={ handleClick }
       >
-        {' '}
+        <img src={ iconAll } alt="All" />
         All
       </button>
       {categoriesList?.map((categoryName) => (
