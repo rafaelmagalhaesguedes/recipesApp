@@ -9,6 +9,7 @@ import iconDrink from '../../images/login/drink.png';
 import {
   ButtonsShareFavorite,
   CardBody,
+  CardFav,
   CardFavorites,
   CardHeader,
   FavoriteRecipesButtons,
@@ -86,7 +87,7 @@ function FavoriteRecipes() {
 
       <CardFavorites>
         {favoriteRecipes && favoriteRecipes.map((recipe: FavoriteRecipesType, index) => (
-          <div key={ index }>
+          <CardFav key={ index }>
             <CardHeader>
               <Link
                 to={ recipe.type === 'meal'
@@ -138,7 +139,7 @@ function FavoriteRecipes() {
                 </button>
               </ButtonsShareFavorite>
             </CardBody>
-          </div>
+          </CardFav>
         ))}
       </CardFavorites>
     </FavoriteRecipesContainer>

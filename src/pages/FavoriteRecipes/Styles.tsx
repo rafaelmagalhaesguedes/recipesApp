@@ -34,10 +34,16 @@ export const FavoriteRecipesButtons = styled.div`
 `;
 
 export const CardFavorites = styled.div`
-  border: 1px solid #c0c0c0;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 100px;
+`;
+
+export const CardFav = styled.div`
+  border: 1px solid #c0c0c0;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
 `;
 
 export const CardHeader = styled.div`
