@@ -13,7 +13,7 @@ export const SearchBarContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 120px;
+    height: 150px;
     border-radius: 10px;
     background: #41197F;
   }
