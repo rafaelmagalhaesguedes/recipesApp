@@ -16,12 +16,11 @@ export const NavbarResponsive = styled.nav`
 `;
 
 export const NavbarContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0 auto;
-    width: 100%;
-  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 100%;
 `;
 
 export const Bar = styled.div`
@@ -38,8 +37,12 @@ export const MenuToggleButton = styled.button`
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 40px;
   z-index: 1000;
+
+  @media only screen and ( max-width : 768px ) {
+    padding: 20px;
+  }
 
   &.active ${Bar}:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
