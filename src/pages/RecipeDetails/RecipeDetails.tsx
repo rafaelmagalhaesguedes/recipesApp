@@ -9,6 +9,8 @@ import { ButtonsContainer, CategoryContainer, ContainerHeader,
   ContainerRecipeDetails, Heading3, ImageContainer, IngredientsContainer,
   InstructionsContainer, RecipeImage, RecipeTitle, Wrapper } from './Styles';
 import CarouselDetails from '../../components/CarouselDetails/CarouselDetails';
+import Loading from '../../components/Loading/Loading';
+import { LoadingRecipes } from '../Recipes/Styles';
 
 function RecipeDetails() {
   const location = useLocation();
@@ -85,7 +87,7 @@ function RecipeDetails() {
       </ContainerRecipeDetails>
     );
   }
-  return <p>Carregando detalhes da receita...</p>;
+  return <LoadingRecipes><Loading /></LoadingRecipes>;
 }
 
 export default RecipeDetails;

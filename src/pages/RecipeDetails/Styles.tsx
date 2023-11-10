@@ -16,7 +16,6 @@ export const ContainerHeader = styled.div`
   align-items: center;
   width: 360px;
   margin-top: 0;
-  margin-bottom: 10px;
 `;
 
 export const ImageContainer = styled.div`
@@ -52,30 +51,25 @@ export const RecipeTitle = styled.h2`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 360px;
   height: 100%;
   margin-top: 0px;
-  margin-bottom: 10px;
+  margin-bottom: 60px;
   padding: 5px;
 
   button {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 315px;
+    width: 318px;
     height: 40px;
     border-radius: 5px;
-    background: #FCC436;
+    background: #df3626;
     border: none;
     color: #FFFFFF;
     text-transform: uppercase;
     font-weight: 900;
     cursor: pointer;
-
-  &:hover {
-    opacity: 0.8;
-  }
+    margin-top: 20px;
   }
 `;
 
@@ -104,19 +98,20 @@ export const ButtonsContainer = styled.div`
   right: 15px;
 
   button {
-  background: none;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 35px;
-  height: 35px;
-  margin-right: 10px;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
 
   &:hover {
     background-color: #41197F;
@@ -125,7 +120,6 @@ export const ButtonsContainer = styled.div`
   img {
     width: 23px;
     height: 23px;
-  }
   }
 `;
 const fadeOut = keyframes`

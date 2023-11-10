@@ -76,13 +76,14 @@ export const FinishButton = styled.button`
   width: 315px;
   height: 40px;
   border-radius: 5px;
-  background: #FCC436;
+  background: #df3626;
   border: none;
   color: #FFFFFF;
   text-transform: uppercase;
   font-weight: 900;
   cursor: pointer;
   margin: 10px;
+  margin-bottom: 60px;
 
   &:disabled {
     cursor: not-allowed;
@@ -205,3 +206,11 @@ export const InstructionsContainer = styled.div`
   margin-left: 12px;
   margin-right: auto;
   `;
+
+export const LoadingRecipes = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

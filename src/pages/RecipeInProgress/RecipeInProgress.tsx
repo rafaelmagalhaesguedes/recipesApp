@@ -11,7 +11,9 @@ import { ButtonsContainer, CategoryContainer, CheckboxIngredients,
   ContainerHeader, ContainerRecipeInProgress,
   FinishButton, Heading3, ImageContainer, IngredientsContainer,
   InstructionsContainer, LinkCopiedText,
+  LoadingRecipes,
   RecipeImage, RecipeTitle, ShareFavButton, Wrapper } from './Styles';
+import Loading from '../../components/Loading/Loading';
 
 export default function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();
@@ -184,5 +186,5 @@ export default function RecipeInProgress() {
       </ContainerRecipeInProgress>
     );
   }
-  return <div>Loading...</div>;
+  return <LoadingRecipes><Loading /></LoadingRecipes>;
 }
