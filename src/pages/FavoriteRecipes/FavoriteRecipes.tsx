@@ -14,8 +14,8 @@ import {
   CardHeader,
   FavoriteRecipesButtons,
   FavoriteRecipesContainer,
-  MessageNoFound,
 } from './Styles';
+import { MessageEmpty } from '../DoneRecipes/Styles';
 
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState<FavoriteRecipesType[]>([]);
@@ -87,7 +87,7 @@ function FavoriteRecipes() {
       </FavoriteRecipesButtons>
 
       {favoriteRecipes.length === 0 && (
-        <MessageNoFound>Favorite Recipes is Empty!</MessageNoFound>
+        <MessageEmpty>Favorite Recipes is Empty!</MessageEmpty>
       )}
 
       <CardFavorites>
