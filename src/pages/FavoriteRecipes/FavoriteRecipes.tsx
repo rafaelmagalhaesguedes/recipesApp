@@ -14,6 +14,7 @@ import {
   CardHeader,
   FavoriteRecipesButtons,
   FavoriteRecipesContainer,
+  MessageNoFound,
 } from './Styles';
 
 function FavoriteRecipes() {
@@ -84,6 +85,10 @@ function FavoriteRecipes() {
           Drinks
         </button>
       </FavoriteRecipesButtons>
+
+      {favoriteRecipes.length === 0 && (
+        <MessageNoFound>Nenhuma receita favorita</MessageNoFound>
+      )}
 
       <CardFavorites>
         {favoriteRecipes && favoriteRecipes.map((recipe: FavoriteRecipesType, index) => (

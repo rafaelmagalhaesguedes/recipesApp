@@ -21,6 +21,7 @@ export const FavoriteRecipesButtons = styled.div`
     background-color: transparent;
     border: none;
     gap: 5px;
+    cursor: pointer;
   }
 
   img {
@@ -79,4 +80,8 @@ export const ButtonsShareFavorite = styled.div`
     border: none;
     cursor: pointer;
   }
+`;
+
+export const MessageNoFound = styled.p`
+  margin: 150px;
 `;
