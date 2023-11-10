@@ -9,10 +9,10 @@ function Footer() {
     <FooterContainer data-testid="footer">
       <div className="linksFooter">
         <h3>Developed By.</h3>
-        <p>Arley Silva</p>
+        <p>Arley Pereira</p>
         <p>Debora A. Silva</p>
         <p>Debora Damas</p>
-        <p>Edgard</p>
+        <p>Edgar Andrade</p>
         <p>Rafael Magalhães</p>
         <br />
         <Link to="https://www.betrybe.com/" target="_blank">
