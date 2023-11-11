@@ -18,6 +18,8 @@ export const ContainerRecipes = styled.section`
   }
 `;
 
+export const Render = styled.div``;
+
 export const LoadingRecipes = styled.div`
   display: flex;
   justify-content: center;
