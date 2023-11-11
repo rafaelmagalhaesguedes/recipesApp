@@ -1,87 +1,30 @@
 import styled from 'styled-components';
 
 export const FavoriteRecipesContainer = styled.div`
+  width: 100%;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  width: 80%;
-  align-items: center;
   justify-content: center;
-`;
-
-export const FavoriteRecipesButtons = styled.div`
-  width: 50%;
-  display: flex;
-  justify-content: space-evenly;
-  margin: 30px;
-
-  button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    gap: 5px;
-    cursor: pointer;
-  }
-
-  img {
-    width: 66px;
-  }
 
   @media screen and (max-width: 360px) {
-    jutify-content: space-between;
-    width: 100%;
+    width: 360px;
+    height: 640px;
   }
 `;
 
-export const CardFavorites = styled.div`
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 100px;
-`;
-
-export const CardFav = styled.div`
-  border: 1px solid #c0c0c0;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 20px;
-`;
-
-export const CardHeader = styled.div`
-  p {
-    margin: 10px 0;
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  img {
-    width: 318px;
-  }
-`;
-
-export const CardBody = styled.div`
+export const FavoriteWrapper = styled.div`
+  width: 80%;
+  height: auto;
   display: flex;
-  justify-content: space-between;
-  
-  p {
-    margin: 10px 0;
-    font-size: 20px;
-    font-weight: bold;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin: 10px 0 100px 0;
+
+  @media screen and (max-width: 360px) {
+    width: 360px;
+    margin: 0;
+    height: 640px;
+    padding: 20px 20px 100px 20px;
   }
-`;
-
-export const ButtonsShareFavorite = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
-
-  button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-`;
-
-export const MessageNoFound = styled.p`
-  margin: 150px;
 `;
