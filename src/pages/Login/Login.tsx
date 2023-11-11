@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
 import logo from '../../images/login/recipesApp.png';
 import {
   LoginContainer,
@@ -13,35 +11,25 @@ import {
   LoginBg,
   LoginBtn,
 } from './Styles';
+import useLoginForm from '../../hooks/useLoginForm';
 
 function Login() {
   const navigate = useNavigate();
-  const { state, dispatch } = useAuth();
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const email = e.target.value;
-    dispatch({ type: 'SET_EMAIL', payload: email });
-    validateForm(email, state.password);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const password = e.target.value;
-    dispatch({ type: 'SET_PASSWORD', payload: password });
-    validateForm(state.email, password);
-  };
-
-  const validateForm = (email: string, password: string) => {
-    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const isValidPassword = password.length > 6;
-    setIsFormValid(isValidEmail && isValidPassword);
-  };
+  const loginForm = useLoginForm('');
 
   const handleSubmit = () => {
-    localStorage.setItem('user', JSON.stringify({ email: state.email }));
-    navigate('/meals');
-    state.email = '';
-    state.password = '';
+    if (loginForm.validateForm()) {
+      localStorage.setItem('user', JSON.stringify({ email: loginForm.email }));
+      resetForm();
+      navigate('/meals');
+    } else {
+      alert('Invalid email or password');
+    }
+  };
+
+  const resetForm = () => {
+    loginForm.setEmail('');
+    loginForm.setPassword('');
   };
 
   return (
@@ -52,28 +40,28 @@ function Login() {
         <TitleLogin>Login</TitleLogin>
         <InputEmail>
           <InputsLogin
-            type="email"
-            value={ state.email }
-            onChange={ handleEmailChange }
-            placeholder="Email"
             data-testid="email-input"
+            type="email"
+            value={ loginForm.email }
+            onChange={ ({ target }) => loginForm.addEmail(target.value) }
+            placeholder="Email"
           />
           <ValidIcon />
         </InputEmail>
         <InputEmail>
           <InputsLogin
-            type="password"
-            value={ state.password }
-            onChange={ handlePasswordChange }
-            placeholder="Password"
             data-testid="password-input"
+            type="password"
+            value={ loginForm.password }
+            onChange={ ({ target }) => loginForm.addPassword(target.value) }
+            placeholder="Password"
           />
           <InvalidIcon />
         </InputEmail>
         <LoginBtn
           data-testid="login-submit-btn"
           onClick={ handleSubmit }
-          disabled={ !isFormValid }
+          disabled={ !loginForm.validateForm() }
         >
           entrar
         </LoginBtn>
