@@ -18,13 +18,9 @@ function Login() {
   const loginForm = useLoginForm('');
 
   const handleSubmit = () => {
-    if (loginForm.validateForm()) {
-      localStorage.setItem('user', JSON.stringify({ email: loginForm.email }));
-      resetForm();
-      navigate('/meals');
-    } else {
-      alert('Invalid email or password');
-    }
+    localStorage.setItem('user', JSON.stringify({ email: loginForm.email }));
+    resetForm();
+    navigate('/meals');
   };
 
   const resetForm = () => {
