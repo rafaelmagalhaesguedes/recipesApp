@@ -18,7 +18,30 @@ function useFavoriteRecipes() {
     setFavoriteRecipes(favorites);
   };
 
-  return { favoriteRecipes, setFavoriteRecipes, handleFavorite };
+  const filterMeals = () => {
+    const meals = favoriteRecipes
+      .filter((recipe: FavoriteRecipesType) => recipe.type === 'meal');
+    setFavoriteRecipes(meals);
+  };
+
+  const filterDrinks = () => {
+    const drinks = favoriteRecipes
+      .filter((recipe: FavoriteRecipesType) => recipe.type === 'drink');
+    setFavoriteRecipes(drinks);
+  };
+
+  const filterAll = () => {
+    setFavoriteRecipes(JSON.parse(localStorage.getItem('favoriteRecipes') || '[]'));
+  };
+
+  return {
+    favoriteRecipes,
+    setFavoriteRecipes,
+    handleFavorite,
+    filterMeals,
+    filterDrinks,
+    filterAll,
+  };
 }
 
 export default useFavoriteRecipes;

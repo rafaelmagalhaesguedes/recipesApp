@@ -1,4 +1,3 @@
-import { FavoriteRecipesType } from '../../types/types';
 import useFavoriteRecipes from '../../hooks/useFavoritesRecipes';
 import FavoriteCard from '../../components/FavoritesRecipes/FavoriteCard/FavoriteCard';
 import FavoriteFilter
@@ -8,23 +7,7 @@ import {
 } from './Styles';
 
 function FavoriteRecipes() {
-  const { favoriteRecipes, setFavoriteRecipes } = useFavoriteRecipes();
-
-  const filterMeals = () => {
-    const meals = favoriteRecipes
-      .filter((recipe: FavoriteRecipesType) => recipe.type === 'meal');
-    setFavoriteRecipes(meals);
-  };
-
-  const filterDrinks = () => {
-    const drinks = favoriteRecipes
-      .filter((recipe: FavoriteRecipesType) => recipe.type === 'drink');
-    setFavoriteRecipes(drinks);
-  };
-
-  const filterAll = () => {
-    setFavoriteRecipes(JSON.parse(localStorage.getItem('favoriteRecipes') || '[]'));
-  };
+  const { filterAll, filterDrinks, filterMeals } = useFavoriteRecipes();
 
   return (
     <FavoriteRecipesContainer>
@@ -34,7 +17,6 @@ function FavoriteRecipes() {
           filterMeals={ filterMeals }
           filterDrinks={ filterDrinks }
         />
-
         <FavoriteCard />
       </FavoriteWrapper>
     </FavoriteRecipesContainer>
