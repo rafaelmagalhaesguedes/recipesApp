@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const DoneRecipesFilter = styled.section`
   width: 50%;
-  margin: 30px 0 20px 0;
+  margin: 20px 0 20px 0;
 
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
 
   button {
     background-color: transparent;
@@ -47,11 +47,11 @@ export const DoneRecipesFilter = styled.section`
 
   @media screen and (max-width: 768px) {
     width: 100%;
-    margin: 10px 0 20px 0;
+    margin: 10px 0;
   
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
   
     button {
       background-color: transparent;

@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 export const DoneRecipesCard = styled.div`
-  width: 318px;
+  width: 100%;
   height: auto;
-  
-  display: flex;
-  flex-direction: column;
   border-radius: 5px;
   gap: 2rem;
 
-  @media screen and (max-width: 360px) {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 768px) {
     width: 318px;
     margin: 10px 0 20px 0;
   
@@ -25,7 +27,7 @@ export const Card = styled.div`
   height: 163px;
   flex-direction: row;
   border-radius: 5px;
-  border: 1px solid #B1B1B1;
+  border: 0.5px solid #B1B1B1;
   margin: 20px 0;
 
   @media screen and (max-width: 360px) {
@@ -78,11 +80,4 @@ export const ButtonShare = styled.button`
   img {
     background-color: transparent;
   }
-`;
-
-export const MessageEmpty = styled.p`
-  font-size: 20px;
-  color: black;
-  text-align: center;
-  margin: 52px;
 `;

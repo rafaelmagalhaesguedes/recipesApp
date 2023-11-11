@@ -1,30 +1,33 @@
 import styled from 'styled-components';
 
 export const ContainerDoneRecipes = styled.section`
-  width: 100%;
-  height: 100vh;
   display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  margin: 20px 0 50px 0;
 
   @media screen and (max-width: 360px) {
-    width: 360px;
-    height: 640px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
   }
 `;
 
-export const Wrapper = styled.div`
-  width: 80%;
-  height: auto;
+export const MessageEmpty = styled.p`
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
-  margin: 10px 0 100px 0;
-
-  @media screen and (max-width: 360px) {
-    width: 360px;
-    margin: 0;
-    height: 640px;
-    padding: 20px 20px 100px 20px;
-  }
+  justify-content: center;
 `;
