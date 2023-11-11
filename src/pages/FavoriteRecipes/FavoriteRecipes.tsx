@@ -3,6 +3,7 @@ import useFavoriteRecipes from '../../hooks/useFavoritesRecipes';
 import { FavoriteRecipesContainer } from './Styles';
 import FavoriteFilter
   from '../../components/FavoritesRecipes/FavoriteFilter/FavoriteFilter';
+import { MessageEmpty } from '../DoneRecipes/Styles';
 
 function FavoriteRecipes() {
   const {
@@ -20,6 +21,10 @@ function FavoriteRecipes() {
         filterMeals={ filterMeals }
         filterDrinks={ filterDrinks }
       />
+
+      {filteredRecipes.length === 0 && (
+        <MessageEmpty>Favorites recipes is empty!</MessageEmpty>
+      )}
 
       <FavoriteCard
         recipes={ filteredRecipes }
