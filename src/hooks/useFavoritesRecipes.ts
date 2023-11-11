@@ -4,11 +4,13 @@ import { FavoriteRecipesType } from '../types/types';
 
 function useFavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState<FavoriteRecipesType[]>([]);
+  const [filteredRecipes, setFilteredRecipes] = useState<FavoriteRecipesType[]>([]);
 
   useEffect(() => {
     const savedRecipes = localStorage.getItem('favoriteRecipes');
     const data = savedRecipes ? JSON.parse(savedRecipes) : [];
     setFavoriteRecipes(data);
+    setFilteredRecipes(data);
   }, []);
 
   const handleFavorite = (id: number) => {
@@ -16,28 +18,28 @@ function useFavoriteRecipes() {
       .filter((recipe: FavoriteRecipesType) => recipe.id !== id);
     localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
     setFavoriteRecipes(favorites);
+    setFilteredRecipes(favorites);
   };
 
   const filterMeals = () => {
     const meals = favoriteRecipes
       .filter((recipe: FavoriteRecipesType) => recipe.type === 'meal');
-    setFavoriteRecipes(meals);
+    setFilteredRecipes(meals);
   };
 
   const filterDrinks = () => {
     const drinks = favoriteRecipes
       .filter((recipe: FavoriteRecipesType) => recipe.type === 'drink');
-    setFavoriteRecipes(drinks);
+    setFilteredRecipes(drinks);
   };
 
   const filterAll = () => {
-    setFavoriteRecipes(JSON.parse(localStorage.getItem('favoriteRecipes') || '[]'));
+    setFilteredRecipes(favoriteRecipes);
   };
 
   return {
-    favoriteRecipes,
-    setFavoriteRecipes,
     handleFavorite,
+    filteredRecipes,
     filterMeals,
     filterDrinks,
     filterAll,

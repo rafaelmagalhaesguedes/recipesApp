@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 import { FavoriteRecipesType } from '../../../types/types';
-import { MessageEmpty } from '../../DoneRecipes/DoneCard/Styles';
-import useFavoriteRecipes from '../../../hooks/useFavoritesRecipes';
 import useShare from '../../../hooks/useShare';
 import blackHeartIcon from '../../../images/blackHeartIcon.svg';
 import shareIcon from '../../../images/shareIcon.svg';
@@ -13,13 +11,12 @@ import {
   CardHeader,
 } from './Styles';
 
-function FavoriteCard() {
-  const { favoriteRecipes, handleFavorite } = useFavoriteRecipes();
+function FavoriteCard({ recipes, onFavorite }: any) {
   const { handleClickShare, message } = useShare();
 
   return (
     <CardFavorites>
-      {favoriteRecipes && favoriteRecipes.map((recipe: FavoriteRecipesType, index) => (
+      {recipes && recipes.map((recipe: FavoriteRecipesType, index: number) => (
         <CardFav key={ index }>
           <CardHeader>
             <Link
@@ -54,7 +51,7 @@ function FavoriteCard() {
             <ButtonsShareFavorite>
 
               <button
-                onClick={ () => handleFavorite(recipe.id) }
+                onClick={ () => onFavorite(recipe.id) }
               >
                 <img
                   data-testid={ `${index}-horizontal-favorite-btn` }
@@ -74,10 +71,6 @@ function FavoriteCard() {
           </CardBody>
         </CardFav>
       ))}
-
-      {favoriteRecipes.length === 0 && (
-        <MessageEmpty>Favorite Recipes is empty!</MessageEmpty>
-      )}
     </CardFavorites>
   );
 }

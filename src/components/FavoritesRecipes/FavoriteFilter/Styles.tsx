@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const FavoriteRecipesFilter = styled.div`
   width: 50%;
-  margin: 30px 0 20px 0;
+  margin: 20px 0 20px 0;
 
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
 
   button {
     background-color: transparent;
@@ -30,7 +30,7 @@ export const FavoriteRecipesFilter = styled.div`
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 
     button {
       background-color: transparent;
@@ -51,7 +51,7 @@ export const FavoriteRecipesFilter = styled.div`
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 
     button {
       background-color: transparent;

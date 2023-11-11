@@ -3,14 +3,27 @@ import styled from 'styled-components';
 export const CardFavorites = styled.div`
   border-radius: 10px;
   padding: 10px;
-  margin-bottom: 100px;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    gap: 1rem;
+  }
 `;
 
 export const CardFav = styled.div`
-  border: 1px solid #c0c0c0;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 20px;
+  border-bottom: 1px solid #B1B1B1;
 `;
 
 export const CardHeader = styled.div`
