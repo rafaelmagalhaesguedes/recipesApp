@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ContainerDoneRecipes = styled.section`
   width: 100%;
-  height: auto;
+  height: 100vh;
   display: flex;
   justify-content: center;
 
