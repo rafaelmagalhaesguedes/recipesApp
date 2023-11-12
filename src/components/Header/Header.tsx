@@ -66,6 +66,7 @@ export default function Header() {
             <img className="logo_mobile" src={ iconRecipesMobile } alt="LogoMobile" />
           </Link>
         </NavbarLogo>
+
         <div className="navbar">
           <SearchBar />
         </div>

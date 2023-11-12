@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
-export const HeaderWrapper = styled.div`
+export const HeaderWrapper = styled.header`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   background-color: #3f3533;
-  
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 768px) {
     width: 100%;
     background-color: #3f3533;
     .navbar {
@@ -17,9 +15,7 @@ export const HeaderWrapper = styled.div`
     }
   }
 
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    background-color: #3f3533;
+  @media screen and (min-width: 769px) and (max-width: 1174px) {
     .navbar {
       display: none;
     }
@@ -29,24 +25,24 @@ export const HeaderWrapper = styled.div`
 export const HeaderNavbar = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
   background-color: #3f3533;
   padding-left: 20px;
   height: 60px;
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 0;
     position: relative;
   }
 
-  @media screen and (max-width: 768px) {
-    padding: 0;
+  @media screen and (min-width: 769px) and (max-width: 1174px) {
+    justify-content: space-between;
   }
 `;
 
@@ -80,7 +76,7 @@ export const NavbarLogo = styled.div`
     }
 
     .logo_mobile {
-      display: none;
+      display: block;
     }
 
     img {
@@ -97,11 +93,44 @@ export const NavbarLogo = styled.div`
     }
 
     .logo_mobile {
-      display: none;
+      display: block;
     }
 
     img {
       width: 50px;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1174px) {
+    margin: 0;
+
+    .logo {
+      display: none;
+    }
+
+    .logo_mobile {
+      display: block;
+    }
+
+    img {
+      width: 50px;
+    }
+  }
+
+  @media screen and (min-width: 1030px) and (max-width: 1174px) {
+    padding: 10px;
+    margin-top: 40px;
+    
+    .logo {
+      display: block;
+    }
+
+    .logo_mobile {
+      display: none;
+    }
+
+    img {
+      width: 100px;
     }
   }
 `;
@@ -135,15 +164,12 @@ export const NavbarButtons = styled.div`
     }
     
     .searchIcon {
-      margin: 0 20px;
       background-color: transparent;
       width: 25px;
     }
 
     .profileIcon {
-      margin: 0 10px;
-      background-color: #3f3533;
-      width: 30px;
+      display: none;
     }
   }
 `;
@@ -171,6 +197,9 @@ export const HeaderTitle = styled.div`
     width: 50px;
   }
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 768px) {
+    img {
+      display: none;
+    }
   }
 `;
