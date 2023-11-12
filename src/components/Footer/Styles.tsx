@@ -51,12 +51,12 @@ export const FooterContainer = styled.footer`
 
   @media only screen and (max-width: 768px) {
     bottom: 0;
+    left: 0;
     position: fixed;
     background: #3f3533;
     width: 100%;
     height: 70px;
     padding: 0 20px;
-  
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -86,5 +86,9 @@ export const FooterContainer = styled.footer`
     img {
       width: 70px;
     }
+  }
+
+  @media only screen and (max-width: 1920px) {
+    bottom: 0;
   }
 `;
