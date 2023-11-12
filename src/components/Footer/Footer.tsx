@@ -15,20 +15,11 @@ function Footer() {
         <p>Edgar Andrade</p>
         <p>Rafael Magalhães</p>
         <br />
-        <Link to="https://www.betrybe.com/" target="_blank">
-          <span>Trybe</span>
-        </Link>
-        <span> / </span>
-        <Link to="https://be.trybe.com.br/curso-fundamentos-de-front-end" target="_blank">
-          <span>Frontend</span>
-        </Link>
-        <span> / </span>
-        <Link to="https://github.com/rafaelmagalhaesguedes/recipesApp" target="_blank">
-          <span>Recipes App</span>
-        </Link>
+        <br />
+        <strong>Turma 34</strong>
       </div>
-      <div className="logfooter">
-        <img className="logoFooter" src={ logoFooter } alt="logo" />
+      <div className="logFooter">
+        <img className="imageLogo" src={ logoFooter } alt="logo" />
       </div>
       <div className="buttonsFooter">
         <Link to="/drinks">
@@ -44,6 +35,19 @@ function Footer() {
             src={ mealIcon }
             alt="Comidas"
           />
+        </Link>
+      </div>
+      <div className="menuFooter">
+        <Link to="https://www.betrybe.com/" target="_blank">
+          <span>Trybe</span>
+        </Link>
+        <span> / </span>
+        <Link to="https://be.trybe.com.br/curso-fundamentos-de-front-end" target="_blank">
+          <span>Frontend</span>
+        </Link>
+        <span> / </span>
+        <Link to="https://github.com/rafaelmagalhaesguedes/recipesApp" target="_blank">
+          <span>Recipes App</span>
         </Link>
       </div>
     </FooterContainer>

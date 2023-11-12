@@ -5,6 +5,7 @@ export const ContainerRecipeInProgress = styled.section`
   display: flex;
   flex-direction: row;
   width: 90%;
+  height: 100%;
   justify-content: center;
 
   @media screen and (max-width: 768px) {
