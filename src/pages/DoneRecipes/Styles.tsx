@@ -6,18 +6,13 @@ export const ContainerDoneRecipes = styled.section`
   height: auto;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 20px 0 50px 0;
-
-  @media screen and (max-width: 360px) {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-  }
+  justify-content: flex-start;
+  margin: 20px 0 100px 0;
 
   @media screen and (max-width: 768px) {
     display: flex;
     width: 100%;
+    height: auto;
     flex-direction: column;
   }
 `;

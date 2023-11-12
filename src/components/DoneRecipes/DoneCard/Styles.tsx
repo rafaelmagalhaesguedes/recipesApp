@@ -5,6 +5,7 @@ export const DoneRecipesCard = styled.div`
   height: auto;
   border-radius: 5px;
   gap: 2rem;
+  margin: 20px 0;
 
   display: flex;
   flex-flow: row wrap;
@@ -13,12 +14,6 @@ export const DoneRecipesCard = styled.div`
 
   @media screen and (max-width: 768px) {
     width: 318px;
-    margin: 10px 0 20px 0;
-  
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    gap: 1rem;
   }
 `;
 
@@ -28,7 +23,6 @@ export const Card = styled.div`
   flex-direction: row;
   border-radius: 5px;
   border: 0.5px solid #B1B1B1;
-  margin: 20px 0;
 
   @media screen and (max-width: 360px) {
     height: 163px;
