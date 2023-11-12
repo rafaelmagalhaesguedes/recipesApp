@@ -19,4 +19,12 @@ export const FavoriteRecipesContainer = styled.div`
     width: 100%;
     flex-direction: column;
   }
+
+  @media screen and (max-width: 1920px) {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
 `;
