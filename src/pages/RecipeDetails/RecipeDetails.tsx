@@ -1,33 +1,27 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { getIngredientsList } from '../../helpers/helpers';
-import { fetchRecipeDetails } from '../../helpers/api';
 import FavoriteButton from '../../components/FavoriteButton';
 import ShareButton from '../../components/ShareButton';
 import StartRecipeButton from '../../components/StartRecipeButton';
-import { ButtonsContainer, CategoryContainer, ContainerHeader,
-  ContainerRecipeDetails, Heading3, ImageContainer, IngredientsContainer,
-  InstructionsContainer, RecipeImage, RecipeTitle, Wrapper } from './Styles';
 import CarouselDetails from '../../components/CarouselDetails/CarouselDetails';
 import Loading from '../../components/Loading/Loading';
+import useRecipeDetails from '../../hooks/useRecipeDetails';
 import { LoadingRecipes } from '../Recipes/Styles';
+import { getIngredientsList } from '../../helpers/helpers';
+import {
+  ButtonsContainer,
+  CategoryContainer,
+  ContainerHeader,
+  ContainerRecipeDetails,
+  Heading3,
+  ImageContainer,
+  IngredientsContainer,
+  InstructionsContainer,
+  RecipeImage,
+  RecipeTitle,
+  Wrapper,
+} from './Styles';
 
 function RecipeDetails() {
-  const location = useLocation();
-  const { id } = useParams<{ id: string }>();
-  const isDrinksPage = location.pathname.includes('drinks');
-
-  const [recipe, setRecipe] = useState<any>();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (id) {
-        const recipeData = await fetchRecipeDetails(id, isDrinksPage);
-        setRecipe(recipeData);
-      }
-    };
-    fetchData();
-  }, [id, isDrinksPage]);
+  const { recipe, isDrinksPage } = useRecipeDetails('drinks');
 
   if (recipe) {
     return (
