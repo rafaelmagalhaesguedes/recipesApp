@@ -14,13 +14,15 @@ function Recipes() {
 
   return (
     <ContainerRecipes>
-      <CategoryFilter endpoints={ endpoints } />
       {!loading ? (
         <Render>
           {searchData ? (
             <SearchResult />
           ) : (
-            <RenderRecipes listLength={ 12 } />
+            <>
+              <CategoryFilter endpoints={ endpoints } />
+              <RenderRecipes listLength={ 12 } />
+            </>
           )}
         </Render>
       ) : (
