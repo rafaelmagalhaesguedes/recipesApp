@@ -14,7 +14,7 @@ import {
 } from './Styles';
 
 function SearchBar() {
-  const { setSearchData, searchData } = useContext(RecipesContext);
+  const { setSearchData, searchData, setSearch } = useContext(RecipesContext);
   const [page, setPage] = useState('meal');
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -71,6 +71,8 @@ function SearchBar() {
       setSearchData('meal');
       testResult();
     }
+    setSearch(formData.search);
+    setFormData({ ...formData, search: '' });
   };
 
   useEffect(() => {
