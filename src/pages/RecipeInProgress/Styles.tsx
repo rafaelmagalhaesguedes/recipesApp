@@ -1,79 +1,112 @@
+/* eslint-disable max-lines */
 import styled, { keyframes } from 'styled-components';
 
 export const ContainerRecipeInProgress = styled.section`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  margin: 0;
+  flex-direction: row;
+  width: 90%;
+  justify-content: center;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 `;
 
 export const ContainerHeader = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 360px;
-  margin-top: 0;
-  margin-bottom: 10px;
+  width: 30%;
+  padding: 40px;
+
+  @media screen and (max-width: 768px) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 360px;
+    margin-top: 0;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const ImageContainer = styled.div`
   width: 100%;
-  height: 161px;
-  overflow: hidden;
-  flex-shrink: 0;
-  margin: 0px;
+  height: auto;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 export const RecipeImage = styled.img`
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const RecipeTitle = styled.h2`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #FFF;
-  text-align: center;
-  font-family: Epilogue, sans-serif;
+  color: #000;
   font-size: 20px;
-  font-style: normal;
   font-weight: 900;
-  line-height: normal;
   letter-spacing: 2.1px;
   text-transform: uppercase;
+  margin: 10px 0;
+
+  @media screen and (max-width: 768px) {
+    color: #000;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2.1px;
+    text-transform: uppercase;
+  }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 360px;
-  height: 100%;
-  margin-top: 0px;
-  margin-bottom: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  flex-flow: row wrap;
+  width: 60%;
+  padding: 0 20px;
+  margin: 40px 0;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+  }
 `;
 
 export const Heading3 = styled.h3`
   color: #1A1B1C;
-  font-family: Epilogue, sans-serif;
   font-size: 20px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   letter-spacing: 2.1px;
-  margin-bottom: 10px;
+  margin: 10px 0;
   text-align: left;
+
+  @media screen and (max-width: 768px) {
+    color: #1A1B1C;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2.1px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
 `;
 
 export const FinishButton = styled.button`
-  width: 315px;
+  width: 100%;
   height: 40px;
   border-radius: 5px;
   background: #df3626;
@@ -82,8 +115,7 @@ export const FinishButton = styled.button`
   text-transform: uppercase;
   font-weight: 900;
   cursor: pointer;
-  margin: 10px;
-  margin-bottom: 60px;
+  margin: 30px 0;
 
   &:disabled {
     cursor: not-allowed;
@@ -92,40 +124,45 @@ export const FinishButton = styled.button`
   &:hover {
     opacity: 0.8;
   }
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 80px;
+  }
 `;
 
 export const ShareFavButton = styled.button`
   background: none;
   border: none;
   border-radius: 5px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
   width: 35px;
   height: 35px;
-  margin-right: 10px;
 
   &:hover {
-    background-color: #41197F;
+    background-color: #df3626;
+    margin: 0;
+    padding: 0;
   }
 
   img {
-    width: 23px;
-    height: 23px;
+    width: 25px;
+    height: 25px;
   }
 `;
 
-export const ButtonsContainer = styled.div`
-  position: absolute;
+export const ContainerButtons = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: right;
-  top: 15px;
-  right: 15px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const fadeOut = keyframes`
@@ -137,75 +174,103 @@ const fadeOut = keyframes`
   }
 `;
 export const LinkCopiedText = styled.p`
-  font-size: 16px;
-  color: #4d4d4d;
-  padding: 2px;
-  margin-bottom: 5px;
-  animation: ${fadeOut} 2s linear forwards;
+  font-size: 20px;
+  text-align: center;
+  color: #000;
+  animation: ${fadeOut} 3s linear forwards;
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+    text-align: center;
+    color: #000;
+    animation: ${fadeOut} 3s linear forwards;
+  }
 `;
 
-export const CategoryContainer = styled.div`
-  position: absolute;
+export const ContainerCategory = styled.div`
   display: flex;
-  color: #FCC436;
-  font-family: Epilogue;
+  color: #000;
   font-size: 14px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
-  left: 15px;
-  top: 20px;
-  `;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 15px 0;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+  }
+`;
+
+export const ContainerSocial = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding-top: 2px;
+  }
+`;
 
 export const IngredientsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 315px;
-  border: 1px solid #bdbdbd;
-  border-radius: 5px;
-  padding: 10px;
+  width: 100%;
+  padding: 0 20px;
+  border-left: 1px solid #df3626;
   align-items: left;
+  margin-bottom: 30px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 0 20px;
+  }
+`;
+
+export const IngredientsCard = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
   margin-bottom: 10px;
-  margin-left: 12px;
-  margin-right: auto;
-  max-width: 100%;
 
   label {
-    margin-bottom: 5px;
     color: #1A1B1C;
-    font-family: Epilogue, sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0 10px;
   }
-  `;
+`;
 
 export const CheckboxIngredients = styled.input`
-      appearance: none;
-      width: 15px;
-      height: 15px;
-      margin-right: 5px;
-      border: 2px solid #FCC436;
-      border-radius: 3px;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #df3626;
+  border-radius: 3px;
+  cursor: pointer;
 
-      &:checked {
-        background-color: #FCC436;
-      }
-      `;
+  &:checked {
+    background-color: #000;
+  }
+`;
 
 export const InstructionsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 315px;
-  border: 1px solid #bdbdbd;
-  border-radius: 5px;
-  padding: 10px;
+  width: 100%;
+  padding: 10px 0;
   text-align: justify;
-  align-self: center;
-  margin-left: 12px;
-  margin-right: auto;
-  `;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  font-size: 15px;
+`;
 
 export const LoadingRecipes = styled.div`
   width: 100%;

@@ -1,19 +1,34 @@
+/* eslint-disable react/jsx-max-depth */
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { DrinkType, MealsType, DataDetailsType } from '../../types/types';
-import whiteHeartIcon from '../../images/likeUnselected.png';
-import blackHeartIcon from '../../images/likeSelected.png';
-import { fetchById } from '../../helpers/api';
 import { handleDoneRecipes, handleFavoriteClick } from '../../helpers/localStorage';
+import { DrinkType, MealsType, DataDetailsType } from '../../types/types';
 import { getIngredientsList } from '../../helpers/helpers';
-import shareIcon from '../../images/Share.svg';
-import { ButtonsContainer, CategoryContainer, CheckboxIngredients,
-  ContainerHeader, ContainerRecipeInProgress,
-  FinishButton, Heading3, ImageContainer, IngredientsContainer,
-  InstructionsContainer, LinkCopiedText,
-  LoadingRecipes,
-  RecipeImage, RecipeTitle, ShareFavButton, Wrapper } from './Styles';
+import { fetchById } from '../../helpers/api';
 import Loading from '../../components/Loading/Loading';
+import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import shareIcon from '../../images/shareIcon.svg';
+import {
+  CheckboxIngredients,
+  ContainerButtons,
+  ContainerCategory,
+  ContainerHeader,
+  ContainerRecipeInProgress,
+  ContainerSocial,
+  FinishButton,
+  Heading3,
+  ImageContainer,
+  IngredientsCard,
+  IngredientsContainer,
+  InstructionsContainer,
+  LinkCopiedText,
+  LoadingRecipes,
+  RecipeImage,
+  RecipeTitle,
+  ShareFavButton,
+  Wrapper,
+} from './Styles';
 
 export default function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();
@@ -110,10 +125,12 @@ export default function RecipeInProgress() {
     navigator.clipboard.writeText(recipeLinkFormated);
     setIsLinkCopied(true);
   };
+
   if (dataById && dataDetails) {
     return (
       <ContainerRecipeInProgress>
         <ContainerHeader>
+          <RecipeTitle data-testid="recipe-title">{ dataDetails.title }</RecipeTitle>
           <ImageContainer>
             <RecipeImage
               src={ dataDetails.image }
@@ -121,54 +138,61 @@ export default function RecipeInProgress() {
               data-testid="recipe-photo"
             />
           </ImageContainer>
-          <RecipeTitle data-testid="recipe-title">{ dataDetails.title }</RecipeTitle>
-          <ButtonsContainer>
-            <ShareFavButton
-              data-testid="share-btn"
-              onClick={ handleClickShare }
-            >
-              <img src={ shareIcon } alt="shareButton" />
-            </ShareFavButton>
-            <ShareFavButton
-              onClick={ () => handleFavoriteClick(dataById, setIsFavorite) }
-            >
-              {isFavorite ? (
-                <img data-testid="favorite-btn" src={ blackHeartIcon } alt="Favorite" />
-              ) : (
-                <img data-testid="favorite-btn" src={ whiteHeartIcon } alt="Favorite" />
+          <ContainerButtons>
+            <ContainerCategory>
+              {dataDetails.category && (
+                <div data-testid="recipe-category">{ dataDetails.category }</div>
               )}
-            </ShareFavButton>
-          </ButtonsContainer>
-          <CategoryContainer>
-            {dataDetails.category && (
-              <div data-testid="recipe-category">{ dataDetails.category }</div>
-            )}
 
-            {dataDetails.alcoholicOrNot && (
-              <div data-testid="recipe-category">{ dataDetails.alcoholicOrNot }</div>
-            )}
-          </CategoryContainer>
+              {dataDetails.alcoholicOrNot && (
+                <div data-testid="recipe-category">{ dataDetails.alcoholicOrNot }</div>
+              )}
+            </ContainerCategory>
+
+            <ContainerSocial>
+              <ShareFavButton
+                data-testid="share-btn"
+                onClick={ handleClickShare }
+              >
+                <img src={ shareIcon } alt="shareButton" />
+              </ShareFavButton>
+
+              <ShareFavButton
+                onClick={ () => handleFavoriteClick(dataById, setIsFavorite) }
+              >
+                {isFavorite ? (
+                  <img data-testid="favorite-btn" src={ blackHeartIcon } alt="Favorite" />
+                ) : (
+                  <img data-testid="favorite-btn" src={ whiteHeartIcon } alt="Favorite" />
+                )}
+              </ShareFavButton>
+            </ContainerSocial>
+          </ContainerButtons>
+          {isLinkCopied && <LinkCopiedText>Link copied!</LinkCopiedText>}
         </ContainerHeader>
         <Wrapper>
-          {isLinkCopied && <LinkCopiedText>Link copied!</LinkCopiedText>}
           <Heading3>Ingredients</Heading3>
           <IngredientsContainer>
             {dataDetails.ingredients.map((ingredient, index) => (
-              <label
-                key={ index }
-                data-testid={ `${index}-ingredient-step` }
-                style={ {
-                  textDecoration: checkedIngredients.includes(ingredient)
-                    ? 'line-through solid rgb(0, 0, 0)' : 'none',
-                } }
-              >
+              <IngredientsCard key={ index }>
                 <CheckboxIngredients
+                  id={ ingredient }
                   type="checkbox"
                   checked={ checkedIngredients.includes(ingredient) }
                   onChange={ () => handleCheckboxChange(ingredient) }
                 />
-                {ingredient}
-              </label>
+                <label
+                  htmlFor={ ingredient }
+                  key={ index }
+                  data-testid={ `${index}-ingredient-step` }
+                  style={ {
+                    textDecoration: checkedIngredients.includes(ingredient)
+                      ? 'line-through solid rgb(0, 0, 0)' : 'none',
+                  } }
+                >
+                  {ingredient}
+                </label>
+              </IngredientsCard>
             ))}
           </IngredientsContainer>
           <Heading3>Instructions</Heading3>
