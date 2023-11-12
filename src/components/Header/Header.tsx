@@ -44,6 +44,7 @@ export default function Header() {
       setShowSearchButton(false);
       setTitle('Favorite Recipes');
     }
+    setSearchVisible(false);
   }, [pathname]);
 
   const handleProfileChange = () => {
