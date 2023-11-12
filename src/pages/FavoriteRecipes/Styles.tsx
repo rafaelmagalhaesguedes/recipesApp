@@ -24,7 +24,7 @@ export const FavoriteRecipesContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    height: auto;
+    height: 100vh;
     flex-direction: column;
   }
 `;

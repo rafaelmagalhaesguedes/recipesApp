@@ -15,6 +15,10 @@ export const ContainerDoneRecipes = styled.section`
     height: auto;
     flex-direction: column;
   }
+
+  @media screen and (max-width: 1920px) {
+    height: 100vh;
+  }
 `;
 
 export const MessageEmpty = styled.p`

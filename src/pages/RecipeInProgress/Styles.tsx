@@ -16,6 +16,18 @@ export const ContainerRecipeInProgress = styled.section`
     height: 100%;
     margin: 0;
   }
+
+  @media screen and (min-width: 769px) and (max-width: 1366px) {
+    height: auto;
+  }
+
+  @media screen and (min-width: 1367px) and (max-width: 1920px) {
+    height: 100vh;
+  }
+
+  @media screen and (min-width: 1921px) {
+    height: 100vh;
+  }
 `;
 
 export const ContainerHeader = styled.div`
