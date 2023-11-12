@@ -120,7 +120,7 @@ export const NavbarLogo = styled.div`
   @media screen and (min-width: 1030px) and (max-width: 1174px) {
     padding: 10px;
     margin-top: 40px;
-    
+
     .logo {
       display: block;
     }
