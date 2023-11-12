@@ -9,6 +9,8 @@ export type RecipesContextType = {
   updateRecipesList: Dispatch<SetStateAction<DrinkType[] | MealsType[]>>;
   loading: boolean;
   updateLoading: Dispatch<SetStateAction<boolean>>;
+  setSearch: Dispatch<SetStateAction<string>>;
+  search: string;
 };
 
 const initialContext: RecipesContextType = {
@@ -18,6 +20,8 @@ const initialContext: RecipesContextType = {
   updateRecipesList: () => {},
   loading: false,
   updateLoading: () => {},
+  setSearch: () => {},
+  search: '',
 };
 type RecipesProviderProps = {
   children: ReactNode;
@@ -25,6 +29,7 @@ type RecipesProviderProps = {
 
 function RecipesProvider({ children }: RecipesProviderProps) {
   const [searchData, setSearchData] = useState<string>(initialContext.searchData);
+  const [search, setSearch] = useState('');
   const [recipesList, updateRecipesList] = useState<DrinkType[]
   | MealsType[]>(initialContext.recipesList);
   const [loading, updateLoading] = useState<boolean>(initialContext.loading);
@@ -36,6 +41,8 @@ function RecipesProvider({ children }: RecipesProviderProps) {
     updateRecipesList,
     loading,
     updateLoading,
+    search,
+    setSearch,
   };
 
   return (
