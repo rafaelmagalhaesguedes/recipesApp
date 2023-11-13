@@ -17,6 +17,7 @@ export const FavoriteRecipesContainer = styled.div`
   @media screen and (max-width: 768px) {
     display: flex;
     width: 100%;
+    height: auto;
     flex-direction: column;
   }
 

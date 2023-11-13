@@ -11,6 +11,8 @@ export const CardFavorites = styled.div`
 
   @media screen and (max-width: 768px) {
     width: 100%;
+    height: auto;
+    padding: 0 20px 70px 20px;
   
     display: flex;
     flex-direction: column;
@@ -35,6 +37,12 @@ export const CardHeader = styled.div`
 
   img {
     width: 318px;
+  }
+
+  @media screen and (max-width: 768px) {
+    img {
+      width: 100%;
+    }
   }
 `;
 
