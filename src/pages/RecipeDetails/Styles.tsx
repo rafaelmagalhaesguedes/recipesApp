@@ -8,9 +8,13 @@ export const ContainerRecipeDetails = styled.section`
   height: 100%;
   margin: 0;
 
-  @media screen and (min-width: 360px) and (max-width: 768px) {
+  @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
   }
 
   @media screen and (min-width: 769px) and (max-width: 1366px) {
