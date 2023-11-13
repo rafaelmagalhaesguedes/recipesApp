@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { ContainerStartButton, StartButton } from './Styles';
 
 function StartRecipeButton() {
   const navigate = useNavigate();
@@ -35,16 +36,16 @@ function StartRecipeButton() {
   };
 
   return (
-    <div>
+    <ContainerStartButton>
       {!isDone && (
-        <button
+        <StartButton
           data-testid="start-recipe-btn"
           onClick={ handleStartRecipeClick }
         >
           {isRecipeInProgress() ? 'Continue Recipe' : 'Start Recipe'}
-        </button>
+        </StartButton>
       )}
-    </div>
+    </ContainerStartButton>
   );
 }
 
