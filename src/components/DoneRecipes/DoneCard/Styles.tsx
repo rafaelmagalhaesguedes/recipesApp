@@ -13,7 +13,8 @@ export const DoneRecipesCard = styled.div`
   justify-content: center;
 
   @media screen and (max-width: 768px) {
-    width: 318px;
+    width: 100%;
+    padding: 0 20px 70px 20px;
   }
 `;
 
@@ -34,9 +35,8 @@ export const ImageCard = styled.img`
   height: 161px;
   border-radius: 5px 0 0 5px;
 
-  @media screen and (max-width: 360px) {
-    width: 163px;
-    height: 161px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
     border-radius: 5px 0 0 5px;
   }
 `;
@@ -46,6 +46,12 @@ export const Infos = styled.div`
   flex-direction: column;
   justify-content: space-around;
   padding: 0 20px;
+
+  @media screen and (max-width: 768px) {
+    p, span {
+      font-size: 12px;
+    }
+  }
 `;
 
 export const TitleInfos = styled.div`
@@ -59,11 +65,19 @@ export const Name = styled.p`
   font-weight: 700;
   color: #1A1B1C;
   padding-top: 10px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 13px;
+  }
 `;
 
 export const CateroryType = styled.p`
   font-size: 12px;
   color: #797D86;
+
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 
 export const ButtonShare = styled.button`
@@ -72,6 +86,13 @@ export const ButtonShare = styled.button`
   cursor: pointer;
 
   img {
+    width: 24px;
     background-color: transparent;
+  }
+
+  @media screen and (max-width: 768px) {
+    img {
+      width: 18px;
+    }
   }
 `;

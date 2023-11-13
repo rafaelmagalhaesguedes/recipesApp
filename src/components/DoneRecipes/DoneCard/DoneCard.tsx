@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { DoneRecipesType } from '../../../types/types';
-import shareIcon from '../../../images/iconShareDone.png';
+import shareIcon from '../../../images/shareIcon.svg';
 import {
   DoneRecipesCard,
   ButtonShare,
