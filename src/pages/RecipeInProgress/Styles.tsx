@@ -4,8 +4,8 @@ import styled, { keyframes } from 'styled-components';
 export const ContainerRecipeInProgress = styled.section`
   display: flex;
   flex-direction: row;
-  width: 90%;
-  height: 100%;
+  width: 80%;
+  height: auto;
   justify-content: center;
 
   @media screen and (max-width: 768px) {
@@ -89,6 +89,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
   width: 60%;
+  height: auto;
   padding: 0 20px;
   margin: 40px 0;
 
@@ -222,6 +223,10 @@ export const ContainerSocial = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 1rem;
+
+  p {
+  text-transform: uppercase;
+  }
 
   @media screen and (max-width: 768px) {
     display: flex;
