@@ -41,11 +41,11 @@ export const MenuToggleButton = styled.button`
   z-index: 1000;
 
   @media only screen and ( max-width : 768px ) {
-    padding: 10px;
+    padding: 0;
   }
 
   @media only screen and ( min-width : 769px ) and ( max - width : 1366px ) {
-    padding: 20px;
+    padding: 0;
   }
 
   &.active ${Bar}:nth-child(1) {

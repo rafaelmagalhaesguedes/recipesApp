@@ -30,7 +30,7 @@ export const HeaderNavbar = styled.div`
   width: 100%;
   background-color: #3f3533;
   padding-left: 20px;
-  height: 60px;
+  height: 70px;
 
   @media screen and (max-width: 768px) {
     display: flex;
@@ -43,6 +43,7 @@ export const HeaderNavbar = styled.div`
 
   @media screen and (min-width: 769px) and (max-width: 1174px) {
     justify-content: space-between;
+    padding: 0 20px;
   }
 `;
 
@@ -167,6 +168,14 @@ export const NavbarButtons = styled.div`
       background-color: transparent;
       width: 25px;
     }
+
+    .profileIcon {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1174px) {
+    display: block;
 
     .profileIcon {
       display: none;

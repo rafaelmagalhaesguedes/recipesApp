@@ -6,14 +6,14 @@ export const ContainerRecipes = styled.section`
   height: auto;
   flex-direction: column;
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 359px) {
     display: flex;
     width: 100%;
     flex-direction: column;
     margin-bottom: 50px;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (min-width: 360px) and (max-width: 768px) {
     display: flex;
     width: 100%;
     flex-direction: column;
