@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import blackHeartIcon from '../images/likeSelected.png';
-import whiteHeartIcon from '../images/likeUnselected.png';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import { FavButton } from './Styles';
 
 type FavoriteButtonProps = {
   recipe: {
@@ -58,13 +59,13 @@ function FavoriteButton({ recipe } : FavoriteButtonProps) {
   };
 
   return (
-    <button onClick={ handleFavoriteClick }>
+    <FavButton onClick={ handleFavoriteClick }>
       <img
         src={ isFavorited ? blackHeartIcon : whiteHeartIcon }
         alt={ isFavorited ? 'love' : 'notLove' }
         data-testid="favorite-btn"
       />
-    </button>
+    </FavButton>
   );
 }
 
