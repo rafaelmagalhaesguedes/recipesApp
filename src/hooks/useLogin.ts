@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function useLoginForm(initialValue: string) {
+function useLogin(initialValue: string) {
   const [email, setEmail] = useState(initialValue);
   const [password, setPassword] = useState(initialValue);
+  const navigate = useNavigate();
 
   const addEmail = (_email: string) => {
     setEmail(_email);
@@ -18,6 +20,17 @@ function useLoginForm(initialValue: string) {
     return isValidEmail && isValidPassword;
   };
 
+  const handleSubmit = () => {
+    localStorage.setItem('user', JSON.stringify(email));
+    resetForm();
+    navigate('/meals');
+  };
+
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+  };
+
   return {
     email,
     password,
@@ -26,7 +39,8 @@ function useLoginForm(initialValue: string) {
     addEmail,
     addPassword,
     validateForm,
+    handleSubmit,
   };
 }
 
-export default useLoginForm;
+export default useLogin;
