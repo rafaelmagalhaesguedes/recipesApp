@@ -14,7 +14,6 @@ export const ContainerRecipeInProgress = styled.section`
     align-items: center;
     width: 100%;
     height: 100%;
-    margin: 0;
   }
 
   @media screen and (min-width: 769px) and (max-width: 1366px) {
@@ -41,7 +40,7 @@ export const ContainerHeader = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 360px;
+    width: 100%;
     margin-top: 0;
     padding: 20px;
     margin-bottom: 10px;
@@ -51,21 +50,11 @@ export const ContainerHeader = styled.div`
 export const ImageContainer = styled.div`
   width: 100%;
   height: auto;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
 `;
 
 export const RecipeImage = styled.img`
   width: 100%;
   height: auto;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
 `;
 
 export const RecipeTitle = styled.h2`
