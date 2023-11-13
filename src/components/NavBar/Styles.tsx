@@ -37,11 +37,15 @@ export const MenuToggleButton = styled.button`
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  padding: 40px;
+  padding: 30px;
   z-index: 1000;
 
   @media only screen and ( max-width : 768px ) {
     padding: 10px;
+  }
+
+  @media only screen and ( min-width : 769px ) and ( max - width : 1366px ) {
+    padding: 20px;
   }
 
   &.active ${Bar}:nth-child(1) {
