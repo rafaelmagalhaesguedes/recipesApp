@@ -1,6 +1,7 @@
-import FavoriteButton from '../../components/FavoriteButton';
-import ShareButton from '../../components/ShareButton';
-import StartRecipeButton from '../../components/StartRecipeButton';
+/* eslint-disable react/jsx-max-depth */
+import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
+import ShareButton from '../../components/ShareButton/ShareButton';
+import StartRecipeButton from '../../components/StartRecipeButton/StartRecipeButton';
 import CarouselDetails from '../../components/CarouselDetails/CarouselDetails';
 import Loading from '../../components/Loading/Loading';
 import useRecipeDetails from '../../hooks/useRecipeDetails';
@@ -8,6 +9,7 @@ import { LoadingRecipes } from '../Recipes/Styles';
 import { getIngredientsList } from '../../helpers/helpers';
 import {
   ButtonsContainer,
+  ButtonsFavShare,
   CategoryContainer,
   ContainerHeader,
   ContainerRecipeDetails,
@@ -19,6 +21,7 @@ import {
   RecipeTitle,
   Wrapper,
 } from './Styles';
+import { IngredientsCard } from '../RecipeInProgress/Styles';
 
 function RecipeDetails() {
   const { recipe, isDrinksPage } = useRecipeDetails('drinks');
@@ -27,6 +30,9 @@ function RecipeDetails() {
     return (
       <ContainerRecipeDetails>
         <ContainerHeader>
+          <RecipeTitle data-testid="recipe-title">
+            {recipe.strMeal || recipe.strDrink}
+          </RecipeTitle>
           <ImageContainer>
             <RecipeImage
               data-testid="recipe-photo"
@@ -34,30 +40,31 @@ function RecipeDetails() {
               alt="recipe"
             />
           </ImageContainer>
-          <RecipeTitle data-testid="recipe-title">
-            {recipe.strMeal || recipe.strDrink}
-          </RecipeTitle>
           <ButtonsContainer>
-            <ShareButton />
-            <FavoriteButton recipe={ recipe } />
+            <CategoryContainer>
+              <p data-testid="recipe-category">{ recipe.strCategory }</p>
+              {recipe.strAlcoholic && (
+                <p data-testid="recipe-category">{ recipe.strAlcoholic }</p>
+              )}
+            </CategoryContainer>
+            <ButtonsFavShare>
+              <ShareButton />
+              <FavoriteButton recipe={ recipe } />
+            </ButtonsFavShare>
           </ButtonsContainer>
-          <CategoryContainer>
-            <p data-testid="recipe-category">{ recipe.strCategory }</p>
-            {recipe.strAlcoholic && (
-              <p data-testid="recipe-category">{ recipe.strAlcoholic }</p>
-            )}
-          </CategoryContainer>
         </ContainerHeader>
         <Wrapper>
           <Heading3>Ingredients</Heading3>
           <IngredientsContainer>
             {getIngredientsList(recipe).map((ingredient, index) => (
-              <li
+              <IngredientsCard
                 key={ index }
                 data-testid={ `${index}-ingredient-name-and-measure` }
               >
-                {ingredient}
-              </li>
+                <label>
+                  {ingredient}
+                </label>
+              </IngredientsCard>
             ))}
           </IngredientsContainer>
           <Heading3>Instructions</Heading3>

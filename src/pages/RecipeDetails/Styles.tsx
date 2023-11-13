@@ -2,125 +2,125 @@ import styled, { keyframes } from 'styled-components';
 
 export const ContainerRecipeDetails = styled.section`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  width: 80%;
+  height: 100%;
   margin: 0;
+
+  @media screen and (min-width: 360px) and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1366px) {
+    height: auto;
+  }
+
+  @media screen and (min-width: 1367px) and (max-width: 1920px) {
+    height: auto;
+  }
+
+  @media screen and (min-width: 1921px) {
+    height: auto;
+  }
 `;
 
 export const ContainerHeader = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 360px;
-  margin-top: 0;
+  width: 30%;
+  padding: 40px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1173px) {
+    width: 100%;
+  }
 `;
 
 export const ImageContainer = styled.div`
   width: 100%;
-  height: 161px;
-  overflow: hidden;
-  flex-shrink: 0;
-  margin: 0px;
+  height: auto;
+
+  @media screen and (min-width: 360px) and (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 export const RecipeImage = styled.img`
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 `;
 
 export const RecipeTitle = styled.h2`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #FFF;
-  text-align: center;
-  font-family: Epilogue, sans-serif;
+  color: #000;
   font-size: 20px;
-  font-style: normal;
   font-weight: 900;
-  line-height: normal;
   letter-spacing: 2.1px;
   text-transform: uppercase;
+  margin: 10px 0;
+
+  @media screen and (max-width: 768px) {
+    color: #000;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2.1px;
+    text-transform: uppercase;
+  }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 360px;
-  height: 100%;
-  margin-top: 0px;
-  margin-bottom: 60px;
-  padding: 5px;
+  flex-flow: row wrap;
+  width: 60%;
+  padding: 0 20px;
+  margin: 40px 0;
 
-  button {
-    width: 318px;
-    height: 40px;
-    border-radius: 5px;
-    background: #df3626;
-    border: none;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    font-weight: 900;
-    cursor: pointer;
-    margin-top: 20px;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
   }
 `;
 
 export const Heading3 = styled.h3`
   color: #1A1B1C;
-  font-family: Epilogue, sans-serif;
   font-size: 20px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   letter-spacing: 2.1px;
-  margin-bottom: 10px;
+  margin: 10px 0;
   text-align: left;
-`;
 
-export const ShareFavButton = styled.button`
-
+  @media screen and (max-width: 768px) {
+    color: #1A1B1C;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2.1px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
 `;
 
 export const ButtonsContainer = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: row;
-  justify-content: right;
-  top: 15px;
-  right: 15px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 
-  button {
-    background: none;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
+  @media screen and (max-width: 768px) {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 35px;
-    height: 35px;
-    margin-right: 10px;
-  }
-
-  &:hover {
-    background-color: #41197F;
-  }
-
-  img {
-    width: 23px;
-    height: 23px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
+
 const fadeOut = keyframes`
   0% {
     opacity: 1;
@@ -129,6 +129,21 @@ const fadeOut = keyframes`
     opacity: 0;
   }
 `;
+
+export const ButtonsFavShare = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding-top: 2px;
+  }
+`;
+
 export const LinkCopiedText = styled.p`
   font-size: 16px;
   color: #4d4d4d;
@@ -138,51 +153,55 @@ export const LinkCopiedText = styled.p`
 `;
 
 export const CategoryContainer = styled.div`
-  position: absolute;
   display: flex;
-  color: #FCC436;
-  font-family: Epilogue;
+  color: #000;
   font-size: 14px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
-  left: 15px;
-  top: 20px;
-  `;
+
+  p {
+    text-transform: uppercase;
+  }
+`;
 
 export const IngredientsContainer = styled.ul`
   display: flex;
   flex-direction: column;
-  width: 315px;
-  border: 1px solid #bdbdbd;
-  border-radius: 5px;
-  padding: 10px;
+  width: 100%;
+  padding: 0 20px;
+  border-left: 1px solid #df3626;
   align-items: left;
+  margin-bottom: 30px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 0 20px;
+  }
+`;
+
+export const CardDetails = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
   margin-bottom: 10px;
-  margin-left: 12px;
-  margin-right: auto;
 
   li {
-    margin-left: 15px;
-    margin-bottom: 5px;
     color: #1A1B1C;
-    font-family: Epilogue, sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    line-through solid rgb(0, 0, 0);
+    padding: 0 10px;
   }
-  `;
+`;
 
 export const InstructionsContainer = styled.div`
-display: flex;
-flex-direction: column;
-width: 315px;
-border: 1px solid #bdbdbd;
-border-radius: 5px;
-padding: 10px;
-text-align: justify;
-margin-left: 12px;
-margin-right: auto;
-margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 0;
+  text-align: justify;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  font-size: 15px;
+  margin-bottom: 20px;
 `;
