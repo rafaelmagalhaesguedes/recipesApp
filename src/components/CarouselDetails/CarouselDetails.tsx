@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchRecommendations } from '../../helpers/api';
-import { ContainerCarouselDetails } from './Style';
+import {
+  CarouselContainer,
+  CarouselTitle, ContainerCarouselDetails, RecommendationCard } from './Style';
 
 interface CarouselDetailsProps {
   isDrinksPage: boolean;
@@ -21,32 +24,38 @@ function CarouselDetails({ isDrinksPage }: CarouselDetailsProps) {
     fetchData();
   }, [isDrinksPage]);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <ContainerCarouselDetails>
-      <h2>Recommended</h2>
-      <div style={ { overflowX: 'auto', display: 'flex', width: '100%' } }>
+      <CarouselTitle>Recommended</CarouselTitle>
+      <CarouselContainer>
         {recommendations.map((recommendation, index) => (
-          <div
+          <RecommendationCard
             key={ recommendation.idDrink || recommendation.idMeal }
             data-testid={ `${index}-recommendation-card` }
-            style={ {
-              flex: '0 0 auto',
-              width: '160px',
-              border: '1px solid #ccc',
-              margin: '5px',
-            } }
           >
-            <img
-              src={ recommendation.strDrinkThumb || recommendation.strMealThumb }
-              alt="recipe"
-              width={ 150 }
-            />
-            <h3 data-testid={ `${index}-recommendation-title` }>
-              {recommendation.strDrink || recommendation.strMeal}
-            </h3>
-          </div>
+            <Link
+              to={ recommendation.idMeal ? `/meals/${recommendation.idMeal}`
+                : `/drinks/${recommendation.idDrink}` }
+              onClick={ scrollToTop }
+            >
+              <img
+                src={ recommendation.strDrinkThumb || recommendation.strMealThumb }
+                alt="recipe"
+              />
+              <h3 data-testid={ `${index}-recommendation-title` }>
+                {recommendation.strDrink || recommendation.strMeal}
+              </h3>
+            </Link>
+          </RecommendationCard>
         ))}
-      </div>
+      </CarouselContainer>
     </ContainerCarouselDetails>
   );
 }

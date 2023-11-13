@@ -5,6 +5,13 @@ import { FooterContainer } from './Styles';
 import logoFooter from '../../images/login/recipesApp.png';
 
 function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <FooterContainer data-testid="footer">
       <div className="linksFooter">
@@ -22,14 +29,14 @@ function Footer() {
         <img className="imageLogo" src={ logoFooter } alt="logo" />
       </div>
       <div className="buttonsFooter">
-        <Link to="/drinks">
+        <Link to="/drinks" onClick={ scrollToTop }>
           <img
             data-testid="drinks-bottom-btn"
             src={ drinkIcon }
             alt="Bebidas"
           />
         </Link>
-        <Link to="/meals">
+        <Link to="/meals" onClick={ scrollToTop }>
           <img
             data-testid="meals-bottom-btn"
             src={ mealIcon }

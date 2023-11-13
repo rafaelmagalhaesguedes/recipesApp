@@ -27,12 +27,20 @@ function StartRecipeButton() {
     }
   }, [id, inProgressRecipes, key, isRecipeInProgress]);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const handleStartRecipeClick = () => {
     if (key === 'meals') {
       navigate(`/meals/${id}/in-progress`);
     } else if (key === 'drinks') {
       navigate(`/drinks/${id}/in-progress`);
     }
+    scrollToTop();
   };
 
   return (

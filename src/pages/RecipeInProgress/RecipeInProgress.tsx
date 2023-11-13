@@ -116,9 +116,17 @@ export default function RecipeInProgress() {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const handleFinished = () => {
     navigate('/done-recipes');
     if (dataById) handleDoneRecipes(dataById);
+    scrollToTop();
   };
 
   const handleClickShare = () => {

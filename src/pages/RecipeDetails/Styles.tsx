@@ -161,6 +161,8 @@ export const CategoryContainer = styled.div`
   color: #000;
   font-size: 14px;
   font-weight: 700;
+  flex-flow: row wrap;
+  padding: 5px 0;
 
   p {
     text-transform: uppercase;
