@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import logo from '../../images/login/recipesApp.png';
 import {
   LoginContainer,
@@ -11,22 +10,12 @@ import {
   LoginBg,
   LoginBtn,
 } from './Styles';
-import useLoginForm from '../../hooks/useLoginForm';
+import useLogin from '../../hooks/useLogin';
 
 function Login() {
-  const navigate = useNavigate();
-  const loginForm = useLoginForm('');
-
-  const handleSubmit = () => {
-    localStorage.setItem('user', JSON.stringify({ email: loginForm.email }));
-    resetForm();
-    navigate('/meals');
-  };
-
-  const resetForm = () => {
-    loginForm.setEmail('');
-    loginForm.setPassword('');
-  };
+  const {
+    email, password, addEmail, addPassword, validateForm, handleSubmit,
+  } = useLogin('');
 
   return (
     <LoginContainer>
@@ -38,8 +27,8 @@ function Login() {
           <InputsLogin
             data-testid="email-input"
             type="email"
-            value={ loginForm.email }
-            onChange={ ({ target }) => loginForm.addEmail(target.value) }
+            value={ email }
+            onChange={ ({ target }) => addEmail(target.value) }
             placeholder="Email"
           />
           <ValidIcon />
@@ -48,8 +37,8 @@ function Login() {
           <InputsLogin
             data-testid="password-input"
             type="password"
-            value={ loginForm.password }
-            onChange={ ({ target }) => loginForm.addPassword(target.value) }
+            value={ password }
+            onChange={ ({ target }) => addPassword(target.value) }
             placeholder="Password"
           />
           <InvalidIcon />
@@ -57,7 +46,7 @@ function Login() {
         <LoginBtn
           data-testid="login-submit-btn"
           onClick={ handleSubmit }
-          disabled={ !loginForm.validateForm() }
+          disabled={ !validateForm() }
         >
           entrar
         </LoginBtn>
