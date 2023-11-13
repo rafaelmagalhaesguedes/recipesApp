@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import ShareButton from '../components/ShareButton';
+import ShareButton from '../components/ShareButton/ShareButton';
 
 describe('ShareButton', () => {
   it('renders correctly', () => {
