@@ -37,7 +37,7 @@ export const HeaderNavbar = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding: 0;
+    padding: 0 10px;
     position: relative;
   }
 
@@ -206,7 +206,15 @@ export const HeaderTitle = styled.div`
     width: 50px;
   }
 
+  @media screen and (max-width: 360px) {
+
+    h1 {
+      font-size: 16px;
+    }
+  }
+
   @media screen and (max-width: 768px) {
+
     img {
       display: none;
     }
