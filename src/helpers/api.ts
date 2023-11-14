@@ -22,10 +22,16 @@ export const fetchById = async (type: string, idSearch: string) => {
 };
 
 export const fetchRecipeDetails = async (id: string, isDrinksPage: boolean) => {
-  const urlAPI = isDrinksPage
+  const API_URL = isDrinksPage
     ? `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
     : `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-  return fetchWithCache(urlAPI);
+
+  try {
+    const data = await fetchWithCache(API_URL);
+    return data.drinks ? data.drinks[0] : data.meals[0];
+  } catch (error) {
+    throw new Error('Erro na requisição da receita');
+  }
 };
 
 export const fetchSearchCategory = async (type: string, category: string) => {
