@@ -7,15 +7,20 @@ export const SearchBarContainer = styled.div`
   border-radius: 10px;
   margin: 15px;
   gap: 10px;
+  width: 100%;
 
   @media screen and (max-width: 768px) {
-    width: 338px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 150px;
+    height: auto;
     border-radius: 10px;
     background: #41197F;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1174px) {
+    margin: 0 20px;
   }
 `;
 
@@ -39,12 +44,13 @@ export const SearchBarInput = styled.input`
     border: 1px solid #41197F;
   }
 
-  @media screen and (max-width: 360px) {
-    width: 338px;
+  @media screen and (max-width: 768px) {
+    width: 90%;
     height: 35px;
     border-radius: 5px;
     border: 0.5px solid #c0c0c0;
-    padding: 0 20px;
+    padding: 20px;
+    margin-top: 20px;
     color: #41197F;
     font-size: 15px;
     font-weight: 500;
@@ -59,10 +65,6 @@ export const SearchBarInput = styled.input`
       border: 1px solid #41197F;
     }
   }
-
-  @media screen and (max-width: 768px) {
-    width: 338px;
-  }
 `;
 
 export const SearchBarFilter = styled.div`
@@ -76,6 +78,8 @@ export const SearchBarFilter = styled.div`
   div {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    justify-content: center;
     align-items: center;
   }
 
@@ -85,21 +89,17 @@ export const SearchBarFilter = styled.div`
 
   label {
     color: white;
-    font-size: 11px;
+    font-size: 15px;
     font-weight: 500;
     letter-spacing: 0.05em;
-    margin: 5px;
+    margin: 10px;
     cursor: pointer;
   }
 
   @media screen and (max-width: 768px) {
-    flex-flow: row wrap;
-    
-`;
-
-export const SearchBarFilterItem = styled.div`
-  display: flex;
-  align-items: center;
+    flex-flow: column wrap;
+    width: 100%;
+  } 
 `;
 
 export const ButtonSearch = styled.button`
@@ -109,6 +109,12 @@ export const ButtonSearch = styled.button`
   border-radius: 5px;
   text-transform: uppercase;
   color: white;
+  font-weight: 700;
   border: 1px solid #df3626;
   cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    width: 70%;
+    height: 35px;
+  }
 `;

@@ -46,7 +46,7 @@ function SearchBar({ toggle } : any) {
       />
 
       <SearchBarFilter>
-        <div>
+        <div className="filter">
           <input
             data-testid="ingredient-search-radio"
             type="radio"
