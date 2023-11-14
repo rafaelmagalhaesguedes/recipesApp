@@ -1,11 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import RecipesContext from '../../context/RecipesContext';
-import {
-  fetchSearchByIngredients,
-  fetchSearchByName,
-  fetchSearchFirtsLetter,
-} from '../../helpers/api';
+import useSearch from '../../hooks/useSearch';
 import {
   ButtonSearch,
   SearchBarContainer,
@@ -13,67 +8,12 @@ import {
   SearchBarInput,
 } from './Styles';
 
-function SearchBar() {
-  const { setSearchData, searchData, setSearch } = useContext(RecipesContext);
+function SearchBar({ toggle } : any) {
   const [page, setPage] = useState('meal');
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [formData, setFormData] = useState({
-    search: '',
-    filter: '',
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type } = e.target;
-    if (type === 'radio') {
-      setFormData({ ...formData, [name]: value });
-    } else {
-      setFormData({ ...formData, search: value });
-    }
-  };
-
-  const testResult = (result: any = null) => {
-    if (result === null) {
-      window.alert("Sorry, we haven't found any recipes for these filters.");
-    }
-  };
-
-  const handleSubmit = async () => {
-    const { filter, search } = formData;
-    let fetchResult = [];
-    switch (filter) {
-      case 'ingredient':
-        fetchResult = await fetchSearchByIngredients(page, search);
-        break;
-
-      case 'name':
-        fetchResult = await fetchSearchByName(page, search);
-        break;
-
-      case 'first-letter':
-        if (search.length > 1) {
-          window.alert('Your search must have only 1 (one) character');
-          return;
-        }
-        fetchResult = await fetchSearchFirtsLetter(page, search);
-        break;
-
-      default:
-        break;
-    }
-    if ('meals' in fetchResult) {
-      setSearchData(fetchResult.meals || []);
-      testResult(fetchResult.meals);
-    } else if ('drinks' in fetchResult) {
-      setSearchData(fetchResult.drinks || []);
-      testResult(fetchResult.drinks);
-    } else {
-      setSearchData('meal');
-      testResult();
-    }
-    setSearch(formData.search);
-    setFormData({ ...formData, search: '' });
-  };
+  const {
+    formData, handleChange, handleSubmit, searchData } = useSearch(page);
 
   useEffect(() => {
     if (pathname === '/drinks') {
@@ -116,9 +56,6 @@ function SearchBar() {
             onChange={ handleChange }
           />
           <label htmlFor="ingredient">Ingredient</label>
-        </div>
-
-        <div>
           <input
             data-testid="name-search-radio"
             type="radio"
@@ -128,9 +65,7 @@ function SearchBar() {
             onChange={ handleChange }
           />
           <label htmlFor="name">Name</label>
-        </div>
 
-        <div>
           <input
             data-testid="first-letter-search-radio"
             type="radio"
@@ -143,7 +78,10 @@ function SearchBar() {
         </div>
         <ButtonSearch
           data-testid="exec-search-btn"
-          onClick={ () => handleSubmit() }
+          onClick={ () => {
+            handleSubmit();
+            toggle();
+          } }
         >
           Search
         </ButtonSearch>
