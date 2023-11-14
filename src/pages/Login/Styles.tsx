@@ -13,7 +13,7 @@ export const LoginContainer = styled.section`
   background-position: center;
   background-size: cover;
 
-  @media only screen and (max-width: 1180px) {
+  @media only screen and (max-width: 1260px) {
     width: 100%;
     height: 100vh;
     background-image: url(${bgLoginMobile});
@@ -26,7 +26,7 @@ export const LoginContainer = styled.section`
 export const LoginBg = styled.div`
   width: 60%;
 
-  @media only screen and (max-width: 1180px) {
+  @media only screen and (max-width: 1260px) {
     width: 0;
   }
 `;
@@ -41,8 +41,8 @@ export const LoginWrapper = styled.div`
   height: 100%;
   margin-left: 25px;
 
-  @media only screen and (max-width: 1180px) {
-    justify-content: center;
+  @media only screen and (max-width: 1260px) {
+    justify-content: flex-end;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -60,7 +60,7 @@ export const TitleLogin = styled.h1`
   text-transform: uppercase;
   margin: 20px 0 10px 0;
 
-  @media only screen and (max-width: 1180px) {
+  @media only screen and (max-width: 1260px) {
     margin-bottom: 25px;
   }
 `;
