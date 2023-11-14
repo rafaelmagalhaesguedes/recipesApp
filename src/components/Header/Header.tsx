@@ -19,6 +19,7 @@ import {
   HeaderWrapper,
   NavbarButtons,
   NavbarLogo,
+  SearchBarMobile,
 } from './Styles';
 import Navbar from '../NavBar/NavBar';
 
@@ -45,6 +46,9 @@ export default function Header() {
     } else if (pathname === '/favorite-recipes') {
       setShowSearchButton(false);
       setTitle('Favorite Recipes');
+    } else {
+      setShowSearchButton(false);
+      setTitle('Recipe');
     }
   }, [pathname]);
 
@@ -107,11 +111,11 @@ export default function Header() {
 
         <Navbar />
       </HeaderNavbar>
-      <div>
+      <SearchBarMobile>
         {searchVisible && (
           <SearchBar toggle={ setSearchVisible } />
         )}
-      </div>
+      </SearchBarMobile>
     </HeaderWrapper>
   );
 }
