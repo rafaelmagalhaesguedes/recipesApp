@@ -7,7 +7,7 @@ import RecipeInProgress from './pages/RecipeInProgress/RecipeInProgress';
 import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
 import Profile from './pages/Profile/Profile';
 import FavoriteRecipes from './pages/FavoriteRecipes/FavoriteRecipes';
-import { Container } from './GlobalStyle';
+import { Container } from './styles/GlobalStyle';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 
 function App() {
