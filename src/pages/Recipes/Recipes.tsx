@@ -4,7 +4,7 @@ import CategoryFilter from '../../components/CategoryFilter/CategoryFilter';
 import SearchResult from '../../components/SearchResult/SearchResult';
 import { ContainerRecipes, LoadingRecipes, Render } from './Styles';
 import RecipiesContext from '../../context/RecipesContext';
-import RenderRecipes from '../../components/RecipeRender';
+import RenderRecipes from '../../components/RecipeRender/RecipeRender';
 import Loading from '../../components/Loading/Loading';
 import useRecipes from '../../hooks/useRecipes';
 

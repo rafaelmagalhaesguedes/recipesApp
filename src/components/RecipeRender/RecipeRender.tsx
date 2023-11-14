@@ -3,11 +3,11 @@ import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 // Internal modules
-import RecipesContext from '../context/RecipesContext';
-import RecipeCard from './RecipeCard/RecipeCard';
+import RecipesContext from '../../context/RecipesContext';
+import RecipeCard from './RecipeCard';
 
 // Styles
-import styles from './RecipeCard/Recipes.module.css';
+import styles from './Recipes.module.css';
 
 type RenderRecipesProps = {
   listLength: number;

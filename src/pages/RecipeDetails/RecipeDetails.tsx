@@ -2,7 +2,7 @@
 import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
 import ShareButton from '../../components/ShareButton/ShareButton';
 import StartRecipeButton from '../../components/StartRecipeButton/StartRecipeButton';
-import CarouselDetails from '../../components/CarouselDetails/CarouselDetails';
+import CarouselDetails from '../../components/Carousel/Carousel';
 import Loading from '../../components/Loading/Loading';
 import useRecipeDetails from '../../hooks/useRecipeDetails';
 import { LoadingRecipes } from '../Recipes/Styles';
