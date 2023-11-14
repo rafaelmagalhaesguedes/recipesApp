@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchAPI } from '../../helpers/helpers';
-import FilterButton from '../FilterButton';
+import FilterButton from './FilterButton';
 import RecipiesContext from '../../context/RecipesContext';
 import { DrinkType, MealsType } from '../../types/types';
 import styles from './CategoryFilter.module.css';
