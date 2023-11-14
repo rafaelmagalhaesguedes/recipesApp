@@ -31,8 +31,10 @@ export default function Header() {
 
   useEffect(() => {
     if (pathname === '/drinks') {
+      setShowSearchButton(true);
       setTitle('Drinks');
     } else if (pathname === '/meals') {
+      setShowSearchButton(true);
       setTitle('Meals');
     } else if (pathname === '/profile') {
       setShowSearchButton(false);
@@ -44,7 +46,6 @@ export default function Header() {
       setShowSearchButton(false);
       setTitle('Favorite Recipes');
     }
-    setSearchVisible(false);
   }, [pathname]);
 
   const handleProfileChange = () => {
@@ -68,7 +69,7 @@ export default function Header() {
         </NavbarLogo>
 
         <div className="navbar">
-          <SearchBar />
+          <SearchBar toggle={ setSearchVisible } />
         </div>
 
         <HeaderTitle>
@@ -108,7 +109,7 @@ export default function Header() {
       </HeaderNavbar>
       <div>
         {searchVisible && (
-          <SearchBar />
+          <SearchBar toggle={ setSearchVisible } />
         )}
       </div>
     </HeaderWrapper>
