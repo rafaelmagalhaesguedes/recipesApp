@@ -36,6 +36,9 @@ function Footer() {
             alt="Bebidas"
           />
         </Link>
+        <div>
+          <h4>Recipes App</h4>
+        </div>
         <Link to="/meals" onClick={ scrollToTop }>
           <img
             data-testid="meals-bottom-btn"

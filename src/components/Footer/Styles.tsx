@@ -83,6 +83,12 @@ export const FooterContainer = styled.footer`
     img {
       width: 60px;
     }
+
+    h4 {
+      padding: 20px 0;
+      font-size: 15px;
+      color: white;
+    }
   }
 
   @media only screen and (max-width: 1920px) {
