@@ -18,9 +18,8 @@
   flex-direction: column;
   font-weight: 700;
   gap: 5px;
-  margin-right: 4px;
+  justify-content: center;
   outline: none;
-  padding: 10px 20px;
   transition: background-color 0.3s ease;
 }
 
