@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaUser, FaKey } from 'react-icons/fa';
+import { FaUserAlt, FaKey } from 'react-icons/fa';
 import bgLogin from '../../images/login/bg_login_2.jpg';
 import bgLoginMobile from '../../images/login/bg_login_mobile.jpg';
 
@@ -50,19 +50,10 @@ export const LoginWrapper = styled.div`
   }
 `;
 
-export const TitleLogin = styled.h1`
-  font-size: 22px;
-  font-weight: 900;
-  line-height: 21px;
-  letter-spacing: 0.165em;
-  color: white;
-  padding-bottom: 5px;
-  text-transform: uppercase;
-  margin: 20px 0 10px 0;
-
-  @media only screen and (max-width: 1260px) {
-    margin-bottom: 25px;
-  }
+export const LoginImage = styled.img`
+  width: 200px;
+  height: auto;
+  margin-bottom: 15px;
 `;
 
 export const InputEmail = styled.div`
@@ -74,17 +65,17 @@ export const InputsLogin = styled.input`
   width: 276px;
   height: 40px;
   border-radius: 5px;
-  padding: 0 23px 0 30px;
+  padding: 0 35px;
   border: 0.5px solid #d0d0d0;
   margin: 5px 0;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 520;
   letter-spacing: 0.6px;
   background: white;
   color: black;
 
   &::placeholder {
-    color: black;
+    color: darkgray;
   }
   
   &:focus {
@@ -93,34 +84,43 @@ export const InputsLogin = styled.input`
   }
 `;
 
-export const ValidIcon = styled(FaUser)`
-  color: green;
-  width: 12px;
+export const SignUp = styled.div`
+  color: #F4F4F4;
+  font-size: 14px;
+  font-weight: 620;
+  text-align: center;
+  padding:0;
+  margin: 0;
+
+  span {
+    color: #000;
+    cursor: pointer;
+  }
+`;
+
+export const ValidIcon = styled(FaUserAlt)`
+  color: #3f3533;
+  width: 15px;
   position: absolute;
-  margin: 16px 8px;
+  margin: 16px 10px;
 `;
 
 export const InvalidIcon = styled(FaKey)`
-  color: green;
+  color: #3f3533;
   position: absolute;
-  width: 12px;
-  margin: 16px 8px;
+  width: 15px;
+  margin: 16px 10px;
 `;
 
 export const LoginBtn = styled.button`
   width: 276px;
   height: 40px;
   border-radius: 5px;
-  background: #281f0e;
+  background: #3f3533;
   border: none;
   color: #FFFFFF;
   text-transform: uppercase;
   font-weight: 900;
   cursor: pointer;
   margin: 10px 0;
-
-  &:disabled {
-    background: #3f3533;
-    cursor: not-allowed;
-  }
 `;

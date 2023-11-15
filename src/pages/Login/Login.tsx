@@ -1,7 +1,6 @@
 import logo from '../../images/login/recipesApp.png';
 import {
   LoginContainer,
-  TitleLogin,
   InputEmail,
   InputsLogin,
   ValidIcon,
@@ -9,6 +8,8 @@ import {
   LoginWrapper,
   LoginBg,
   LoginBtn,
+  LoginImage,
+  SignUp,
 } from './Styles';
 import useLogin from '../../hooks/useLogin';
 
@@ -21,15 +22,14 @@ function Login() {
     <LoginContainer>
       <LoginBg />
       <LoginWrapper>
-        <img src={ logo } alt="logo" width={ 200 } />
-        <TitleLogin>Login</TitleLogin>
+        <LoginImage src={ logo } alt="logo" />
         <InputEmail>
           <InputsLogin
             data-testid="email-input"
             type="email"
             value={ email }
             onChange={ ({ target }) => addEmail(target.value) }
-            placeholder="Email"
+            placeholder="user@email.com"
           />
           <ValidIcon />
         </InputEmail>
@@ -39,7 +39,7 @@ function Login() {
             type="password"
             value={ password }
             onChange={ ({ target }) => addPassword(target.value) }
-            placeholder="Password"
+            placeholder="password"
           />
           <InvalidIcon />
         </InputEmail>
@@ -48,8 +48,15 @@ function Login() {
           onClick={ handleSubmit }
           disabled={ !validateForm() }
         >
-          entrar
+          SIGN IN
         </LoginBtn>
+        <SignUp>
+          <p>
+            Dont have an account?
+            {' '}
+            <span>Sign up</span>
+          </p>
+        </SignUp>
       </LoginWrapper>
     </LoginContainer>
   );
