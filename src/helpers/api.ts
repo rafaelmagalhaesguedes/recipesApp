@@ -40,8 +40,14 @@ export const fetchSearchCategory = async (type: string, category: string) => {
 };
 
 export const fetchRecommendations = async (type: string) => {
-  const urlAPI = `https://www.${type === 'meals' ? 'thecocktaildb' : 'themealdb'}.com/api/json/v1/1/search.php?s=`;
-  return fetchWithCache(urlAPI);
+  try {
+    const response = await fetch(`https://www.${type === 'meals' ? 'thecocktaildb' : 'themealdb'}.com/api/json/v1/1/search.php?s= `);
+    const data = await response.json();
+    return type === 'meals' ? data.drinks : data.meals;
+  } catch (error) {
+    console.error('Error', error);
+    return [];
+  }
 };
 
 export async function fetchRecipes(type: string): Promise<any[]> {
