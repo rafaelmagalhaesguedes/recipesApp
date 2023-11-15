@@ -38,6 +38,7 @@ export const ContainerHeader = styled.div`
 
   @media screen and (max-width: 768px) {
     width: 100%;
+    padding: 20px;
   }
 
   @media screen and (min-width: 769px) and (max-width: 1173px) {

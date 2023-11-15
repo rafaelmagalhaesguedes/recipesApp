@@ -17,7 +17,6 @@ function RecipeCard({ cardIndex, recipe }: RecipeCardProps) {
         src={ typedRecipeMeal.strMealThumb || typedRecipeDrink.strDrinkThumb }
         alt={ typedRecipeMeal.strMeal || typedRecipeDrink.strDrink }
         data-testid={ `${cardIndex}-card-img` }
-        width={ 360 }
       />
       <p className={ styles.cardName } data-testid={ `${cardIndex}-card-name` }>
         {typedRecipeMeal.strMeal || typedRecipeDrink.strDrink}
