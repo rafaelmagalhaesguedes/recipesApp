@@ -18,6 +18,13 @@ function Login() {
     email, password, addEmail, addPassword, validateForm, handleSubmit,
   } = useLogin('');
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <LoginContainer>
       <LoginBg />
@@ -45,7 +52,10 @@ function Login() {
         </InputEmail>
         <LoginBtn
           data-testid="login-submit-btn"
-          onClick={ handleSubmit }
+          onClick={ () => {
+            handleSubmit();
+            scrollToTop();
+          } }
           disabled={ !validateForm() }
         >
           SIGN IN
