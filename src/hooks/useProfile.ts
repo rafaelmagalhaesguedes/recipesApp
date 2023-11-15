@@ -8,7 +8,7 @@ function useProfile() {
   useEffect(() => {
     const storedEmail = localStorage.getItem('user');
     if (storedEmail) {
-      const parsedEmail = JSON.parse(storedEmail).email;
+      const parsedEmail = JSON.parse(storedEmail);
       setEmail(parsedEmail);
     }
   }, []);

@@ -42,10 +42,10 @@ export default function Header() {
       setTitle('Profile');
     } else if (pathname === '/done-recipes') {
       setShowSearchButton(false);
-      setTitle('Done Recipes');
+      setTitle('Done');
     } else if (pathname === '/favorite-recipes') {
       setShowSearchButton(false);
-      setTitle('Favorite Recipes');
+      setTitle('Favorites');
     } else {
       setShowSearchButton(false);
       setTitle('Recipe');
