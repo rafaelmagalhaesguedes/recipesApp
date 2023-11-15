@@ -35,7 +35,7 @@ function Carousel({ isDrinksPage }: CarouselProps) {
     <ContainerCarouselDetails>
       <CarouselTitle>Recommended</CarouselTitle>
       <CarouselContainer>
-        {recommendations.map((recommendation, index) => (
+        {recommendations && recommendations.map((recommendation, index) => (
           <RecommendationCard
             key={ recommendation.idDrink || recommendation.idMeal }
             data-testid={ `${index}-recommendation-card` }
