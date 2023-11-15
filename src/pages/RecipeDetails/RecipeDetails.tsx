@@ -42,9 +42,15 @@ function RecipeDetails() {
           </ImageContainer>
           <ButtonsContainer>
             <CategoryContainer>
-              <p data-testid="recipe-category">{ recipe.strCategory }</p>
+              <p data-testid="recipe-category">
+                { recipe.strCategory }
+                {' '}
+              </p>
               {recipe.strAlcoholic && (
-                <p data-testid="recipe-category">{ recipe.strAlcoholic }</p>
+                <p data-testid="recipe-category">
+                  {' '}
+                  { recipe.strAlcoholic }
+                </p>
               )}
             </CategoryContainer>
             <ButtonsFavShare>
