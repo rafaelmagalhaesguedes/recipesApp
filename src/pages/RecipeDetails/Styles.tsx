@@ -185,6 +185,21 @@ export const IngredientsContainer = styled.ul`
   }
 `;
 
+export const IngredientCard = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  margin-bottom: 10px;
+
+  label {
+    color: #1A1B1C;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0 10px;
+  }
+`;
+
 export const CardDetails = styled.div`
   display: flex;
   align-items: center;

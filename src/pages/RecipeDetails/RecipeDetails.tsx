@@ -15,13 +15,13 @@ import {
   ContainerRecipeDetails,
   Heading3,
   ImageContainer,
+  IngredientCard,
   IngredientsContainer,
   InstructionsContainer,
   RecipeImage,
   RecipeTitle,
   Wrapper,
 } from './Styles';
-import { IngredientsCard } from '../RecipeInProgress/Styles';
 
 function RecipeDetails() {
   const { recipe, isDrinksPage } = useRecipeDetails('drinks');
@@ -63,14 +63,14 @@ function RecipeDetails() {
           <Heading3>Ingredients</Heading3>
           <IngredientsContainer>
             {getIngredientsList(recipe).map((ingredient, index) => (
-              <IngredientsCard
+              <IngredientCard
                 key={ index }
                 data-testid={ `${index}-ingredient-name-and-measure` }
               >
                 <label>
                   {ingredient}
                 </label>
-              </IngredientsCard>
+              </IngredientCard>
             ))}
           </IngredientsContainer>
           <Heading3>Instructions</Heading3>
