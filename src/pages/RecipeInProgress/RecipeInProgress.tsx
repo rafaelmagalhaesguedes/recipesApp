@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-max-depth */
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { handleDoneRecipes, handleFavoriteClick } from '../../helpers/localStorage';
 import { DrinkType, MealsType, DataDetailsType } from '../../types/types';
@@ -110,6 +111,7 @@ export default function RecipeInProgress() {
       setDataDetails(recipeDetails);
     }
   }, [dataById, page]);
+
   const verifyRecipeDone = () => {
     if (checkedIngredients.length === dataDetails?.ingredients.length) {
       return true;
@@ -124,6 +126,14 @@ export default function RecipeInProgress() {
   };
 
   const handleFinished = () => {
+    if (!verifyRecipeDone()) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please, select all ingredients to finish recipe!',
+      });
+      return;
+    }
     navigate('/done-recipes');
     if (dataById) handleDoneRecipes(dataById);
     scrollToTop();
@@ -212,7 +222,6 @@ export default function RecipeInProgress() {
           <FinishButton
             data-testid="finish-recipe-btn"
             onClick={ handleFinished }
-            disabled={ !verifyRecipeDone() }
           >
             Finish Recipe
           </FinishButton>
