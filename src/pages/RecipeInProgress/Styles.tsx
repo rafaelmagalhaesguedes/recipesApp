@@ -236,36 +236,75 @@ export const IngredientsContainer = styled.div`
 
   @media screen and (max-width: 768px) {
     width: 100%;
-    padding: 0 20px;
-  }
-`;
-
-export const IngredientsCard = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-  margin-bottom: 10px;
-
-  label {
-    color: #1A1B1C;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
     padding: 0 10px;
   }
 `;
 
-export const CheckboxIngredients = styled.input`
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  border: 2px solid #df3626;
-  border-radius: 3px;
-  cursor: pointer;
-
-  &:checked {
-    background-color: #000;
+export const IngredientsCard = styled.div`
+  .checkbox {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 5px;
   }
+
+  label {
+    padding: 0 10px;
+    cursor: pointer;
+  }
+
+  .checkbox label {
+    position: relative;
+    padding-left: 2.2em;
+    display: inline-block;
+  }
+  .checkbox label::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 1.5em;
+    width: 1.5em;
+    background: #FFF;
+    margin-right: 0.5em;
+    border: 1px solid #999;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+  }
+  .checkbox label::after {
+    content: "\2713";
+    position: absolute;
+    top: 50%;
+    left: 0.75em;
+    transform: translate(-50%, -50%);
+    font-size: 1em;
+    color: #FFF;
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+  .checkbox label:focus::before, .checkbox label:hover::before {
+    background: #DDD;
+  }
+  .checkbox input:checked + label::before {
+    background: #ff7212;
+    border-color: #ff7212;
+  }
+  .checkbox input:checked + label::after {
+    opacity: 1;
+  }
+`;
+
+export const CheckboxIngredients = styled.input`
+  margin: 10px 5px;
+  cursor: pointer;
+  width: 20px;
 `;
 
 export const InstructionsContainer = styled.div`

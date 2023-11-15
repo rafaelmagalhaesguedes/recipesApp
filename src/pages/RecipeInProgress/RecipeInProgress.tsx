@@ -186,6 +186,7 @@ export default function RecipeInProgress() {
                 <CheckboxIngredients
                   id={ ingredient }
                   type="checkbox"
+                  className="checkbox"
                   checked={ checkedIngredients.includes(ingredient) }
                   onChange={ () => handleCheckboxChange(ingredient) }
                 />
@@ -196,6 +197,7 @@ export default function RecipeInProgress() {
                   style={ {
                     textDecoration: checkedIngredients.includes(ingredient)
                       ? 'line-through solid rgb(0, 0, 0)' : 'none',
+                    cursor: 'pointer',
                   } }
                 >
                   {ingredient}
