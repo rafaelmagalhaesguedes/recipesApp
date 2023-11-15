@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { ContainerStartButton, StartButton } from './Styles';
+import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
+import { ContainerStartButton, RecipeIsDone, StartButton } from './Styles';
 
 function StartRecipeButton() {
   const navigate = useNavigate();
@@ -45,13 +45,23 @@ function StartRecipeButton() {
 
   return (
     <ContainerStartButton>
-      {!isDone && (
+      {!isDone ? (
         <StartButton
           data-testid="start-recipe-btn"
           onClick={ handleStartRecipeClick }
         >
           {isRecipeInProgress() ? 'Continue Recipe' : 'Start Recipe'}
         </StartButton>
+      ) : (
+        <RecipeIsDone>
+          <p>
+            Recipe is done!
+          </p>
+          <p>Go to</p>
+          <Link to="/done-recipes">
+            Done Recipes
+          </Link>
+        </RecipeIsDone>
       )}
     </ContainerStartButton>
   );

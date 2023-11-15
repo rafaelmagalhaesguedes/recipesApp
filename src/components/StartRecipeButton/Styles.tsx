@@ -30,3 +30,12 @@ export const StartButton = styled.button`
     margin-bottom: 80px;
   }
 `;
+
+export const RecipeIsDone = styled.div`
+  margin-bottom: 70px;
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
