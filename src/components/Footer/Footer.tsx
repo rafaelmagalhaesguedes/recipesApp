@@ -36,7 +36,7 @@ function Footer() {
             alt="Bebidas"
           />
         </Link>
-        <div>
+        <div className="recipeAppTitle">
           <h4>Recipes App</h4>
         </div>
         <Link to="/meals" onClick={ scrollToTop }>

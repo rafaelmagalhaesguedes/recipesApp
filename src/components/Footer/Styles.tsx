@@ -18,6 +18,10 @@ export const FooterContainer = styled.footer`
     color: white;
   }
 
+  .recipeAppTitle {
+    display: none;
+  }
+
   a {
     color: white;
   }
@@ -74,6 +78,10 @@ export const FooterContainer = styled.footer`
 
     .imageLogo {
       display: none;
+    }
+
+    .recipeAppTitle {
+      display: block;
     }
 
     .menuFooter {
