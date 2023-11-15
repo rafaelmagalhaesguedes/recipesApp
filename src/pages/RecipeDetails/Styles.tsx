@@ -181,7 +181,7 @@ export const IngredientsContainer = styled.ul`
 
   @media screen and (max-width: 768px) {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 10px;
   }
 `;
 

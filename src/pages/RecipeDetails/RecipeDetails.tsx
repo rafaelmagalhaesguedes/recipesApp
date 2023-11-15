@@ -82,7 +82,7 @@ function RecipeDetails() {
               data-testid="video"
               title="recipe-video"
               width="100%"
-              height="315"
+              height="auto"
               src={ recipe.strYoutube.replace('watch?v=', 'embed/') }
               frameBorder="0"
               allowFullScreen
