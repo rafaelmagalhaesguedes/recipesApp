@@ -13,6 +13,13 @@ type RenderRecipesProps = {
   listLength: number;
 };
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
+
 function RenderRecipes({ listLength }: RenderRecipesProps) {
   const { recipesList } = useContext(RecipesContext);
   const { pathname } = useLocation();
@@ -22,7 +29,7 @@ function RenderRecipes({ listLength }: RenderRecipesProps) {
 
     return (
       <li key={ index }>
-        <Link to={ `${pathname}/${idMeal || idDrink}` }>
+        <Link onClick={ scrollToTop } to={ `${pathname}/${idMeal || idDrink}` }>
           <div>
             <RecipeCard cardIndex={ index } recipe={ recipe } />
           </div>
